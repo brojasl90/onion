@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <img src="~/img/onlinev2.png" />
+            <a class="navbar-brand" href="#">Almacen Del Barrio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item" active>
+                        @Html.ActionLink("Inicio", "Index", "Home", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item" active>
+                        @Html.ActionLink("Proveedores", "Index", "Proveedor", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item" active>
+                        @Html.ActionLink("Usuarios", "Index", "Usuario", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item" active>
+                        @Html.ActionLink("Producto", "Index", "Producto", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item" active>
+                        @Html.ActionLink("Ventas & Compras", "Index", "GestionInventario", new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap_almacen.min.css")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

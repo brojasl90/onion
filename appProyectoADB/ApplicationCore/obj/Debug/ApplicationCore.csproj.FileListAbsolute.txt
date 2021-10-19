@@ -1,0 +1,14 @@
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\ApplicationCore.dll
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\ApplicationCore.pdb
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.dll
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.pdb
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.dll
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.pdb
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\EntityFramework.dll
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.dll.config
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\EntityFramework.xml
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\log4net.dll
+C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\log4net.xml

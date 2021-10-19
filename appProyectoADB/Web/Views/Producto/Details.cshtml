@@ -1,0 +1,106 @@
+﻿@model Infrastructure.Models.Producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadDisponible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadDisponible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadStockMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadStockMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadStockMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadStockMax)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

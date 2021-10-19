@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Infrastructure.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadDisponible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadStockMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadStockMax)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Producto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadDisponible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadStockMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadStockMax)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.IdProducto  }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
