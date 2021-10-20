@@ -8,41 +8,46 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
         <div class="container-fluid">
-            <img src="~/img/onlinev2.png" />
-            <a class="navbar-brand" href="#">Almacen Del Barrio</a>
+            <a class="navbar-brand" href="#"><img src="~/img/tiendaBG.png" class="mx-auto d-block" /><span>Almacen Del Barrio</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item" active>
-                        @Html.ActionLink("Inicio", "Index", "Home", new { @class = "nav-link" })
+                    <li class="nav-item">
+                        <img src="~/img/casa.png" class="mx-auto d-block" />
+                        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item" active>
-                        @Html.ActionLink("Proveedores", "Index", "Proveedor", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item" active>
-                        @Html.ActionLink("Usuarios", "Index", "Usuario", new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item" active>
+                    <li class="nav-item">
+                        <img src="~/img/bolsa.png" class="mx-auto d-block" />
                         @Html.ActionLink("Producto", "Index", "Producto", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item" active>
-                        @Html.ActionLink("Ventas & Compras", "Index", "GestionInventario", new { @class = "nav-link" })
+                    <li class="nav-item">
+                        <img src="~/img/edificio.png" class="mx-auto d-block" />
+                        @Html.ActionLink("Proveedores", "Index", "Proveedor", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Login", "Index", "Home", null, new { @class = "nav-link" })
+                        <img src="~/img/dinero.png" class="mx-auto d-block" />
+                        @Html.ActionLink("Ventas & Compras", "Index", "GestionInventario", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
+                        <img src="~/img/usuarios.png" class="mx-auto d-block" />
+                        @Html.ActionLink("Usuarios", "Index", "Usuario", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <img src="~/img/info.png" class="mx-auto d-block" />
                         @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <img src="~/img/lock.png" class="mx-auto d-block" />
+                        @Html.ActionLink("Cerrar sesión", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control me-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control me-sm-2" type="text" placeholder="Buscar...">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </div>
         </div>

@@ -12,3 +12,17 @@ C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\Infrast
 C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\EntityFramework.xml
 C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\log4net.dll
 C:\Users\hydden-pc\source\repos\appProyectoADB\ApplicationCore\bin\Debug\log4net.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\ApplicationCore.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\ApplicationCore.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\log4net.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\EntityFramework.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\Infrastructure.dll.config
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\log4net.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\bin\Debug\EntityFramework.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.pdb
