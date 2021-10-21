@@ -6,6 +6,23 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 
+    <style>
+        body {
+            background-color: #DDD8EC;
+        }
+        .marco {
+            background-color: #DDD8EC;            
+            padding: 15px;
+        }
+
+        .general {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+        }
+    </style>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
@@ -53,8 +70,10 @@
         </div>
     </nav>
     <main>
-        <div class="container">
-            @RenderBody()
+        <div class="marco">
+            <div class="general container">
+                @RenderBody()
+            </div>
         </div>
     </main>
     @Scripts.Render("~/bundles/jquery")
