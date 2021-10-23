@@ -10,6 +10,7 @@
         body {
             background-color: #DDD8EC;
         }
+
         .marco {
             background-color: #DDD8EC;            
             padding: 15px;
@@ -27,16 +28,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="~/img/tiendaBG.png" class="mx-auto d-block" /><span>Almacen Del Barrio</span></a>
+            <a class="navbar-brand" href='@Url.Action("Index", "Home")'><img src="~/img/tiendaBG.png" class="mx-auto d-block" /><span>Almacen Del Barrio</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <img src="~/img/casa.png" class="mx-auto d-block" />
-                        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
-                    </li>
+                    <!-- <li class="nav-item">
+        <img src="~/img/casa.png" class="mx-auto d-block" />
+        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
+    </li>-->
                     <li class="nav-item">
                         <img src="~/img/bolsa.png" class="mx-auto d-block" />
                         @Html.ActionLink("Producto", "Index", "Producto", null, new { @class = "nav-link" })
@@ -71,7 +72,7 @@
     </nav>
     <main>
         <div class="marco">
-            <div class="general container">
+            <div class="general container-fluid">
                 @RenderBody()
             </div>
         </div>
