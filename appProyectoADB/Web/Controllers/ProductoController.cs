@@ -24,8 +24,11 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 // Salvar el error en un archivo 
-
                 Log.Error(ex, MethodBase.GetCurrentMethod());
+
+                // Redirecciona a la captura del Error
+                return RedirectToAction("Default", "Error");
+
             }
             return View(lista);
         }
@@ -52,6 +55,8 @@ namespace Web.Controllers
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 return RedirectToAction("Index");
+                // Redirecciona a la captura del Error
+                return RedirectToAction("Default", "Error");
             }
         }
     }
