@@ -29,5 +29,33 @@ namespace Web.Controllers
             }
             return View(lista);
         }
+
+        public ActionResult Details (int? id)
+        {
+            ServiceProveedor _ServProv = new ServiceProveedor();
+            Proveedor oProv = null;
+
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                oProv = _ServProv.GetProveedorByID(id.Value);
+
+                if (oProv == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return View(oProv);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

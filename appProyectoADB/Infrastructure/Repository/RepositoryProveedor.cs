@@ -42,7 +42,14 @@ namespace Infrastructure.Repository
 
         public Proveedor GetProveedorByID(int id)
         {
-            throw new NotImplementedException();
+            Proveedor oProv = null;
+
+            using(MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oProv = ctx.Proveedor.Find(id);
+            }
+            return oProv;
         }
     }
 }

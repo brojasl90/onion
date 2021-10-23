@@ -1,16 +1,72 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contáctenos";
+    ViewBag.Message = "Almacen del Barrio S.A";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    Almacen del Barrio S.A<br />
-    <br />
-    <abbr title="Telefono">P:</abbr>
-    425.555.0100
-</address>
+<div class="row py-md-3">
+    <div class="col p4">
+        <address>
+            Almacen del Barrio S.A.<br />
+            <br />
+            <abbr title="Telefono">Tel:</abbr>
+            +506 2440 2277
+        </address>
 
-<address>
-    <strong>Contactenos:</strong>   <a href="mailto:ayuda@almacendelbarrio.com">Support@example.com</a><br />
-</address>
+        <address>
+            <strong>Cont&aacute;:</strong>   <a href="mailto:ayuda@almacendelbarrio.com">ayuda@almacendelbarrio.com</a><br />
+        </address>
+    </div>
+
+    <div class="col p-4">
+        <h2>Formulario de contacto:</h2>
+        <hr />
+        <span>
+            A continuación encontrará un pequeno formulario que le permitirá ponerse en contacto con nosotos para sus consultas o dudas
+        </span>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horinzontal">
+        <div class="from-group">
+            @Html.Label("lblNombre", "Nombre completo", htmlAttributes: new { @class = "form-label" })
+            <div class="col-md-10">
+                @Html.TextBox("txtNombre", "", new { @class = "from-control" })
+            </div>
+        </div>
+        <div class="from-group">
+            @Html.Label("lblGenero", "Genero", htmlAttributes: new { @class = "form-label" })
+            <div class="col-md-10">
+                Masculino
+                @Html.RadioButton("rbGenero", "Masculino")
+                Femenino
+                @Html.RadioButton("rbGenero", "Femenino")
+            </div>
+        </div>
+        <div class="from-group">  
+            @Html.Label("lblMensaje", "Mensaje", htmlAttributes: new { @class = "form-label" })
+            <div class="col-md-10">
+                @Html.TextArea("txtMensaje", "Mensaje de contacto", new { @class = "from-control" })
+            </div>
+        </div>
+        <div class="from-group">
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.CheckBox("isActive", false)
+                </div>
+                <div class="col-md-10">
+                    @Html.Label("lblCondiciones", "He leído y acepto la Política de Privacidad y el aviso legal.", new { @class = "from-label" })
+                </div>
+            </div>
+        </div>
+        <div class="from-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        }
+    </div>
+</div>

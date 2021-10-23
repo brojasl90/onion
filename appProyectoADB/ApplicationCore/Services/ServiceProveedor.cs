@@ -18,7 +18,8 @@ namespace ApplicationCore.Services
 
         public Proveedor GetProveedorByID(int id)
         {
-            throw new NotImplementedException();
+            IRepositoryProveedor oRepProv = new RepositoryProveedor();
+            return oRepProv.GetProveedorByID(id);
         }
     }
 }
