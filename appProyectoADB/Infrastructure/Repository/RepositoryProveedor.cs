@@ -11,6 +11,11 @@ namespace Infrastructure.Repository
 {
     public class RepositoryProveedor : IRepositoryProveedor
     {
+        public void DeleteProveedor(int pId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Proveedor> GetProveedor()
         {
             try
@@ -49,6 +54,37 @@ namespace Infrastructure.Repository
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oProv = ctx.Proveedor.Find(id);
             }
+            return oProv;
+        }
+
+        public Proveedor Save(Proveedor pProv)
+        {
+            Proveedor oProv = null;
+            int retorno = 0;
+
+            using(MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oProv = GetProveedorByID((int)pProv.IdProveedor);
+
+                if (oProv == null)
+                {
+                    ctx.Proveedor.Add(pProv);
+                    retorno = ctx.SaveChanges();
+                }
+                else
+                {
+                    ctx.Proveedor.Add(pProv);
+                    ctx.Entry(pProv).State = System.Data.Entity.EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                }
+            }
+
+            if (retorno >= 0)
+            {
+                oProv = GetProveedorByID((int)pProv.IdProveedor);
+            }
+
             return oProv;
         }
     }

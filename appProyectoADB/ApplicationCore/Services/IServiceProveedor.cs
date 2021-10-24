@@ -10,6 +10,9 @@ namespace ApplicationCore.Services
     public interface IServiceProveedor
     {
         IEnumerable<Proveedor> GetProveedor();
-        Proveedor GetProveedorByID(int id);
+        Proveedor GetProveedorByID(int pId);
+        Proveedor Save(Proveedor pProv);
+        void DeleteProveedor(int pId);
+
     }
 }

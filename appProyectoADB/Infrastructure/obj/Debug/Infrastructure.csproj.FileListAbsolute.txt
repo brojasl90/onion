@@ -23,6 +23,5 @@ D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\EntityFramewo
 D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\log4net.xml
 D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
 D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
-D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.dll
 D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.pdb
