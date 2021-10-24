@@ -32,19 +32,19 @@ namespace Web.Controllers
             }
         }
 
-        public ActionResult Details (int? id)
+        public ActionResult Details (int? pId)
         {
             IServiceProveedor _ServProv = new ServiceProveedor();
             Proveedor oProv = null;
 
             try
             {
-                if (id == null)
+                if (pId == null)
                 {
                     return RedirectToAction("Index");
                 }
 
-                oProv = _ServProv.GetProveedorByID(id.Value);
+                oProv = _ServProv.GetProveedorByID(pId.Value);
 
                 if (oProv == null)
                 {
@@ -68,19 +68,19 @@ namespace Web.Controllers
                 return View();
         }
 
-        public ActionResult Edit( int? id)
+        public ActionResult Edit( int? pId)
         {
             IServiceProveedor _ServProv = new ServiceProveedor();
             Proveedor oProv = null;
 
             try
             {
-                if (id == null)
+                if (pId == null)
                 {
                     return RedirectToAction("Index");
                 }
 
-                oProv = _ServProv.GetProveedorByID(id.Value);
+                oProv = _ServProv.GetProveedorByID(pId.Value);
 
                 if (oProv == null)
                 {

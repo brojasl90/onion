@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<Infrastructure.Models.Proveedor>
 
 @{
-    ViewBag.Title = "Proveedores";
+    ViewBag.Title = "Lista de Proveedores";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div class="col-md-12 d-md-flex justify-content-md-end pb-3 pe-3">
+    <i class='bx bxs-pencil'></i>
     @Html.ActionLink("Nuevo Proveedor", "Create")
 </div>
 <div class="table-responsive">
@@ -49,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.Correo)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdProveedor }) |
-                    @Html.ActionLink("Detalles", "Details", new { id=item.IdProveedor }) |
-                    @Html.ActionLink("Borrar", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Editar", "Edit", new { pId = item.IdProveedor }) |
+                    @Html.ActionLink("Detalles", "Details", new { pId = item.IdProveedor }) @*|
+                    @Html.ActionLink("Borrar", "Delete", new { /* id=item.PrimaryKey */ *@
                 </td>
             </tr>
         }

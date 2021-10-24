@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html lang="es" dir="ltr">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 
@@ -12,7 +13,7 @@
         }
 
         .marco {
-            background-color: #DDD8EC;            
+            background-color: #DDD8EC;
             padding: 15px;
         }
 
@@ -23,6 +24,8 @@
             padding: 20px;
         }
     </style>
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
@@ -35,9 +38,9 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <!-- <li class="nav-item">
-        <img src="~/img/casa.png" class="mx-auto d-block" />
-        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
-    </li>-->
+                        <img src="~/img/casa.png" class="mx-auto d-block" />
+                        @*@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })*@
+                    </li>-->
                     <li class="nav-item">
                         <img src="~/img/bolsa.png" class="mx-auto d-block" />
                         @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "nav-link" })

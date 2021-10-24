@@ -54,7 +54,6 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                return RedirectToAction("Index");
                 // Redirecciona a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
