@@ -58,5 +58,22 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+
+        public ActionResult _TotalProductos()
+        {
+            IEnumerable<Producto> lista = null;
+            try
+            {
+                IServiceProducto _SeviceProducto = new ServiceProducto();
+                lista = _SeviceProducto.GetProducto();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Default", "Error");
+
+            }
+            return Content(lista.Count() + "");
+        }
     }
 }
