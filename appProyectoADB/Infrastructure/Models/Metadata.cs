@@ -46,4 +46,36 @@ namespace Infrastructure.Models
         [Required(ErrorMessage = "{0} es un dato requerido")]
         public Nullable<int> CantidadStockMax { get; set; }
     }
+
+    internal partial class InventarioMetadada
+    {
+        [Display(Name ="ID")]
+        public int IdGestionInventario { get; set; }
+
+        [Display(Name = "Cod. Usuario")]
+        public int IdUsuario { get; set; }
+
+        [Display(Name = "Tipo Gestión")]
+        public string TipoGestion { get; set; }
+
+        [Display(Name = "Cod. Movimiento")]
+        public int IdTipMovimiento { get; set; }
+
+        [Display(Name = "Cantidad")]
+        public Nullable<int> CantidadProductoGestionado { get; set; }
+
+        [Display(Name = "Modificado por")]
+        public int UsuarioGestion { get; set; }
+        [Display(Name = "Modificado")]
+        public System.DateTime FechaGestion { get; set; }
+
+        [Display(Name = "Usuario")]
+        public virtual Usuario Usuario { get; set; }
+
+        [Display(Name = "Tipo Movimiento")]
+        public virtual TipoMovimiento TipoMovimiento { get; set; }
+
+        [Display(Name = "Producto")]
+        public virtual ICollection<Producto> Producto { get; set; }
+    }
 }
