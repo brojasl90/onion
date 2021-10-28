@@ -75,5 +75,21 @@ namespace Web.Controllers
             }
             return Content(lista.Count() + "");
         }
+        private MultiSelectList listaCategoria(ICollection<Categoria> categorias)
+        {
+            //Lista de Categorias
+            IServiceCategoriaProducto _ServiceCategoria = new ServiceCategoriaProducto();
+            IEnumerable<Categoria> listaCategorias = _ServiceCategoria.GetCategoria();
+            int[] listaCategoriasSelect = null;
+
+            if (categorias != null)
+            {
+
+                listaCategoriasSelect = categorias.Select(c => c.IdCategoria).ToArray();
+            }
+
+            return new MultiSelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", listaCategoriasSelect);
+
+        }
     }
 }
