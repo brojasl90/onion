@@ -39,3 +39,4 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\ApplicationCore\obj\Deb
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete

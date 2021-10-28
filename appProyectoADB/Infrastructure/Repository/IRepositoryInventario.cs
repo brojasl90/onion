@@ -15,6 +15,11 @@ namespace Infrastructure.Repository
 
         IEnumerable<GestionInventario> GetInventarioPorUsuario(int pId);
 
+        IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha);
+
+        GestionInventario GetInventarioByID(int pId);
+
+        GestionInventario GuardarInventario(GestionInventario pInventario);
 
     }
 }
