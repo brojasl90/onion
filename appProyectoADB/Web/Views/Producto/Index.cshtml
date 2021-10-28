@@ -22,9 +22,6 @@
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.IdCategoria)
             </th>
             <th>
@@ -52,9 +49,6 @@
                     @Html.DisplayFor(modelItem => item.Precio)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.IdCategoria)
                 </td>
                 <td>
@@ -67,9 +61,10 @@
                     @Html.DisplayFor(modelItem => item.CantidadStockMax)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Agregar", "Create", new {  id=item.IdProducto  }) |
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.IdProducto  }) |
                     @Html.ActionLink("Detalles", "Details", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Borrar", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Borrar", "Delete", new {  id=item.IdProducto })
                 </td>
             </tr>
         }

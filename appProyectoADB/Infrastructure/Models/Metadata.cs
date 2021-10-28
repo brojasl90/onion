@@ -18,8 +18,10 @@ namespace Infrastructure.Models
         [Display(Name = "Nombre Producto")]
         public string Nombre_Producto { get; set; }
 
+        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
+        [Display(Name = "Precio Unitario")]
         public Nullable<decimal> Precio { get; set; }
 
         [Display(Name = "Fecha de creación")]
