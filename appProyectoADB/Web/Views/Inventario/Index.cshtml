@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Infrastructure.Models.GestionInventario>
+
+@{
+    ViewBag.Title = "Inventario General";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdGestionInventario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipMovimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioGestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaGestion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdGestionInventario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipMovimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioGestion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaGestion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { pId = item.IdGestionInventario }) |
+                @Html.ActionLink("Detalles", "Details", new { pId = item.IdGestionInventario }) @*|
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>

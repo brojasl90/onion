@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,29 @@ namespace Infrastructure.Repository
     {
         public IEnumerable<GestionInventario> GetInventario()
         {
-            throw new NotImplementedException();
+            IEnumerable<GestionInventario> lista = null;
+
+            using(MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.GestionInventario.Include(x=>x.Producto).ToList();
+                //lista = ctx.GestionInventario.Include("Producto").ToList();
+            }
+
+            return lista;
         }
 
         public GestionInventario GetInventarioByID(int pId)
         {
-            throw new NotImplementedException();
+            GestionInventario oInventario = null;
+
+            using(MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oInventario = ctx.GestionInventario.Where(i => i.IdGestionInventario == pId).Include(p => p.Producto).FirstOrDefault();
+            }
+
+            return oInventario;
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha)
