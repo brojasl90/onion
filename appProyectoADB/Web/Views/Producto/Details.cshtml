@@ -1,29 +1,21 @@
 ﻿@model Infrastructure.Models.Producto
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle Producto";
 }
 
-<h2>Details</h2>
+<h2>Detalle Producto</h2>
 
 <div>
     <h4>Producto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IdProducto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdProducto)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.IdCategoria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdCategoria)
+            @Html.DisplayFor(model => model.Categoria.Dsc_Categoria)
         </dd>
 
         <dt>
@@ -64,14 +56,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.FechaVence)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
         </dd>
 
         <dt>

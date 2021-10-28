@@ -13,7 +13,7 @@ namespace Infrastructure.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(InventarioMetadada)]
+    [MetadataType(typeof(InventarioMetadada))]
     
     public partial class GestionInventario
     {
