@@ -49,7 +49,7 @@ namespace Infrastructure.Models
 
     internal partial class InventarioMetadada
     {
-        [Display(Name ="ID")]
+        [Display(Name ="Código")]
         public int IdGestionInventario { get; set; }
 
         [Display(Name = "Cod. Usuario")]
@@ -76,6 +76,28 @@ namespace Infrastructure.Models
         public virtual TipoMovimiento TipoMovimiento { get; set; }
 
         [Display(Name = "Producto")]
+        public virtual ICollection<Producto> Producto { get; set; }
+    }
+
+    internal partial class ProveedorMetadata
+    {
+        [Display(Name = "Código")]
+        public int IdProveedor { get; set; }
+        [Display(Name = "Proveedor")]
+        public string Nombre_Proveedor { get; set; }
+        [Display(Name = "Descripción")]
+        public string Dsc_Proveedor { get; set; }
+        [Display(Name = "Contacto")]
+        public string Nombre_Contacto { get; set; }
+        [Display(Name = "Teléfono")]
+        public string Telefono { get; set; }
+        [Display(Name = "Correo")]
+        public string Correo { get; set; }
+        [Display(Name = "País")]
+        public string Pais { get; set; }
+        [Display(Name = "Dirección")]
+        public string Direccion { get; set; }
+        public Nullable<byte> Estado { get; set; }  
         public virtual ICollection<Producto> Producto { get; set; }
     }
 }

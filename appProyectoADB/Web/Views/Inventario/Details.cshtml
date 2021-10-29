@@ -1,0 +1,74 @@
+﻿@model Infrastructure.Models.GestionInventario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GestionInventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdGestionInventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdGestionInventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTipMovimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadProductoGestionado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadProductoGestionado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaGestion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
