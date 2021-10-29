@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +12,38 @@ namespace ApplicationCore.Services
     {
         public IEnumerable<GestionInventario> GetInventario()
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventario();
         }
 
         public GestionInventario GetInventarioByID(int pId)
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventarioByID(pId);
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha)
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventarioPorFecha(pFecha);
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorTipMovimiento(int pTipo)
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventarioPorTipMovimiento(pTipo);
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorUsuario(int pId)
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventarioPorUsuario(pId);
         }
 
         public GestionInventario GuardarInventario(GestionInventario pInventario)
         {
-            throw new NotImplementedException();
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GuardarInventario(pInventario);
         }
     }
 }
