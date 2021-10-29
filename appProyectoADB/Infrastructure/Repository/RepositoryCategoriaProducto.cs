@@ -2,6 +2,7 @@
 using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,8 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Select * from Producto
-                    lista = ctx.Categoria.ToList<Categoria>();
+                    //lista = ctx.Categoria.ToList<Categoria>();
+                    lista = ctx.Categoria.Include("Producto").ToList<Categoria>();
                 }
                 return lista;
             }
@@ -43,13 +45,27 @@ namespace Infrastructure.Repository
         public Categoria GetCategoriaByID(int id)
         {
             Categoria oCategoria = null;
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-
-                oCategoria = ctx.Categoria.Find(id);
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oCategoria = ctx.Categoria.Find(id);
+                }
+                return oCategoria;
             }
-            return oCategoria;
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,11 @@ namespace Infrastructure.Repository
 {
     public class RepositoryProducto : IRepositoryProducto
     {
+        public void DeleteProducto(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Producto> GetProducto()
         {
             try
@@ -21,7 +27,8 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Select * from Producto
-                    lista = ctx.Producto.ToList<Producto>();
+                    //lista = ctx.Producto.ToList<Producto>();
+                    lista = ctx.Producto.Include(x=>x.Categoria).ToList();
                 }
                 return lista;
             }
@@ -39,6 +46,18 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+        /*
+        public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
+        {
+            IEnumerable<Libro> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.Libro.Where(l => l.IdAutor == idAutor).ToList();
+            }
+            return lista;
+        }
+        */
 
         public Producto GetProductoByID(int id)
         {
@@ -50,6 +69,16 @@ namespace Infrastructure.Repository
                 oProducto = ctx.Producto.Find(id);
             }
             return oProducto;
+        }
+
+        public IEnumerable<Producto> GetProductoByNombre(string nombre)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Producto Save(Producto libro, string[] selectedCategorias)
+        {
+            throw new NotImplementedException();
         }
     }
 }
