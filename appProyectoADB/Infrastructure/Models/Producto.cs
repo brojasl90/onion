@@ -43,5 +43,6 @@ namespace Infrastructure.Models
         public virtual ICollection<GestionInventario> GestionInventario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedor> Proveedor { get; set; }
+        public virtual ICollection<Categoria> listaCategoria { get; set; }
     }
 }

@@ -10,16 +10,39 @@ namespace ApplicationCore.Services
 {
     public class ServiceProducto : IServiceProducto
     {
+        public void DeleteProducto(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Producto> GetProducto()
         {
             IRepositoryProducto repository = new RepositoryProducto();
             return repository.GetProducto();
         }
 
+        public IEnumerable<Producto> GetProductoByCategoria(int idCategoria)
+        {
+            IRepositoryProducto repository = new RepositoryProducto();
+            return repository.GetProductoByCategoria(idCategoria);
+        }
+
         public Producto GetProductoByID(int id)
         {
             IRepositoryProducto repository = new RepositoryProducto();
             return repository.GetProductoByID(id);
+        }
+
+        public IEnumerable<Producto> GetProductoByNombre(string nombre)
+        {
+            IRepositoryProducto repository = new RepositoryProducto();
+            return repository.GetProductoByNombre(nombre);
+        }
+
+        public Producto Save(Producto producto, string[] selectedCategorias)
+        {
+            IRepositoryProducto repository = new RepositoryProducto();
+            return repository.Save(producto, selectedCategorias);
         }
     }
 }

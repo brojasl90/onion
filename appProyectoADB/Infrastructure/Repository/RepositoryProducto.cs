@@ -46,39 +46,120 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
-        /*
-        public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
+
+        public IEnumerable<Producto> GetProductoByCategoria(int idCategoria)
         {
-            IEnumerable<Libro> lista = null;
+            IEnumerable<Producto> lista = null;
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                lista = ctx.Libro.Where(l => l.IdAutor == idAutor).ToList();
+                lista = ctx.Producto.Where(l => l.IdCategoria == idCategoria).ToList();
             }
             return lista;
         }
-        */
+
+        /*
+public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
+{
+   IEnumerable<Libro> lista = null;
+   using (MyContext ctx = new MyContext())
+   {
+       ctx.Configuration.LazyLoadingEnabled = false;
+       lista = ctx.Libro.Where(l => l.IdAutor == idAutor).ToList();
+   }
+   return lista;
+}
+*/
 
         public Producto GetProductoByID(int id)
         {
+
             Producto oProducto = null;
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-
-                oProducto = ctx.Producto.Find(id);
+                oProducto = ctx.Producto.
+                    Where(l => l.IdProducto == id).
+                     Include(x => x.Categoria).Include(x => x.Categoria)
+                            .FirstOrDefault();
             }
             return oProducto;
         }
 
         public IEnumerable<Producto> GetProductoByNombre(string nombre)
         {
-            throw new NotImplementedException();
+            IEnumerable<Producto> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.Producto.ToList().
+                    FindAll(l => l.Nombre_Producto.ToLower().Contains(nombre.ToLower()));
+            }
+            return lista;
         }
 
-        public Producto Save(Producto libro, string[] selectedCategorias)
+        public Producto Save(Producto producto, string[] selectedCategorias)
         {
-            throw new NotImplementedException();
+            int retorno = 0;
+            Producto oProducto = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oProducto = GetProductoByID((int)producto.IdProducto);
+                IRepositoryCategoriaProducto _RepositoryCategoriaProducto = new RepositoryCategoriaProducto();
+
+                if (oProducto == null)
+                {
+
+                    //Insertar
+                    if (selectedCategorias != null)
+                    {
+
+                        producto.listaCategoria = new List<Categoria>();
+                        foreach (var categoria in selectedCategorias)
+                        {
+                            var categoriaToAdd = _RepositoryCategoriaProducto.GetCategoriaByID(int.Parse(categoria));
+                            ctx.Categoria.Attach(categoriaToAdd); //sin esto, EF intentará crear una categoría
+                            producto.listaCategoria.Add(categoriaToAdd);// asociar a la categoría existente con el Producto
+
+
+                        }
+                    }
+                    ctx.Producto.Add(producto);
+                    //SaveChanges
+                    //guarda todos los cambios realizados en el contexto de la base de datos.
+                    retorno = ctx.SaveChanges();
+                    //retorna número de filas afectadas
+                }
+                else
+                {
+                    //Registradas: 1,2,3
+                    //Actualizar: 1,3,4
+
+                    //Actualizar Libro
+                    ctx.Producto.Add(producto);
+                    ctx.Entry(producto).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                    //Actualizar Categorias
+                    var selectedCategoriasID = new HashSet<string>(selectedCategorias);
+                    if (selectedCategorias != null)
+                    {
+                        ctx.Entry(producto).Collection(p => p.listaCategoria).Load();
+                        var newCategoriaForLibro = ctx.Categoria
+                         .Where(x => selectedCategoriasID.Contains(x.IdCategoria.ToString())).ToList();
+                        producto.listaCategoria = newCategoriaForLibro;
+
+                        ctx.Entry(producto).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
+                }
+            }
+
+            if (retorno >= 0)
+                oProducto = GetProductoByID((int)producto.IdProducto);
+
+            return oProducto;
         }
     }
 }
