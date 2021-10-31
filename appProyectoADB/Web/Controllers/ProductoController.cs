@@ -2,6 +2,7 @@
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -20,11 +21,16 @@ namespace Web.Controllers
             {
                 IServiceProducto _SeviceProducto = new ServiceProducto();
                 lista = _SeviceProducto.GetProducto();
+                ViewBag.title = "Mantenimiento de productos";
+                //Lista Categorias
+                IServiceCategoriaProducto _ServiceCategoriaProducto = new ServiceCategoriaProducto();
+                ViewBag.listaCategorias = _ServiceCategoriaProducto.GetCategoria();
             }
             catch (Exception ex)
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
 
                 // Redirecciona a la captura del Error
                 return RedirectToAction("Default", "Error");
@@ -59,6 +65,15 @@ namespace Web.Controllers
             }
         }
 
+        // GET: Libro/Create
+        public ActionResult Create()
+        {
+            //Lista de autores
+            //ViewBag.IdAutor = listaAutores();
+            ViewBag.IdCategoria = listaCategorias();
+            return View();
+        }
+
         public ActionResult _TotalProductos()
         {
             IEnumerable<Producto> lista = null;
@@ -90,6 +105,14 @@ namespace Web.Controllers
 
             return new MultiSelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", listaCategoriasSelect);
 
+        }
+        private SelectList listaCategorias(int idCategoria = 0)
+        {
+            //Lista de Categorias
+            IServiceCategoriaProducto _ServiceCategoriaProducto = new ServiceCategoriaProducto();
+            IEnumerable<Categoria> listaCategorias = _ServiceCategoriaProducto.GetCategoria();
+            //Autor SelectAutor = listaAutores.Where(c => c.IdAutor == idAutor).FirstOrDefault();
+            return new SelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", idCategoria);
         }
     }
 }
