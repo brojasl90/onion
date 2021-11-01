@@ -73,6 +73,48 @@ namespace Web.Controllers
             ViewBag.IdCategoria = listaCategorias();
             return View();
         }
+        /// <summary>
+        /// Editar producto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int? id)
+        {
+            IServiceProducto _ServProv = new ServiceProducto();
+            Producto oProd = null;
+
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                oProd = _ServProv.GetProductoByID(id.Value);
+
+                if (oProd == null)
+                {
+                    TempData["Message"] = "No existe el Producto solicitado";
+                    TempData["Redirect"] = "Producto";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.IdCategoria = listaCategorias(oProd.IdCategoria);
+                return View(oProd);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos: " + ex.Message;
+                TempData["Redirect"] = "Producto";
+                TempData["Redirect-Action"] = "Index";
+
+                // Redirecciona a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
 
         public ActionResult _TotalProductos()
         {
