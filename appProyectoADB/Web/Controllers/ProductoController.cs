@@ -73,6 +73,48 @@ namespace Web.Controllers
             ViewBag.IdCategoria = listaCategorias();
             return View();
         }
+        /// <summary>
+        /// Editar producto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int? id)
+        {
+            IServiceProducto _ServProv = new ServiceProducto();
+            Producto oProd = null;
+
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                oProd = _ServProv.GetProductoByID(id.Value);
+
+                if (oProd == null)
+                {
+                    TempData["Message"] = "No existe el Producto solicitado";
+                    TempData["Redirect"] = "Producto";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.IdCategoria = listaCategorias(oProd.IdCategoria);
+                return View(oProd);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos: " + ex.Message;
+                TempData["Redirect"] = "Producto";
+                TempData["Redirect-Action"] = "Index";
+
+                // Redirecciona a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
 
         public ActionResult _TotalProductos()
         {
@@ -111,8 +153,40 @@ namespace Web.Controllers
             //Lista de Categorias
             IServiceCategoriaProducto _ServiceCategoriaProducto = new ServiceCategoriaProducto();
             IEnumerable<Categoria> listaCategorias = _ServiceCategoriaProducto.GetCategoria();
-            //Autor SelectAutor = listaAutores.Where(c => c.IdAutor == idAutor).FirstOrDefault();
             return new SelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", idCategoria);
+        }
+        // POST: Libro/Edit/5
+        [HttpPost]
+        public ActionResult Save(Producto producto, string[] selectedCategorias)
+        {
+            MemoryStream target = new MemoryStream();
+            IServiceProducto _ServiceProducto = new ServiceProducto();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Producto oProductoI = _ServiceProducto.Save(producto, selectedCategorias);
+                }
+                else
+                {
+                    // Valida Errores si Javascript está deshabilitado
+                    Utils.Util.ValidateErrors(this);
+                    ViewBag.IdCategoria = listaCategorias(producto.IdCategoria);
+                    return View("Create", producto);
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Producto";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
     }
 }
