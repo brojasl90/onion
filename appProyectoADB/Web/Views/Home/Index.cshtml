@@ -4,14 +4,15 @@
 
 <div class="jumbotron">
     <h1>Bienvenidos a Almacen del Barrio</h1>
-    <p class="lead">Somos una peque&ntilde;a cadena de almacenes de el&eacute;ctrodomesticos para el hogar, contamos con productos de l&inea blanca, como también muebles para la sala, &aring;reas de interiores y exteriores</p>
-    <p class="lead">Nos entrontramos dentro del Gran &a;rea Metropolitana, contamos con una tienda para cada provincia dentro del GAM y con variedad de productos y con marcas muy reconocidad que ofrecen el respaldo y gatant&iacute;a para nuestros clientes.</p>
+    <p class="lead">Somos una peque&ntilde;a cadena de almacenes de el&eacute;ctrodomesticos para el hogar, contamos con productos de l&iacute;nea blanca, como también muebles para la sala, &aacute;reas de interiores y exteriores</p>
+    <p class="lead">Nos entrontramos dentro del Gran &aacute;rea Metropolitana, contamos con una tienda para cada provincia dentro del GAM y con variedad de productos y con marcas muy reconocidas, que ofrecen el respaldo y garant&iacute;a para nuestros clientes.</p>
 </div>
 <br />
 <br />
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center" background="~/img/mesa.jpg">
     <div class="col-md-4">
-        @Html.Partial("_TotalProductos")        
+        @* <img src="~/img/mesa.jpg" /> *@
+        @Html.Partial("_TotalProductos")
     </div>
     <div class="col-md-4">
         <div class="card text-dark bg-light mb-3" style="max-width: 18rem; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
@@ -29,5 +30,5 @@
             </div>
         </div>
     </div>
-    <br /><br />
+    @Html.Partial("_Footer")
 </div>
