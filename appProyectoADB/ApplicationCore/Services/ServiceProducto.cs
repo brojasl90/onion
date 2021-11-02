@@ -39,10 +39,10 @@ namespace ApplicationCore.Services
             return repository.GetProductoByNombre(nombre);
         }
 
-        public Producto Save(Producto producto, string[] selectedCategorias)
+        public Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedor)
         {
             IRepositoryProducto repository = new RepositoryProducto();
-            return repository.Save(producto, selectedCategorias);
+            return repository.Save(producto, selectedCategorias, selectedProveedor);
         }
     }
 }

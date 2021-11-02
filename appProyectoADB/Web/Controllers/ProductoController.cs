@@ -68,9 +68,10 @@ namespace Web.Controllers
         // GET: Libro/Create
         public ActionResult Create()
         {
-            //Lista de autores
-            //ViewBag.IdAutor = listaAutores();
+            //Lista de Categorias           
             ViewBag.IdCategoria = listaCategorias();
+            ViewBag.IdProveedor = listaProveedores(null);
+
             return View();
         }
         /// <summary>
@@ -102,6 +103,7 @@ namespace Web.Controllers
                     return RedirectToAction("Default", "Error");
                 }
                 ViewBag.IdCategoria = listaCategorias(oProd.IdCategoria);
+                ViewBag.IdProveedor = listaProveedores(oProd.Proveedor);
                 return View(oProd);
             }
             catch (Exception ex)
@@ -155,9 +157,25 @@ namespace Web.Controllers
             IEnumerable<Categoria> listaCategorias = _ServiceCategoriaProducto.GetCategoria();
             return new SelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", idCategoria);
         }
+        //Lista de proveedores
+        private MultiSelectList listaProveedores(ICollection<Proveedor> proveedores)
+        {
+            //Lista de Proveedores
+            IServiceProveedor _ServiceProveedor = new ServiceProveedor();
+            IEnumerable<Proveedor> listaProveedores = _ServiceProveedor.GetProveedor();
+            int[] listaProveedoresSelect = null;
+
+            if (proveedores != null)
+            {
+
+                listaProveedoresSelect = proveedores.Select(c => c.IdProveedor).ToArray();
+            }
+
+            return new MultiSelectList(listaProveedores, "IdProveedor", "Nombre_Proveedor", listaProveedoresSelect);
+        }
         // POST: Libro/Edit/5
         [HttpPost]
-        public ActionResult Save(Producto producto, string[] selectedCategorias)
+        public ActionResult Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores)
         {
             MemoryStream target = new MemoryStream();
             IServiceProducto _ServiceProducto = new ServiceProducto();
@@ -165,13 +183,14 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Producto oProductoI = _ServiceProducto.Save(producto, selectedCategorias);
+                    Producto oProductoI = _ServiceProducto.Save(producto, selectedCategorias, selectedProveedores);
                 }
                 else
                 {
                     // Valida Errores si Javascript está deshabilitado
                     Utils.Util.ValidateErrors(this);
                     ViewBag.IdCategoria = listaCategorias(producto.IdCategoria);
+                    ViewBag.IdProveedor = listaProveedores(producto.Proveedor);
                     return View("Create", producto);
                 }
 

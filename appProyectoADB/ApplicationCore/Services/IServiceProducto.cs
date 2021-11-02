@@ -14,6 +14,6 @@ namespace ApplicationCore.Services
         IEnumerable<Producto> GetProductoByNombre(String nombre);
         IEnumerable<Producto> GetProductoByCategoria(int idCategoria);
         void DeleteProducto(int id);
-        Producto Save(Producto producto, string[] selectedCategorias);
+        Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedor);
     }
 }

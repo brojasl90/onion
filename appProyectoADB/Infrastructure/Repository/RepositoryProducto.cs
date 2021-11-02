@@ -80,7 +80,8 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oProducto = ctx.Producto.
                     Where(l => l.IdProducto == id).
-                     Include(x => x.Categoria).Include(x => x.Categoria)
+                     //Include(x => x.Categoria).Include(x => x.Categoria).
+                     Include(x => x.Proveedor).Include(x=>x.Proveedor)
                             .FirstOrDefault();
             }
             return oProducto;
@@ -98,7 +99,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
             return lista;
         }
 
-        public Producto Save(Producto producto, string[] selectedCategorias)
+        public Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores)
         {
             int retorno = 0;
             Producto oProducto = null;
@@ -108,6 +109,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oProducto = GetProductoByID((int)producto.IdProducto);
                 IRepositoryCategoriaProducto _RepositoryCategoriaProducto = new RepositoryCategoriaProducto();
+                IRepositoryProveedor _RepositoryProveedor = new RepositoryProveedor();
 
                 if (oProducto == null)
                 {
@@ -115,15 +117,22 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                     //Insertar
                     if (selectedCategorias != null)
                     {
-
                         producto.listaCategoria = new List<Categoria>();
                         foreach (var categoria in selectedCategorias)
                         {
                             var categoriaToAdd = _RepositoryCategoriaProducto.GetCategoriaByID(int.Parse(categoria));
                             ctx.Categoria.Attach(categoriaToAdd); //sin esto, EF intentará crear una categoría
                             producto.listaCategoria.Add(categoriaToAdd);// asociar a la categoría existente con el Producto
-
-
+                        }
+                    }
+                    if (selectedProveedores != null)
+                    {
+                        producto.Proveedor = new List<Proveedor>();
+                        foreach (var proveedor in selectedProveedores)
+                        {
+                            var proveedorToAdd = _RepositoryProveedor.GetProveedorByID(int.Parse(proveedor));
+                            ctx.Proveedor.Attach(proveedorToAdd); //sin esto, EF intentará crear un proveedor
+                            producto.Proveedor.Add(proveedorToAdd);// asociar a la categoría existente con el Producto
                         }
                     }
                     ctx.Producto.Add(producto);
@@ -142,13 +151,26 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                     ctx.Entry(producto).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
                     //Actualizar Categorias
-                    var selectedCategoriasID = new HashSet<string>(selectedCategorias);
+                    var selectedCategoriasID = new HashSet<string>(selectedCategorias);              
+
                     if (selectedCategorias != null)
                     {
                         ctx.Entry(producto).Collection(p => p.listaCategoria).Load();
                         var newCategoriaForLibro = ctx.Categoria
                          .Where(x => selectedCategoriasID.Contains(x.IdCategoria.ToString())).ToList();
                         producto.listaCategoria = newCategoriaForLibro;
+
+                        ctx.Entry(producto).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
+                    //Actualizar Proveedor
+                    var selectedProveedorID = new HashSet<string>(selectedProveedores);
+                    if (selectedProveedores != null)
+                    {
+                        ctx.Entry(producto).Collection(p => p.Proveedor).Load();
+                        var newProveedorForProducto = ctx.Proveedor
+                         .Where(x => selectedProveedorID.Contains(x.IdProveedor.ToString())).ToList();
+                        producto.Proveedor = newProveedorForProducto;
 
                         ctx.Entry(producto).State = EntityState.Modified;
                         retorno = ctx.SaveChanges();

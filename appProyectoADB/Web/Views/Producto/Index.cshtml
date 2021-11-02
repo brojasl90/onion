@@ -33,40 +33,52 @@
             <th>
                 @Html.DisplayNameFor(model => model.CantidadStockMax)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor)
+            </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr class="align-middle">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre_Producto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria.Dsc_Categoria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantidadDisponible)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantidadStockMin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantidadStockMax)
-                </td>
-                <td>
-                    @* @Html.ActionLink("Agregar", "Create", new { id = item.IdProducto }) | *@
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdProducto }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.IdProducto }) |
-                    @*  @Html.ActionLink("Borrar", "Delete", new {  id=item.IdProducto })  *@
-                </td>
-            </tr>
+    <tr class="align-middle">
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Producto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Dsc_Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadDisponible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadStockMin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadStockMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedor)
+            <ul>
+                @foreach (var c in item.Proveedor)
+                {
+                    <li>@c.Nombre_Proveedor</li>
+                }
+            </ul>
+        </td>
+        <td>
+            @* @Html.ActionLink("Agregar", "Create", new { id = item.IdProducto }) | *@
+            @Html.ActionLink("Editar", "Edit", new { id = item.IdProducto }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IdProducto }) |
+            @*  @Html.ActionLink("Borrar", "Delete", new {  id=item.IdProducto })  *@
+        </td>
+    </tr>
         }
 
     </table>
