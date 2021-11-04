@@ -11,9 +11,7 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(ProductoMetadata))]
+    
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -43,6 +41,5 @@ namespace Infrastructure.Models
         public virtual ICollection<GestionInventario> GestionInventario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedor> Proveedor { get; set; }
-        public virtual ICollection<Categoria> listaCategoria { get; set; }
     }
 }
