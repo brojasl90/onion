@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.Producto" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.Proveedor" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.Rol" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDelBarrioModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDelBarrioModel.sysdiagrams" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.TipoMovimiento" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.Ubicacion" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AlmacenDelBarrioModel.Usuario" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
