@@ -177,7 +177,6 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores)
         {
-            MemoryStream target = new MemoryStream();
             IServiceProducto _ServiceProducto = new ServiceProducto();
             try
             {
