@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AlmacenDelBarrioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AlmacenDelBarrioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bodega">
           <Key>
             <PropertyRef Name="IdBodega" />
@@ -314,7 +314,8 @@
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlmacenDelBarrioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -355,7 +356,7 @@
           <Key>
             <PropertyRef Name="IdProducto" />
           </Key>
-          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdCategoria" Type="Int32" Nullable="false" />
           <Property Name="Nombre_Producto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -394,16 +395,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Byte" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_IdRol" FromRole="Rol" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TipoMovimiento">
           <Key>
@@ -511,14 +502,13 @@
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="AlmacenDelBarrioEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AlmacenDelBarrioEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bodega" EntityType="Self.Bodega" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="GestionInventario" EntityType="Self.GestionInventario" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
           <EntitySet Name="Rol" EntityType="Self.Rol" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TipoMovimiento" EntityType="Self.TipoMovimiento" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
@@ -560,7 +550,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AlmacenDelBarrioModelStoreContainer" CdmEntityContainer="AlmacenDelBarrioEntities">
+        <EntityContainerMapping StorageEntityContainer="AlmacenDelBarrioModelStoreContainer" CdmEntityContainer="AlmacenDelBarrioEntities1">
           <EntitySetMapping Name="Bodega">
             <EntityTypeMapping TypeName="AlmacenDelBarrioModel.Bodega">
               <MappingFragment StoreEntitySet="Bodega">

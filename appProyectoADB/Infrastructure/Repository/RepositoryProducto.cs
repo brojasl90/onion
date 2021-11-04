@@ -115,6 +115,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 {
 
                     //Insertar
+                    /*
                     if (selectedCategorias != null)
                     {
                         producto.listaCategoria = new List<Categoria>();
@@ -125,6 +126,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                             producto.listaCategoria.Add(categoriaToAdd);// asociar a la categoría existente con el Producto
                         }
                     }
+                    */
                     if (selectedProveedores != null)
                     {
                         producto.Proveedor = new List<Proveedor>();
@@ -153,6 +155,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                     //Actualizar Categorias
                     var selectedCategoriasID = new HashSet<string>(selectedCategorias);              
 
+                    /*
                     if (selectedCategorias != null)
                     {
                         ctx.Entry(producto).Collection(p => p.listaCategoria).Load();
@@ -163,6 +166,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                         ctx.Entry(producto).State = EntityState.Modified;
                         retorno = ctx.SaveChanges();
                     }
+                    */
                     //Actualizar Proveedor
                     var selectedProveedorID = new HashSet<string>(selectedProveedores);
                     if (selectedProveedores != null)
