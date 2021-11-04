@@ -75,7 +75,7 @@ namespace Infrastructure.Models
         [Display(Name = "Tipo Movimiento")]
         public virtual TipoMovimiento TipoMovimiento { get; set; }
 
-        [Display(Name = "Producto")]
+        [Display(Name = "Productos Asociados")]
         public virtual ICollection<Producto> Producto { get; set; }
     }
 

@@ -56,7 +56,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.UsuarioGestion)
-        </dd>
+        </dd> 
 
         <dt>
             @Html.DisplayNameFor(model => model.FechaGestion)
@@ -64,6 +64,19 @@
 
         <dd>
             @Html.DisplayFor(model => model.FechaGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var item in Model.Producto)
+                {
+                    <li>@item.Nombre_Producto</li>
+                }
+            </ul>
         </dd>
 
     </dl>
