@@ -28,7 +28,7 @@ namespace Infrastructure.Repository
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //Select * from Producto
                     //lista = ctx.Producto.ToList<Producto>();
-                    lista = ctx.Producto.Include(x=>x.Categoria).ToList();
+                    lista = ctx.Producto.Include(x=>x.Categoria).Include(x => x.Proveedor).ToList();
                 }
                 return lista;
             }
@@ -80,7 +80,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oProducto = ctx.Producto.
                     Where(l => l.IdProducto == id).
-                     //Include(x => x.Categoria).Include(x => x.Categoria).
+                     Include(x => x.Categoria).Include(x => x.Categoria).
                      Include(x => x.Proveedor).Include(x=>x.Proveedor)
                             .FirstOrDefault();
             }

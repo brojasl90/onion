@@ -87,7 +87,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Proveedor)
+            @foreach (var c in Model.Proveedor)
+            {
+                @c.Nombre_Proveedor
+            }
         </dd>
     </dl>
 </div>
