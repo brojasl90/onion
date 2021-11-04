@@ -8,10 +8,6 @@
     @Styles.Render("~/Content/css")
 
     <style>
-        body {
-            background-color: #DDD8EC;
-        }
-
         .marco {
             background-color: #DDD8EC;
             padding: 15px;
@@ -23,12 +19,14 @@
             border-radius: 12px;
             padding: 20px;
         }
+
+
     </style>
 
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-<body>
+<body class="bg-primary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
         <div class="container-fluid">
             <a class="navbar-brand" href='@Url.Action("Index", "Home")'><img src="~/img/tiendaBG.png" class="mx-auto d-block" /><span>Almacen Del Barrio</span></a>
@@ -38,9 +36,9 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     @*<li class="nav-item">
-                        <img src="~/img/casa.png" class="mx-auto d-block" />
-                        @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
-                    </li>*@
+                            <img src="~/img/casa.png" class="mx-auto d-block" />
+                            @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
+                        </li>*@
                     <li class="nav-item">
                         <img src="~/img/bolsa.png" class="mx-auto d-block" />
                         @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "nav-link" })
@@ -80,6 +78,10 @@
             </div>
         </div>
     </main>
+    <footer class="page-footer bg-primary text-white text-center">
+        @Html.Partial("_Footer")
+    </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap_almacen.min.css")
     @RenderSection("scripts", required: false)
