@@ -248,6 +248,9 @@
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_TotalEntradas.cshtml" />
+    <Content Include="Views\Shared\_TotalSalidas.cshtml" />
+    <Content Include="Views\Shared\_ProductosPorAgotar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

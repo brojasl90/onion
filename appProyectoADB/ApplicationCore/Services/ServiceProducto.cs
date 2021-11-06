@@ -21,6 +21,12 @@ namespace ApplicationCore.Services
             return repository.GetProducto();
         }
 
+        public IEnumerable<Producto> GetProductoByAgotar()
+        {
+            IRepositoryProducto repository = new RepositoryProducto();
+            return repository.GetProductoByAgotar();
+        }
+
         public IEnumerable<Producto> GetProductoByCategoria(int idCategoria)
         {
             IRepositoryProducto repository = new RepositoryProducto();

@@ -47,6 +47,36 @@ namespace Infrastructure.Repository
             }
         }
 
+        public IEnumerable<Producto> GetProductoByAgotar()
+        {
+            try
+            {
+
+                IEnumerable<Producto> lista = null;
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    //Select * from Producto
+                    //lista = ctx.Producto.ToList<Producto>();
+                    lista = ctx.Producto.Where(a => a.CantidadStockMin > a.CantidadDisponible).ToList();
+                }
+                return lista;
+            }
+
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
         public IEnumerable<Producto> GetProductoByCategoria(int idCategoria)
         {
             IEnumerable<Producto> lista = null;

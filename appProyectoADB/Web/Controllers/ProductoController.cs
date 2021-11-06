@@ -132,8 +132,32 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
 
             }
-            return Content(lista.Count() + "");
+            return Content(lista.Count().ToString());
         }
+
+        public ActionResult _ProductosPorAgotar()
+        {
+            IEnumerable<Producto> lista = null;
+            try
+            {
+                IServiceProducto _SeviceProducto = new ServiceProducto();
+                lista = _SeviceProducto.GetProductoByAgotar();
+
+                IServiceCategoriaProducto _ServiceCategoriaProducto = new ServiceCategoriaProducto();
+                ViewBag.listaCategorias = _ServiceCategoriaProducto.GetCategoria();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+
+                return RedirectToAction("Default", "Error");
+            }
+
+            return PartialView(lista);
+        }
+
         private MultiSelectList listaCategoria(ICollection<Categoria> categorias)
         {
             //Lista de Categorias

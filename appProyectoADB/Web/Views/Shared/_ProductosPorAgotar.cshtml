@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Infrastructure.Models.Producto>
+
+<div class="card p-1" style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+    <div class="card-header mb-1 bg-primary text-white">
+        Productos pendientes de reponer.
+    </div>
+    <div class="card-body bg-light">
+        <div class="table-responsive">
+            <table class="table table-light table-hover table-striped">
+                <tr class="table-primary">
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre_Producto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadDisponible)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadStockMin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadStockMax)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="align-middle">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre_Producto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CantidadDisponible)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CantidadStockMin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CantidadStockMax)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

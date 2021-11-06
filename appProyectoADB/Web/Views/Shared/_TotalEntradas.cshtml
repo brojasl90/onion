@@ -1,13 +1,13 @@
 ﻿@using Infrastructure.Models
-@model IEnumerable<Infrastructure.Models.Producto>
+@model IEnumerable<Infrastructure.Models.GestionInventario>
 
 <div class="card text-dark mb-3 p-1" style="max-width: 18rem; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-    <div class="card-header text-white bg-primary">Cantidad total de productos registrados.</div>
+    <div class="card-header text-white bg-primary">Cantidad de entradas registradas en el día.</div>
     <div class="card-body bg-light">
         <h5 class="card-title">
             Total: @{
-                Html.RenderAction("_TotalProductos", "Producto");
-            } productos.
+                Html.RenderAction("_TotalEntradas", "Inventario");
+            } entradas.
         </h5>
     </div>
 </div>

@@ -136,5 +136,59 @@ namespace Web.Controllers
                 return View();
             }
         }
+
+        // Obtener la cantidad de Salidas del inventario segun tipoGestion
+        public ActionResult _TotalSalidas()
+        {
+            IEnumerable<GestionInventario> lista = null;
+            int numSalidas = 0;
+            try
+            {
+                IServiceInventario _SeviceInventario= new ServiceInventario();
+                lista = _SeviceInventario.GetInventario();
+
+                foreach (var item in lista)
+                {
+                    if (item.TipoGestion.Equals("Venta"))
+                    {
+                        numSalidas += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Default", "Error");
+
+            }
+            return Content(numSalidas.ToString());
+        }
+
+        // Obtener la cantidad de Salidas del inventario segun tipoGestion
+        public ActionResult _TotalEntradas()
+        {
+            IEnumerable<GestionInventario> lista = null;
+            int numEntradas = 0;
+            try
+            {
+                IServiceInventario _SeviceInventario = new ServiceInventario();
+                lista = _SeviceInventario.GetInventario();
+
+                foreach (var item in lista)
+                {
+                    if (item.TipoGestion.Equals("Compra"))
+                    {
+                        numEntradas += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Default", "Error");
+
+            }
+            return Content(numEntradas.ToString());
+        }
     }
 }

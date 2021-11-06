@@ -2,3 +2,8 @@
 *.config
 appProyectoADB/.vs/appProyectoADB/v16/.suo
 *.cache
+appProyectoADB/.vs/appProyectoADB/config/applicationhost.config
+appProyectoADB/ApplicationCore/obj/Debug/ApplicationCore.csproj.AssemblyReference.cache
+appProyectoADB/Infrastructure/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+appProyectoADB/Infrastructure/obj/Debug/Infrastructure.csproj.AssemblyReference.cache
+appProyectoADB/Web/obj/Debug/Web.csproj.AssemblyReference.cache

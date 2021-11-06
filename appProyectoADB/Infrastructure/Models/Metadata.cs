@@ -9,6 +9,7 @@ namespace Infrastructure.Models
 {
     internal partial class ProductoMetadata
     {
+        [Display(Name = "Código")]
         public int IdProducto { get; set; }
 
         [Display(Name = "Categoria")]
