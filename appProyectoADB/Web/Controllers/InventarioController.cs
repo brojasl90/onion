@@ -74,44 +74,84 @@ namespace Web.Controllers
         // GET: Inventario/Create
         public ActionResult Create()
         {
+            ViewBag.IdTipMov = listaTipoMovimiento();
             return View();
         }
 
-        // POST: Inventario/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        private SelectList listaTipoMovimiento(int pIdMovimiento = 0)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            IServiceMovimiento _ServMovi = new ServiceMovimiento();
+            IEnumerable<TipoMovimiento> lTipoMovimientos = _ServMovi.GetTipoMovimiento();
+            return new SelectList(lTipoMovimientos, "IdTipMovimiento", "Descripcion", pIdMovimiento); 
         }
 
         // GET: Inventario/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? pId)
         {
-            return View();
+            IServiceInventario _ServInventario = new ServiceInventario();
+            GestionInventario oInventario = null;
+
+            try
+            {
+                if (pId == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                oInventario = _ServInventario.GetInventarioByID(pId.Value);
+
+                if (oInventario == null)
+                {
+                    TempData["Message"] = "No existe la información solicitada.";
+                    TempData["Redirect"] = "Inventario";
+                    TempData["Redirect-Action"] = "Index";
+
+                    return RedirectToAction("Default", "Error");
+                }
+
+                ViewBag.IdTipMov = listaTipoMovimiento(oInventario.IdTipMovimiento);
+                return View(oInventario);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al tratar de obtener el inventario solicitado: " + ex.Message;
+                TempData["Redirect"] = "Inventario";
+                TempData["Redirect-Action"] = "Index";
+
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: Inventario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Save(GestionInventario pInventario)
         {
+            IServiceInventario _ServInventario = new ServiceInventario();
+
             try
             {
-                // TODO: Add update logic here
-
+                if (ModelState.IsValid)
+                {
+                    GestionInventario oInventario = _ServInventario.GuardarInventario(pInventario);
+                }
+                else
+                {
+                    Util.ValidateErrors(this);
+                    ViewBag.IdTipMov = listaTipoMovimiento();
+                    return View("Create", pInventario);
+                }
+                
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al registrar el inventario: " + ex.Message;
+                TempData["Redirect"] = "Inventario";
+                TempData["Redirect-Action"] = "Index";
+
+                return RedirectToAction("Default", "Error");
             }
         }
 

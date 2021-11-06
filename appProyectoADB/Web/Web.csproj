@@ -251,6 +251,8 @@
     <Content Include="Views\Shared\_TotalEntradas.cshtml" />
     <Content Include="Views\Shared\_TotalSalidas.cshtml" />
     <Content Include="Views\Shared\_ProductosPorAgotar.cshtml" />
+    <Content Include="Views\Inventario\Create.cshtml" />
+    <Content Include="Views\Inventario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

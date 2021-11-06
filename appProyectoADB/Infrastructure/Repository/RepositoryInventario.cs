@@ -17,7 +17,7 @@ namespace Infrastructure.Repository
             using(MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                lista = ctx.GestionInventario.Include(x=>x.Producto).ToList();
+                lista = ctx.GestionInventario.Include(x=>x.TipoMovimiento).ToList();
                 //lista = ctx.GestionInventario.Include("Producto").ToList();
             }
 
@@ -31,7 +31,7 @@ namespace Infrastructure.Repository
             using(MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                oInventario = ctx.GestionInventario.Where(i => i.IdGestionInventario == pId).Include(p => p.Producto).FirstOrDefault();
+                oInventario = ctx.GestionInventario.Where(i => i.IdGestionInventario == pId).Include(m => m.TipoMovimiento).Include(p => p.Producto).FirstOrDefault();
             }
 
             return oInventario;
@@ -54,7 +54,33 @@ namespace Infrastructure.Repository
 
         public GestionInventario GuardarInventario(GestionInventario pInventario)
         {
-            throw new NotImplementedException();
+            int vRetorno = 0;
+            GestionInventario oInventario = null;
+            using(MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oInventario = GetInventarioByID((int)pInventario.IdGestionInventario);
+                IRepositoryProducto _RepoProd = new RepositoryProducto();
+
+                if (oInventario == null)
+                {
+                    ctx.GestionInventario.Add(pInventario);
+                    vRetorno = ctx.SaveChanges();
+                }
+                else
+                {
+                    ctx.GestionInventario.Add(pInventario);
+                    ctx.Entry(pInventario).State = EntityState.Modified;
+                    vRetorno = ctx.SaveChanges();
+                }
+            }
+
+            if (vRetorno >= 0)
+            {
+                oInventario = GetInventarioByID((int)pInventario.IdGestionInventario);
+            }
+
+            return oInventario;
         }
     }
 }

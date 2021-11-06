@@ -56,7 +56,7 @@ namespace Infrastructure.Models
         [Display(Name = "Cod. Usuario")]
         public int IdUsuario { get; set; }
 
-        [Display(Name = "Tipo Gestión")]
+        [Display(Name = "Tipo de Gestión")]
         public string TipoGestion { get; set; }
 
         [Display(Name = "Cod. Movimiento")]

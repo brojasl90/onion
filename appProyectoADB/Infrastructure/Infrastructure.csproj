@@ -105,10 +105,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\IRepositoryInventario.cs" />
+    <Compile Include="Repository\IRepositoryMovimiento.cs" />
     <Compile Include="Repository\IRepositoryProveedor.cs" />
     <Compile Include="Repository\IRepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\RepositoryInventario.cs" />
+    <Compile Include="Repository\RepositoryMovimiento.cs" />
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryProveedor.cs" />
     <Compile Include="Utils\Log.cs" />

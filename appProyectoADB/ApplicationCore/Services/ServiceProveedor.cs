@@ -17,8 +17,8 @@ namespace ApplicationCore.Services
 
         public IEnumerable<Proveedor> GetProveedor()
         {
-            IRepositoryProveedor repository = new RepositoryProveedor();
-            return repository.GetProveedor();
+            IRepositoryProveedor oRepProv = new RepositoryProveedor();
+            return oRepProv.GetProveedor();
         }
 
         public Proveedor GetProveedorByID(int pId)
