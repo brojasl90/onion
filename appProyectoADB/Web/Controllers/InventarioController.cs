@@ -138,7 +138,7 @@ namespace Web.Controllers
                 else
                 {
                     Util.ValidateErrors(this);
-                    ViewBag.IdTipMov = listaTipoMovimiento();
+                    ViewBag.IdTipMov = listaTipoMovimiento(pInventario.IdTipMovimiento);
                     return View("Create", pInventario);
                 }
                 
