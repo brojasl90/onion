@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Infrastructure.Models;
+using Infrastructure.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,16 @@ namespace ApplicationCore.Services
 {
     public class ServiceRol : IServiceRol
     {
+        public IEnumerable<Rol> GetRol()
+        {
+            IRepositoryRol oRepRol = new RepositoryRol();
+            return oRepRol.GetRol();
+        }
+
+        public Rol GetRolByID(int pId)
+        {
+            IRepositoryRol oRepRol = new RepositoryRol();
+            return oRepRol.GetRolByID(pId);
+        }
     }
 }

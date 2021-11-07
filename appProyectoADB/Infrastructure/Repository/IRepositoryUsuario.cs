@@ -11,6 +11,8 @@ namespace Infrastructure.Repository
     {
         Usuario GetTipoUsuarioByID(int pId);
 
-        IEnumerable<Usuario> GetUsario();
+        IEnumerable<Usuario> GetUsuario();
+
+        Usuario GuardarUsuario(Usuario pUsuario);
     }
 }
