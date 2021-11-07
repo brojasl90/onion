@@ -52,10 +52,11 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public GestionInventario GuardarInventario(GestionInventario pInventario)
+        public GestionInventario GuardarInventario(GestionInventario pInventario, string[] selectProducto)
         {
             int vRetorno = 0;
             GestionInventario oInventario = null;
+
             using(MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
@@ -64,6 +65,18 @@ namespace Infrastructure.Repository
 
                 if (oInventario == null)
                 {
+                    if (selectProducto != null)
+                    {
+                        pInventario.Producto = new List<Producto>();
+
+                        foreach (var iProducto in selectProducto)
+                        {
+                            var oProductoToAdd = _RepoProd.GetProductoByID(int.Parse(iProducto));
+                            ctx.Producto.Attach(oProductoToAdd);
+                            pInventario.Producto.Add(oProductoToAdd);
+                        }
+                    }
+
                     ctx.GestionInventario.Add(pInventario);
                     vRetorno = ctx.SaveChanges();
                 }
@@ -72,6 +85,19 @@ namespace Infrastructure.Repository
                     ctx.GestionInventario.Add(pInventario);
                     ctx.Entry(pInventario).State = EntityState.Modified;
                     vRetorno = ctx.SaveChanges();
+
+                    var selectedProductosID = new HashSet<string>(selectProducto);
+
+                    if (selectProducto != null)
+                    {
+                        ctx.Entry(pInventario).Collection(i => i.Producto).Load();
+                        var newProductoByInventario = ctx.Producto.Where(x => selectedProductosID.Contains(x.IdProducto.ToString())).ToList();
+
+                        pInventario.Producto = newProductoByInventario;
+
+                        ctx.Entry(pInventario).State = EntityState.Modified;
+                        vRetorno = ctx.SaveChanges();
+                    }
                 }
             }
 

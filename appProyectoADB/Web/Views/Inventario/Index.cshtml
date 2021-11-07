@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.TipoGestion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdTipMovimiento)
+                @Html.DisplayNameFor(model => model.TipoMovimiento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UsuarioGestion)
@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.TipoGestion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdTipMovimiento)
+                    @Html.DisplayFor(modelItem => item.TipoMovimiento.Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UsuarioGestion)

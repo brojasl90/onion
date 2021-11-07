@@ -40,10 +40,10 @@ namespace ApplicationCore.Services
             return oRI.GetInventarioPorUsuario(pId);
         }
 
-        public GestionInventario GuardarInventario(GestionInventario pInventario)
+        public GestionInventario GuardarInventario(GestionInventario pInventario, string[] selectProducto)
         {
             IRepositoryInventario oRI = new RepositoryInventario();
-            return oRI.GuardarInventario(pInventario);
+            return oRI.GuardarInventario(pInventario, selectProducto);
         }
     }
 }

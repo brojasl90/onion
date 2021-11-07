@@ -75,6 +75,7 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.IdProd = listaProductos(null );
             return View();
         }
 
@@ -83,6 +84,21 @@ namespace Web.Controllers
             IServiceMovimiento _ServMovi = new ServiceMovimiento();
             IEnumerable<TipoMovimiento> lTipoMovimientos = _ServMovi.GetTipoMovimiento();
             return new SelectList(lTipoMovimientos, "IdTipMovimiento", "Descripcion", pIdMovimiento); 
+        }
+        
+        private MultiSelectList listaProductos(ICollection<Producto> pProductos)
+        {
+            IServiceProducto _ServProd = new ServiceProducto();
+            IEnumerable<Producto> lproductos= _ServProd.GetProducto();
+
+            int[] listaProductosSelect = null;
+
+            if (pProductos != null)
+            {
+                listaProductosSelect = pProductos.Select(c => c.IdProducto).ToArray();
+            }
+
+            return new MultiSelectList(lproductos, "IdProducto", "Nombre_Producto", listaProductosSelect);
         }
 
         // GET: Inventario/Edit/5
@@ -110,6 +126,7 @@ namespace Web.Controllers
                 }
 
                 ViewBag.IdTipMov = listaTipoMovimiento(oInventario.IdTipMovimiento);
+                ViewBag.IdProd = listaProductos(oInventario.Producto);
                 return View(oInventario);
             }
             catch (Exception ex)
@@ -125,7 +142,7 @@ namespace Web.Controllers
 
         // POST: Inventario/Edit/5
         [HttpPost]
-        public ActionResult Save(GestionInventario pInventario)
+        public ActionResult Save(GestionInventario pInventario, string[] selectProducto)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
 
@@ -133,12 +150,13 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    GestionInventario oInventario = _ServInventario.GuardarInventario(pInventario);
+                    GestionInventario oInventario = _ServInventario.GuardarInventario(pInventario, selectProducto);
                 }
                 else
                 {
                     Util.ValidateErrors(this);
                     ViewBag.IdTipMov = listaTipoMovimiento(pInventario.IdTipMovimiento);
+                    ViewBag.IdProd = listaProductos(pInventario.Producto);
                     return View("Create", pInventario);
                 }
                 
@@ -189,7 +207,7 @@ namespace Web.Controllers
 
                 foreach (var item in lista)
                 {
-                    if (item.TipoGestion.Equals("Venta"))
+                    if (item.TipoGestion.Equals("Salida"))
                     {
                         numSalidas += 1;
                     }
@@ -216,7 +234,7 @@ namespace Web.Controllers
 
                 foreach (var item in lista)
                 {
-                    if (item.TipoGestion.Equals("Compra"))
+                    if (item.TipoGestion.Equals("Entrada"))
                     {
                         numEntradas += 1;
                     }

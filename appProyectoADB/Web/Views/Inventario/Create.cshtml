@@ -1,4 +1,5 @@
-﻿@model Infrastructure.Models.GestionInventario
+﻿@using Web.Enum;
+@model Infrastructure.Models.GestionInventario
 
 @{
     ViewBag.Title = "Gestión Inventario";
@@ -24,6 +25,15 @@
         </div>*@
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.TipoMovimiento, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("selectProducto", (MultiSelectList)ViewBag.IdProd, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Producto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
@@ -34,7 +44,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.TipoGestion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TipoGestion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.TipoGestion, new SelectList(Enum.GetValues(typeof(ETipoGestion))), "Seleccione un Tipo", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.TipoGestion, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -43,7 +53,7 @@
         @Html.LabelFor(model => model.IdTipMovimiento, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @*@Html.EditorFor(model => model.TipoMovimiento, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.DropDownListFor(model => model.IdTipMovimiento, (SelectList) ViewBag.IdTipMov, "Seleccione un Tipo", htmlAttributes : new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.IdTipMovimiento, (SelectList)ViewBag.IdTipMov, "Seleccione un Tipo", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdTipMovimiento, "", new { @class = "text-danger" })
         </div>
     </div>

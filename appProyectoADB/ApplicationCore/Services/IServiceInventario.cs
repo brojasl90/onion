@@ -19,6 +19,6 @@ namespace ApplicationCore.Services
 
         GestionInventario GetInventarioByID(int pId);
 
-        GestionInventario GuardarInventario(GestionInventario pInventario);
+        GestionInventario GuardarInventario(GestionInventario pInventario, string[] selectProducto);
     }
 }
