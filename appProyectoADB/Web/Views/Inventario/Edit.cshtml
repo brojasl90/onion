@@ -2,7 +2,8 @@
 @model Infrastructure.Models.GestionInventario
 
 @{
-    ViewBag.Title = "GestionInventario";
+    ViewBag.Title = "Vista de Edición";
+    ViewBag.SubTitle = "Editando un registro:";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -13,7 +14,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Editando un registro</h4>
+    <h4>@ViewBag.SubTitle</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

@@ -58,6 +58,7 @@ namespace Web.Controllers
                     return RedirectToAction("Default", "Error");
                 }
 
+                ViewBag.EstadoActual = oUsuario.Estado == 1 ? "Activo" : "Inactivo";
             }
             catch (Exception ex)
             {
@@ -109,8 +110,9 @@ namespace Web.Controllers
 
                     return RedirectToAction("Default", "Error");
                 }
-
+                                
                 ViewBag.TipoRoles = listaTipoRol(oUsuario.IdRol);
+
                 return View(oUsuario);
             }
             catch (Exception ex)

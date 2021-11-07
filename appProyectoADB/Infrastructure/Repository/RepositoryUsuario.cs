@@ -38,7 +38,34 @@ namespace Infrastructure.Repository
 
         public Usuario GuardarUsuario(Usuario pUsuario)
         {
-            throw new NotImplementedException();
+            int vRetorno = 0;
+            Usuario oUsuario = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oUsuario = GetTipoUsuarioByID((int)pUsuario.IdUsuario);
+                IRepositoryRol _RepoRol = new RepositoryRol();
+
+                if (oUsuario == null)
+                {
+                    ctx.Usuario.Add(pUsuario);
+                    vRetorno = ctx.SaveChanges();
+                }
+                else
+                {
+                    ctx.Usuario.Add(pUsuario);
+                    ctx.Entry(pUsuario).State = EntityState.Modified;
+                    vRetorno = ctx.SaveChanges();
+                }
+            }
+
+            if (vRetorno >= 0)
+            {
+                oUsuario = GetTipoUsuarioByID((int)pUsuario.IdUsuario);
+            }
+
+            return oUsuario;
         }
     }
 }

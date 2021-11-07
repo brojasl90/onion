@@ -101,4 +101,28 @@ namespace Infrastructure.Models
         public Nullable<byte> Estado { get; set; }  
         public virtual ICollection<Producto> Producto { get; set; }
     }
+
+    public partial class UsuarioMetadata
+    {
+        [Display(Name = "Código")]
+        public int IdUsuario { get; set; }
+        [Display(Name = "Identificación")]
+        public string NumeroIdentificacion { get; set; }
+        [Display(Name = "Nombre")]
+        public string Nombre { get; set; }
+        [Display(Name = "Primer Apellido")]
+        public string PrimerApellido { get; set; }
+        [Display(Name = "Segundo Apellido")]
+        public string SegundoApellido { get; set; }
+        [Display(Name = "Tipo Rol")]
+        public int IdRol { get; set; }
+        [Display(Name = "Correo")]
+        public string Correo { get; set; }
+        [Display(Name = "Contraseña")]
+        public string Clave { get; set; }
+        [Display(Name = "Estado")]
+        public Nullable<byte> Estado { get; set; }
+        [Display(Name = "Rol")]
+        public virtual Rol Rol { get; set; }
+    }
 }
