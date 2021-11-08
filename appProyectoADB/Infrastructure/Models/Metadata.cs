@@ -65,18 +65,18 @@ namespace Infrastructure.Models
         [Display(Name = "Cantidad")]
         public Nullable<int> CantidadProductoGestionado { get; set; }
 
-        [Display(Name = "Modificado por")]
+        [Display(Name = "Modificado Por")]
         public int UsuarioGestion { get; set; }
-        [Display(Name = "Modificado")]
+        [Display(Name = "Última Modificación")]
         public System.DateTime FechaGestion { get; set; }
 
-        [Display(Name = "Usuario")]
+        [Display(Name = "Registrado por")]
         public virtual Usuario Usuario { get; set; }
 
         [Display(Name = "Tipo Movimiento")]
         public virtual TipoMovimiento TipoMovimiento { get; set; }
 
-        [Display(Name = "Productos Asociados")]
+        [Display(Name = "Producto Relacionado")]
         public virtual ICollection<Producto> Producto { get; set; }
     }
 
