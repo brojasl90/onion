@@ -20,6 +20,11 @@ namespace Web.Controllers
             try
             {
                 IServiceInventario _ServInventario = new ServiceInventario();
+                IServiceMovimiento _ServiceMovimiento = new ServiceMovimiento();
+                IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+
+                ViewBag.LtsMovimientos = _ServiceMovimiento.GetTipoMovimiento();
+                ViewBag.LtsUsuarios = _ServiceUsuario.GetUsuario();
                 lista = _ServInventario.GetInventario();
             }
             catch (Exception ex)
@@ -75,7 +80,9 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             ViewBag.IdTipMov = listaTipoMovimiento();
-            ViewBag.IdProd = listaProductos(null );
+            ViewBag.IdUserReg = listaUsuario();
+            ViewBag.IdUserGes = listaUsuario();
+            ViewBag.IdProd = listaProductos(null);
             return View();
         }
 
@@ -85,7 +92,14 @@ namespace Web.Controllers
             IEnumerable<TipoMovimiento> lTipoMovimientos = _ServMovi.GetTipoMovimiento();
             return new SelectList(lTipoMovimientos, "IdTipMovimiento", "Descripcion", pIdMovimiento); 
         }
-        
+
+        private SelectList listaUsuario(int pIdUsuario= 0)
+        {
+            IServiceUsuario _ServUser = new ServiceUsuario();
+            IEnumerable<Usuario> lUsuarios = _ServUser.GetUsuario();
+            return new SelectList(lUsuarios, "idUsuario", "Nombre", pIdUsuario);
+        }
+
         private MultiSelectList listaProductos(ICollection<Producto> pProductos)
         {
             IServiceProducto _ServProd = new ServiceProducto();
@@ -126,6 +140,8 @@ namespace Web.Controllers
                 }
 
                 ViewBag.IdTipMov = listaTipoMovimiento(oInventario.IdTipMovimiento);
+                ViewBag.IdUserReg = listaUsuario(oInventario.IdUsuario);
+                ViewBag.IdUserGes = listaUsuario(oInventario.UsuarioGestion);
                 ViewBag.IdProd = listaProductos(oInventario.Producto);
                 return View(oInventario);
             }
@@ -156,6 +172,8 @@ namespace Web.Controllers
                 {
                     Util.ValidateErrors(this);
                     ViewBag.IdTipMov = listaTipoMovimiento(pInventario.IdTipMovimiento);
+                    ViewBag.IdUserReg = listaUsuario(pInventario.IdUsuario);
+                    ViewBag.IdUserGes = listaUsuario(pInventario.UsuarioGestion);
                     ViewBag.IdProd = listaProductos(pInventario.Producto);
                     return View("Create", pInventario);
                 }

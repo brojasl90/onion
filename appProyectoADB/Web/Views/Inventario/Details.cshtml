@@ -28,6 +28,16 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+            @Html.DisplayFor(model => model.Usuario.PrimerApellido)
+            @Html.DisplayFor(model => model.Usuario.SegundoApellido)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.TipoGestion)
         </dt>
 
@@ -44,6 +54,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.TipoMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMovimiento.Descripcion)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CantidadProductoGestionado)
         </dt>
 
@@ -57,7 +75,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.UsuarioGestion)
-        </dd> 
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.FechaGestion)

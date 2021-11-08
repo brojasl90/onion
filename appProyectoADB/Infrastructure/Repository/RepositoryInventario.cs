@@ -17,7 +17,7 @@ namespace Infrastructure.Repository
             using(MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                lista = ctx.GestionInventario.Include(x=>x.TipoMovimiento).ToList();
+                lista = ctx.GestionInventario.Include(x=>x.TipoMovimiento).Include(y => y.Usuario).ToList();
                 //lista = ctx.GestionInventario.Include("Producto").ToList();
             }
 
@@ -31,7 +31,7 @@ namespace Infrastructure.Repository
             using(MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                oInventario = ctx.GestionInventario.Where(i => i.IdGestionInventario == pId).Include(m => m.TipoMovimiento).Include(p => p.Producto).FirstOrDefault();
+                oInventario = ctx.GestionInventario.Where(i => i.IdGestionInventario == pId).Include(u => u.Usuario).Include(m => m.TipoMovimiento).Include(p => p.Producto).FirstOrDefault();
             }
 
             return oInventario;
