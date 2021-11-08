@@ -103,6 +103,7 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRepositoryBodega.cs" />
     <Compile Include="Repository\IRepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\IRepositoryInventario.cs" />
     <Compile Include="Repository\IRepositoryMovimiento.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Repository\IRepositoryProducto.cs" />
     <Compile Include="Repository\IRepositoryRol.cs" />
     <Compile Include="Repository\IRepositoryUsuario.cs" />
+    <Compile Include="Repository\RepositoryBodega.cs" />
     <Compile Include="Repository\RepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\RepositoryInventario.cs" />
     <Compile Include="Repository\RepositoryMovimiento.cs" />
