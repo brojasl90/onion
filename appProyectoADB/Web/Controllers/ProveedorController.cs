@@ -51,6 +51,7 @@ namespace Web.Controllers
                     return RedirectToAction("Default", "Error");
                 }
 
+                ViewBag.EstadoActual = oProv.Estado == 1 ? "Activo" : "Inactivo";
                 return View(oProv);
             }
             catch (Exception ex)
