@@ -4,12 +4,27 @@
     ViewBag.Title = "Lista de Proveedores";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<div class="col-md-12 d-md-flex justify-content-md-end pb-3 pe-3">
-    <i class='bx bxs-pencil'></i>
-    @Html.ActionLink("Nuevo Proveedor", "Create")
+<div class="form-group">
+    <div class="row">
+        <div class="col-4">
+            <h2>@ViewBag.Title</h2>
+        </div>
+        <div class="col-4">
+            <div class="btn btn-outline-secondary">
+                <i class='bx bxs-pencil'></i>
+                @Html.ActionLink("Nuevo", "Create", null, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+        </div>
+        <div class="col-4 mx-0 px-0 justify-content-md-end">
+            <form class="d-flex">
+                <input class="form-control p-0 ps-2" type="search" placeholder="Buscar..." aria-label="Buscar...">
+                <button class="btn btn-outline-primary mx-3 my-sm-0 p-1 col-3" type="submit"><i class='bx bx-search-alt-2'></i>Buscar</button>
+            </form>
+        </div>        
+    </div>
 </div>
+
+
 <div class="table-responsive">
     <table class="table table-light table-hover table-striped">
         <tr class="table-primary">

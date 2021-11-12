@@ -74,7 +74,19 @@
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { pId = Model.IdProveedor }) |
-    @Html.ActionLink("Regresar", "Index")
-</p>
+
+<div class="form-group">
+    <hr />
+    <div class="row">
+        <div class="col-12 d-md-flex justify-content-md-end">
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bxs-x-circle'></i>
+                @Html.ActionLink("Regresar", "Index", new { pId = Model.IdProveedor }, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bx-check'></i>
+                @Html.ActionLink("Editar", "Edit", new { pId = Model.IdProveedor }, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+        </div>
+    </div>
+</div>
