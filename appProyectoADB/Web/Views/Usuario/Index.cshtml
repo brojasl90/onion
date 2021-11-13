@@ -72,9 +72,13 @@
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { pId = item.IdUsuario }) |
                     @Html.ActionLink("Detalles", "Details", new { pId = item.IdUsuario }) @*|
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
         }
     </table>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+}
