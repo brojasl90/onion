@@ -16,6 +16,17 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Proveedor> GetProveedorByNombre(string pNombre)
+        {
+            IEnumerable<Proveedor> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.Proveedor.ToList().FindAll(p => p.Nombre_Proveedor.ToLower().Contains(pNombre.ToLower()));
+            }
+            return lista;
+        }
+
         public IEnumerable<Proveedor> GetProveedor()
         {
             try

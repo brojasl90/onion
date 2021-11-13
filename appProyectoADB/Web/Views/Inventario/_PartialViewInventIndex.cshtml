@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Infrastructure.Models.GestionInventario>
+
+@foreach (var item in Model)
+{
+    <tr class="align-middle">
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoGestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoMovimiento.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaGestion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { pId = item.IdGestionInventario }) |
+            @Html.ActionLink("Detalles", "Details", new { pId = item.IdGestionInventario })
+        </td>
+    </tr>
+}

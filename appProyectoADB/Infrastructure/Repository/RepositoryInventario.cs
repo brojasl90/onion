@@ -42,6 +42,18 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
+        public IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre)
+        {
+            IEnumerable<GestionInventario> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                Usuario idUser = ctx.Usuario.Where(u => u.Nombre.ToLower().Contains(pNombre.ToLower())).FirstOrDefault();
+                lista = ctx.GestionInventario.ToList().FindAll(i => i.IdUsuario == idUser.IdUsuario);
+            }
+            return lista;
+        }
+
         public IEnumerable<GestionInventario> GetInventarioPorTipMovimiento(int pTipo)
         {
             throw new NotImplementedException();

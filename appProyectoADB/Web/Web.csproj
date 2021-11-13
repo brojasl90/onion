@@ -263,6 +263,10 @@
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\_PartialViewUserIndex.cshtml" />
+    <Content Include="Views\Producto\_PartialViewProdIndex.cshtml" />
+    <Content Include="Views\Inventario\_PartialViewInventIndex.cshtml" />
+    <Content Include="Views\Proveedor\_PartialViewProvIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

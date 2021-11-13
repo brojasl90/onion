@@ -14,5 +14,7 @@ namespace Infrastructure.Repository
         IEnumerable<Usuario> GetUsuario();
 
         Usuario GuardarUsuario(Usuario pUsuario);
+
+        IEnumerable<Usuario> GetUsuarioByNombre(string pNombre);
     }
 }

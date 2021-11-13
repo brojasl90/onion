@@ -11,6 +11,7 @@ namespace ApplicationCore.Services
     {
         IEnumerable<Proveedor> GetProveedor();
         Proveedor GetProveedorByID(int pId);
+        IEnumerable<Proveedor> GetProveedorByNombre(string pNombre);
         Proveedor Save(Proveedor pProv);
         void DeleteProveedor(int pId);
 

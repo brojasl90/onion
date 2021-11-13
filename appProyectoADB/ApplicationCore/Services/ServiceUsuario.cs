@@ -27,5 +27,11 @@ namespace ApplicationCore.Services
             IRepositoryUsuario oRepUss = new RepositoryUsuario();
             return oRepUss.GuardarUsuario(pUsuario);
         }
+
+        public IEnumerable<Usuario> GetUsuarioByNombre(string pNombre)
+        {
+            IRepositoryUsuario oRepUss = new RepositoryUsuario();
+            return oRepUss.GetUsuarioByNombre(pNombre);
+        }
     }
 }

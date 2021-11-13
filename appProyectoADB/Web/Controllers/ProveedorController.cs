@@ -64,6 +64,23 @@ namespace Web.Controllers
             }
         }
 
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<Proveedor> listaProveedores = null;
+            IServiceProveedor _ServProveedor = new ServiceProveedor();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaProveedores = _ServProveedor.GetProveedor();
+            }
+            else
+            {
+                listaProveedores = _ServProveedor.GetProveedorByNombre(pNombre);
+            }
+
+            return PartialView("_PartialViewProvIndex", listaProveedores);
+        }
+
         public ActionResult Create ()
         {
                 return View();

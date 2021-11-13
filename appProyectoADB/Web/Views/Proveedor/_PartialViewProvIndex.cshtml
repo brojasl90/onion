@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Infrastructure.Models.Proveedor>
+
+@foreach (var item in Model)
+{
+    <tr class="align-middle">
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Proveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dsc_Proveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Contacto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { pId = item.IdProveedor }) |
+            @Html.ActionLink("Detalles", "Details", new { pId = item.IdProveedor }) 
+        </td>
+    </tr>
+}

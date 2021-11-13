@@ -36,6 +36,17 @@ namespace Infrastructure.Repository
             return lista;
         }
 
+        public IEnumerable<Usuario> GetUsuarioByNombre(string pNombre)
+        {
+            IEnumerable<Usuario> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.Usuario.ToList().FindAll(u => u.Nombre.ToLower().Contains(pNombre.ToLower()));
+            }
+            return lista;
+        }
+
         public Usuario GuardarUsuario(Usuario pUsuario)
         {
             int vRetorno = 0;

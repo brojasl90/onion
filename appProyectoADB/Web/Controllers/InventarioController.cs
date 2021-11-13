@@ -76,6 +76,23 @@ namespace Web.Controllers
             return View(oInventario);
         }
 
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<GestionInventario> listaInventarios = null;
+            IServiceInventario _ServInventario = new ServiceInventario();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaInventarios = _ServInventario.GetInventario();
+            }
+            else
+            {
+                listaInventarios = _ServInventario.GetInventarioPorNombreUsuario(pNombre);
+            }
+
+            return PartialView("_PartialViewInventIndex", listaInventarios);
+        }
+
         // GET: Inventario/Create
         public ActionResult Create()
         {
