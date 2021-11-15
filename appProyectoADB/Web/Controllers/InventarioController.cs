@@ -42,6 +42,7 @@ namespace Web.Controllers
         public ActionResult Details(int? pId)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
             GestionInventario oInventario = null;
 
             try
@@ -73,6 +74,7 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
 
+            ViewBag.LtsUsuarios = _ServiceUsuario.GetUsuario();
             return View(oInventario);
         }
 

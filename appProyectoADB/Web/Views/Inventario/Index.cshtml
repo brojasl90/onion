@@ -51,6 +51,9 @@
                         @Html.DisplayNameFor(model => model.Usuario)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.UsuarioGestion)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.FechaGestion)
                     </th>
                     <th></th>
@@ -59,25 +62,37 @@
             <tbody id="resultList">
                 @foreach (var item in Model)
                 {
-                    <tr class="align-middle">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoGestion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoMovimiento.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaGestion)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new { pId = item.IdGestionInventario }) |
-                            @Html.ActionLink("Detalles", "Details", new { pId = item.IdGestionInventario }) @*|
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                        </td>
-                    </tr>
+                <tr class="align-middle">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoGestion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoMovimiento.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                        @Html.DisplayFor(modelItem => item.Usuario.PrimerApellido)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.UsuarioGestion)*@
+                        @foreach (var iUs in ViewBag.LtsUsuarios)
+                        {
+                            if (@iUs.IdUsuario == item.UsuarioGestion)
+                            {
+                                string nombreUsuario = string.Format("{0} {1}", @iUs.Nombre, @iUs.PrimerApellido);
+                                @nombreUsuario
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaGestion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { pId = item.IdGestionInventario }) |
+                        @Html.ActionLink("Detalles", "Details", new { pId = item.IdGestionInventario }) @*|
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
