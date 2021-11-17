@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Services;
+using Infrastructure.APIs;
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -81,9 +82,18 @@ namespace Web.Controllers
             return PartialView("_PartialViewProvIndex", listaProveedores);
         }
 
+        private SelectList listaPais()
+        {
+            IServicePais _ServicePais = new ServicePais();
+            IEnumerable<PaisAPI> listaPais = _ServicePais.GetPaisAPIs();
+            return new SelectList(listaPais, "nombre");
+        }
+
         public ActionResult Create ()
         {
-                return View();
+            ViewBag.ListPaises = listaPais();
+
+            return View();
         }
 
         public ActionResult Edit( int? pId)
@@ -104,6 +114,8 @@ namespace Web.Controllers
                 {
                     return RedirectToAction("Default", "Error");
                 }
+
+                ViewBag.ListPaises = listaPais();
 
                 return View(oProv);
             }

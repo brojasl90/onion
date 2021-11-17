@@ -107,6 +107,7 @@
     <Compile Include="Repository\IRepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\IRepositoryInventario.cs" />
     <Compile Include="Repository\IRepositoryMovimiento.cs" />
+    <Compile Include="Repository\IRepositoryPais.cs" />
     <Compile Include="Repository\IRepositoryProveedor.cs" />
     <Compile Include="Repository\IRepositoryProducto.cs" />
     <Compile Include="Repository\IRepositoryRol.cs" />
@@ -115,11 +116,14 @@
     <Compile Include="Repository\RepositoryCategoriaProducto.cs" />
     <Compile Include="Repository\RepositoryInventario.cs" />
     <Compile Include="Repository\RepositoryMovimiento.cs" />
+    <Compile Include="Repository\RepositoryPais.cs" />
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryProveedor.cs" />
     <Compile Include="Repository\RepositoryRol.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
+    <Compile Include="Utils\JSONGeneric.cs" />
     <Compile Include="Utils\Log.cs" />
+    <Compile Include="APIs\PaisAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\MyModel.Context.tt">
@@ -147,6 +151,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

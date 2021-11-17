@@ -152,6 +152,8 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.cspro
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.AssemblyReference.cache
+D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\Web.dll.config
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\Web.dll
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\Web.pdb
@@ -224,8 +226,6 @@ D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\Antlr3.Runtime.pdb
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\System.Net.Http.Formatting.xml
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\System.Web.Http.xml
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\System.Web.Http.WebHost.xml
-D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.AssemblyReference.cache
-D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CopyComplete
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.dll
 D:\Archivos\F\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.pdb

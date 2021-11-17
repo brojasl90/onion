@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Services;
+using Infrastructure.APIs;
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,8 @@ namespace Web.Controllers
             return PartialView("_PartialViewInventIndex", listaInventarios);
         }
 
+
+
         // GET: Inventario/Create
         public ActionResult Create()
         {
@@ -102,6 +105,7 @@ namespace Web.Controllers
             ViewBag.IdUserReg = listaUsuario();
             ViewBag.IdUserGes = listaUsuario();
             ViewBag.IdProd = listaProductos(null);
+            
             return View();
         }
 
@@ -162,6 +166,7 @@ namespace Web.Controllers
                 ViewBag.IdUserReg = listaUsuario(oInventario.IdUsuario);
                 ViewBag.IdUserGes = listaUsuario(oInventario.UsuarioGestion);
                 ViewBag.IdProd = listaProductos(oInventario.Producto);
+
                 return View(oInventario);
             }
             catch (Exception ex)
