@@ -21,14 +21,6 @@
     @Html.HiddenFor(model => model.IdGestionInventario)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("selectProducto", (MultiSelectList)ViewBag.IdProd, "Seleccione un producto...", htmlAttributes: new { @class = "form-select" })
-            @Html.ValidationMessageFor(model => model.Producto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.IdUsuario, (SelectList)ViewBag.IdUserReg, "Seleccione un usuario...", htmlAttributes: new { @class = "form-select" })
@@ -54,6 +46,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("selectProducto", (SelectList)ViewBag.IdProd, "Seleccione un producto...", htmlAttributes: new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.Producto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.CantidadProductoGestionado, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.CantidadProductoGestionado, new { htmlAttributes = new { @class = "form-control", @min = "1", @max = "30" } })
@@ -72,7 +72,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.FechaGestion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.FechaGestion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.FechaGestion, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.FechaGestion, "", new { @class = "text-danger" })
         </div>
     </div>

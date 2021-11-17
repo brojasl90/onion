@@ -26,15 +26,32 @@ namespace Infrastructure.Models
         }
     
         public int IdProducto { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No ha seleccioado una Categoria.")]
         public int IdCategoria { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un nombre")]
         public string Nombre_Producto { get; set; }
         public string Descripcion { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido un precio.")]
+        [Range(1, 10000000)]
         public Nullable<decimal> Precio { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaCreacion { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Indique una fecha de vencimiento.")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaVence { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha asignado un estado.")]
         public Nullable<byte> Estado { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Indica la cantidad disponible.")]
+        [Range(1, 999)]
         public Nullable<int> CantidadDisponible { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido una cantidad mínima.")]
+        [Range(1, 999)]
         public Nullable<int> CantidadStockMin { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido una cantidad máxima.")]
+        [Range(1, 999)]
         public Nullable<int> CantidadStockMax { get; set; }
     
         public virtual Categoria Categoria { get; set; }
@@ -42,6 +59,8 @@ namespace Infrastructure.Models
         public virtual ICollection<Bodega> Bodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GestionInventario> GestionInventario { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar almenos un proveedor.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedor> Proveedor { get; set; }
     }

@@ -105,6 +105,7 @@
         <div class="col-md-10">
             @*@Html.DropDownList("selectedProveedores", (MultiSelectList)ViewBag.idProveedor, new { htmlAttributes = new { @class = "form-select-lg" }, multiple = "multiple" })*@
             @Html.DropDownList("selectedProveedores", (MultiSelectList)ViewBag.idProveedor, htmlAttributes: new { @class = "form-select", multiple = "" })
+            @Html.ValidationMessageFor(model => model.Proveedor, "", new { @class = "text-danger" })
         </div>
     </div>
     @*
