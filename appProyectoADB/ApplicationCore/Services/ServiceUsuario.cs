@@ -1,4 +1,5 @@
-﻿using Infrastructure.Models;
+﻿using ApplicationCore.Utils;
+using Infrastructure.Models;
 using Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace ApplicationCore.Services
         public Usuario GetUsuarioByID(int pId)
         {
             IRepositoryUsuario oRepUss = new RepositoryUsuario();
-            return oRepUss.GetTipoUsuarioByID(pId);
+            Usuario oUsuario = oRepUss.GetTipoUsuarioByID(pId);
+            oUsuario.Clave = Cryptography.DecrypthAES(oUsuario.Clave);
+            return oUsuario;
         }
 
         public IEnumerable<Usuario> GetUsuario()
@@ -25,6 +28,7 @@ namespace ApplicationCore.Services
         public Usuario GuardarUsuario(Usuario pUsuario)
         {
             IRepositoryUsuario oRepUss = new RepositoryUsuario();
+            pUsuario.Clave = Cryptography.EncrypthAES(pUsuario.Clave);
             return oRepUss.GuardarUsuario(pUsuario);
         }
 
@@ -32,6 +36,12 @@ namespace ApplicationCore.Services
         {
             IRepositoryUsuario oRepUss = new RepositoryUsuario();
             return oRepUss.GetUsuarioByNombre(pNombre);
+        }
+
+        public Usuario GetUsuario(string pEmail, string pPassword)
+        {
+            IRepositoryUsuario repository = new RepositoryUsuario();
+            return repository.GetUsuario(pEmail, Cryptography.EncrypthAES(pPassword));
         }
     }
 }

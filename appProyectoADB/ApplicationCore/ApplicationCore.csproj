@@ -60,6 +60,7 @@
     <Compile Include="Services\ServiceProveedor.cs" />
     <Compile Include="Services\ServiceRol.cs" />
     <Compile Include="Services\ServiceUsuario.cs" />
+    <Compile Include="Utils\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
