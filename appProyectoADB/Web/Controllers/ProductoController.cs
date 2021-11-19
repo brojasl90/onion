@@ -192,6 +192,15 @@ namespace Web.Controllers
             return new MultiSelectList(listaCategorias, "IdCategoria", "Dsc_Categoria", listaCategoriasSelect);
 
         }
+        //Lista Ubicacion
+        private SelectList listaUbicacion(int idUbicacion = 0)
+        {
+            //Lista de Ubicacion
+            IServiceUbicacion _ServiceUbicacion = new ServiceUbicacion();
+            IEnumerable<Ubicacion> listaUbicacion = _ServiceUbicacion.GetUbicacion();
+            return new SelectList(listaUbicacion, "IdUbicacion", "Descripcion", idUbicacion);
+        }
+        //Lista Categorias
         private SelectList listaCategorias(int idCategoria = 0)
         {
             //Lista de Categorias

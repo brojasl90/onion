@@ -98,6 +98,16 @@
                 @c.Nombre_Proveedor
             }
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bodega)
+        </dt>
+
+        <dd>
+            @foreach (var c in Model.Bodega)
+            {
+                @c.IdBodega
+            }
+        </dd>
     </dl>
 </div>
 
