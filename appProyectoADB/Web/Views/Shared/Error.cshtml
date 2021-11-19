@@ -6,8 +6,11 @@
 </head>
 <body>
     <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
+        <h1 class="text-danger">Error no controlado</h1>
+        <h5>Ocurri&oacute; un error mientras procesabamos su solicitud, por favor consulte a su administrador del sistema. @ViewBag.Description</h5>
+
+        @Html.ActionLink("Salir", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+
     </hgroup>
 </body>
 </html>

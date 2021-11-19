@@ -10,6 +10,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdProducto)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdCategoria)
         </dt>
 
@@ -93,7 +100,19 @@
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Regresar a la lista producto", "Index")
-</p>
+
+<div class="form-group">
+    <hr />
+    <div class="row">
+        <div class="col-12 d-md-flex justify-content-md-end">
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bxs-x-circle'></i>
+                @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bx-check'></i>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.IdProducto }, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+        </div>
+    </div>
+</div>

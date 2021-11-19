@@ -74,7 +74,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UsuarioGestion)
+            @*@Html.DisplayFor(model => model.UsuarioGestion)*@
+            @foreach (var iUs in ViewBag.LtsUsuarios)
+            {
+                if (@iUs.IdUsuario == Model.UsuarioGestion)
+                {
+                    var nomCompleto = string.Format("{0} {1} {2}", @iUs.Nombre, @iUs.PrimerApellido, iUs.SegundoApellido);
+                    @nomCompleto
+                }
+            }
         </dd>
 
         <dt>
@@ -100,7 +108,19 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { pId = Model.IdGestionInventario }) |
-    @Html.ActionLink("Regresar", "Index")
-</p>
+
+<div class="form-group">
+    <hr />
+    <div class="row">
+        <div class="col-12 d-md-flex justify-content-md-end">
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bxs-x-circle'></i>
+                @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+            <div class="btn btn-outline-secondary m-1">
+                <i class='bx bx-check'></i>
+                @Html.ActionLink("Editar", "Edit", new { pId = Model.IdGestionInventario }, htmlAttributes: new { @class = "text-decoration-none" })
+            </div>
+        </div>
+    </div>
+</div>

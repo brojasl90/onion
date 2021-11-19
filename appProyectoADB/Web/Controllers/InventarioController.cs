@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Services;
+using Infrastructure.APIs;
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace Web.Controllers
         public ActionResult Details(int? pId)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
             GestionInventario oInventario = null;
 
             try
@@ -73,8 +75,28 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
 
+            ViewBag.LtsUsuarios = _ServiceUsuario.GetUsuario();
             return View(oInventario);
         }
+
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<GestionInventario> listaInventarios = null;
+            IServiceInventario _ServInventario = new ServiceInventario();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaInventarios = _ServInventario.GetInventario();
+            }
+            else
+            {
+                listaInventarios = _ServInventario.GetInventarioPorNombreUsuario(pNombre);
+            }
+
+            return PartialView("_PartialViewInventIndex", listaInventarios);
+        }
+
+
 
         // GET: Inventario/Create
         public ActionResult Create()
@@ -83,6 +105,7 @@ namespace Web.Controllers
             ViewBag.IdUserReg = listaUsuario();
             ViewBag.IdUserGes = listaUsuario();
             ViewBag.IdProd = listaProductos(null);
+            
             return View();
         }
 
@@ -143,6 +166,7 @@ namespace Web.Controllers
                 ViewBag.IdUserReg = listaUsuario(oInventario.IdUsuario);
                 ViewBag.IdUserGes = listaUsuario(oInventario.UsuarioGestion);
                 ViewBag.IdProd = listaProductos(oInventario.Producto);
+
                 return View(oInventario);
             }
             catch (Exception ex)

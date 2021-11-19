@@ -46,6 +46,7 @@
     <Compile Include="Services\IServiceCategoriaProducto.cs" />
     <Compile Include="Services\IServiceInventario.cs" />
     <Compile Include="Services\IServiceMovimiento.cs" />
+    <Compile Include="Services\IServicePais.cs" />
     <Compile Include="Services\IServiceProducto.cs" />
     <Compile Include="Services\IServiceProveedor.cs" />
     <Compile Include="Services\IServiceRol.cs" />
@@ -55,11 +56,13 @@
     <Compile Include="Services\ServiceCategoriaProducto.cs" />
     <Compile Include="Services\ServiceInventario.cs" />
     <Compile Include="Services\ServiceMovimiento.cs" />
+    <Compile Include="Services\ServicePais.cs" />
     <Compile Include="Services\ServiceProducto.cs" />
     <Compile Include="Services\ServiceProveedor.cs" />
     <Compile Include="Services\ServiceRol.cs" />
     <Compile Include="Services\ServiceUbicacion.cs" />
     <Compile Include="Services\ServiceUsuario.cs" />
+    <Compile Include="Utils\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">

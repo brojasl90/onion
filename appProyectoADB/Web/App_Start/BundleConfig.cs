@@ -14,6 +14,12 @@ namespace Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
+                        "~/Scripts/jquery.unobtrusive*"));
+
+            // SweetAlert
+            bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include("~/Scripts/sweetalert.min.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -24,7 +30,10 @@ namespace Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap_almacen.min.css"));
-                     // "~/Content/site.css"));
+            // "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css2").Include("~/Content/bootstrap.css", //"~/Content/bootstrap-materia.min.css",
+                "~/Content/jquery-ui.css","~/Content/sweetalert.css"));
         }
     }
 }

@@ -65,6 +65,23 @@ namespace Web.Controllers
             }
         }
 
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<Producto> listaProductos = null;
+            IServiceProducto _ServProducto = new ServiceProducto();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaProductos = _ServProducto.GetProducto();
+            }
+            else
+            {
+                listaProductos = _ServProducto.GetProductoByNombre(pNombre);
+            }
+
+            return PartialView("_PartialViewProdIndex", listaProductos);
+        }
+
         // GET: Libro/Create
         public ActionResult Create()
         {

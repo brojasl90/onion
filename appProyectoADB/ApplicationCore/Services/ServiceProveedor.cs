@@ -27,6 +27,12 @@ namespace ApplicationCore.Services
             return oRepProv.GetProveedorByID(pId);
         }
 
+        public IEnumerable<Proveedor> GetProveedorByNombre(string pNombre)
+        {
+            IRepositoryProveedor oRepProv = new RepositoryProveedor();
+            return oRepProv.GetProveedorByNombre(pNombre);
+        }
+
         public Proveedor Save(Proveedor pProv)
         {
             IRepositoryProveedor oRepProv = new RepositoryProveedor();

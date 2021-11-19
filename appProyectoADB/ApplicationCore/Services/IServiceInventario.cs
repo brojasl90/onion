@@ -15,6 +15,8 @@ namespace ApplicationCore.Services
 
         IEnumerable<GestionInventario> GetInventarioPorUsuario(int pId);
 
+        IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre);
+
         IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha);
 
         GestionInventario GetInventarioByID(int pId);

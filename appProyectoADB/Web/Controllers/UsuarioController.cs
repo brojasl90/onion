@@ -73,6 +73,23 @@ namespace Web.Controllers
             return View(oUsuario);
         }
 
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<Usuario> listaUsuarios = null;
+            IServiceUsuario _ServUsuario = new ServiceUsuario();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaUsuarios = _ServUsuario.GetUsuario();
+            }
+            else
+            {
+                listaUsuarios = _ServUsuario.GetUsuarioByNombre(pNombre);
+            }
+
+            return PartialView("_PartialViewUserIndex", listaUsuarios);
+        }
+
         private SelectList listaTipoRol(int pIdRol = 0)
         {
             IServiceRol _ServRol = new ServiceRol();

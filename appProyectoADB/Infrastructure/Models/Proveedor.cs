@@ -25,13 +25,25 @@ namespace Infrastructure.Models
         }
     
         public int IdProveedor { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un nombre")]
         public string Nombre_Proveedor { get; set; }
         public string Dsc_Proveedor { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un nombre de contacto")]
         public string Nombre_Contacto { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un número telefónico")]
+        [StringLength(13, MinimumLength = 12, ErrorMessage = "El formato válido es +506 88888888")]
+        [DataType (DataType.PhoneNumber)]
         public string Telefono { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un correo")]
+        [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe Seleccionar un País")]
         public string Pais { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar una dirección")]
+        [StringLength(120, MinimumLength = 12, ErrorMessage = "La dirección es muy breve, brinde más detalles")]
+        [DataType(DataType.MultilineText)]
         public string Direccion { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha asignado un estado.")]
         public Nullable<byte> Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

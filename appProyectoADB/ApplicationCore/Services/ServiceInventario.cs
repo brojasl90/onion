@@ -28,6 +28,12 @@ namespace ApplicationCore.Services
             return oRI.GetInventarioPorFecha(pFecha);
         }
 
+        public IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre)
+        {
+            IRepositoryInventario oRI = new RepositoryInventario();
+            return oRI.GetInventarioPorNombreUsuario(pNombre);
+        }
+
         public IEnumerable<GestionInventario> GetInventarioPorTipMovimiento(int pTipo)
         {
             IRepositoryInventario oRI = new RepositoryInventario();

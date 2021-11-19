@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Infrastructure.Models.Usuario>
+
+@foreach (var item in Model)
+{
+    <tr class="align-middle">
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroIdentificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimerApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SegundoApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rol.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { pId = item.IdUsuario }) |
+            @Html.ActionLink("Detalles", "Details", new { pId = item.IdUsuario })
+        </td>
+    </tr>
+}

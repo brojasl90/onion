@@ -24,13 +24,23 @@ namespace Infrastructure.Models
         }
     
         public int IdUsuario { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un número de identificación")]
+        [StringLength(9, MinimumLength = 4, ErrorMessage = "El formato no es válido")]
         public string NumeroIdentificacion { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe proporcionar un nombre")]
         public string Nombre { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe proporcionar el primer apellido")]
         public string PrimerApellido { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe proporcionar el segundo apellido")]
         public string SegundoApellido { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un tipo de rol")]
         public int IdRol { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un correo")]
+        [DataType(DataType.EmailAddress)]
         public string Correo { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar una palabra secreta")]
         public string Clave { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha asignado un estado.")]
         public Nullable<byte> Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
