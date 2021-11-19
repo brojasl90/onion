@@ -88,6 +88,7 @@ namespace Web.Controllers
             //Lista de Categorias           
             ViewBag.IdCategoria = listaCategorias();
             ViewBag.IdProveedor = listaProveedores(null);
+            ViewBag.IdBodega = listaBodega(null);
 
             return View();
         }
@@ -214,16 +215,32 @@ namespace Web.Controllers
 
             return new MultiSelectList(listaProveedores, "IdProveedor", "Nombre_Proveedor", listaProveedoresSelect);
         }
+        //Lista de bodegas
+        private MultiSelectList listaBodega(ICollection<Bodega> bodegas)
+        {
+            //Lista de Proveedores
+            IServiceBodega _ServiceBodega = new ServiceBodega();
+            IEnumerable<Bodega> listaBodegas = _ServiceBodega.GetBodega();
+            int[] listaBodegasSelect = null;
+
+            if (bodegas != null)
+            {
+
+                listaBodegasSelect = bodegas.Select(c => c.IdBodega).ToArray();
+            }
+
+            return new MultiSelectList(listaBodegas, "IdBodega", "IdUbicacion", listaBodegasSelect);
+        }
         // POST: Libro/Edit/5
         [HttpPost]
-        public ActionResult Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores)
+        public ActionResult Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores, string[] selectedBodega)
         {
             IServiceProducto _ServiceProducto = new ServiceProducto();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Producto oProductoI = _ServiceProducto.Save(producto, selectedCategorias, selectedProveedores);
+                    Producto oProductoI = _ServiceProducto.Save(producto, selectedCategorias, selectedProveedores, selectedBodega);
                 }
                 else
                 {
@@ -231,6 +248,7 @@ namespace Web.Controllers
                     Utils.Util.ValidateErrors(this);
                     ViewBag.IdCategoria = listaCategorias(producto.IdCategoria);
                     ViewBag.IdProveedor = listaProveedores(producto.Proveedor);
+                    ViewBag.IdBodega = listaBodega(producto.Bodega);
                     return View("Create", producto);
                 }
 

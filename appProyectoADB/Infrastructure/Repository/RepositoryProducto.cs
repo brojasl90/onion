@@ -129,7 +129,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
             return lista;
         }
 
-        public Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores)
+        public Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores, string[] selectedBodega)
         {
             int retorno = 0;
             Producto oProducto = null;
@@ -140,6 +140,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 oProducto = GetProductoByID((int)producto.IdProducto);
                 IRepositoryCategoriaProducto _RepositoryCategoriaProducto = new RepositoryCategoriaProducto();
                 IRepositoryProveedor _RepositoryProveedor = new RepositoryProveedor();
+                IRepositoryBodega _RepositoryBodega = new RepositoryBodega();
 
                 if (oProducto == null)
                 {
@@ -165,6 +166,16 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                             var proveedorToAdd = _RepositoryProveedor.GetProveedorByID(int.Parse(proveedor));
                             ctx.Proveedor.Attach(proveedorToAdd); //sin esto, EF intentará crear un proveedor
                             producto.Proveedor.Add(proveedorToAdd);// asociar a la categoría existente con el Producto
+                        }
+                    }
+                    if (selectedBodega != null)
+                    {
+                        producto.Bodega = new List<Bodega>();
+                        foreach (var bodega in selectedBodega)
+                        {
+                            var bodegaToAdd = _RepositoryBodega.GetBodegaByID(int.Parse(bodega));
+                            ctx.Bodega.Attach(bodegaToAdd); //sin esto, EF intentará crear un proveedor
+                            producto.Bodega.Add(bodegaToAdd);// asociar a la bodega existente con el Producto
                         }
                     }
                     producto.Estado = 1;
@@ -206,6 +217,18 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                         var newProveedorForProducto = ctx.Proveedor
                          .Where(x => selectedProveedorID.Contains(x.IdProveedor.ToString())).ToList();
                         producto.Proveedor = newProveedorForProducto;
+
+                        ctx.Entry(producto).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
+                    //Actualizar Bodega
+                    var selectedBodegaID = new HashSet<string>(selectedBodega);
+                    if (selectedBodega != null)
+                    {
+                        ctx.Entry(producto).Collection(p => p.Bodega).Load();
+                        var newBodegaForProducto = ctx.Bodega
+                         .Where(x => selectedBodegaID.Contains(x.IdBodega.ToString())).ToList();
+                        producto.Bodega = newBodegaForProducto;
 
                         ctx.Entry(producto).State = EntityState.Modified;
                         retorno = ctx.SaveChanges();
