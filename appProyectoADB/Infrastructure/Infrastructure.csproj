@@ -110,6 +110,7 @@
     <Compile Include="Repository\IRepositoryProveedor.cs" />
     <Compile Include="Repository\IRepositoryProducto.cs" />
     <Compile Include="Repository\IRepositoryRol.cs" />
+    <Compile Include="Repository\IRepositoryUbicacion.cs" />
     <Compile Include="Repository\IRepositoryUsuario.cs" />
     <Compile Include="Repository\RepositoryBodega.cs" />
     <Compile Include="Repository\RepositoryCategoriaProducto.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryProveedor.cs" />
     <Compile Include="Repository\RepositoryRol.cs" />
+    <Compile Include="Repository\RepositoryUbicacion.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
     <Compile Include="Utils\Log.cs" />
   </ItemGroup>
