@@ -50,7 +50,6 @@ namespace Infrastructure.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un producto.")]
-        [DataType (DataType.Custom)]
         public virtual ICollection<Producto> Producto { get; set; }
     }
 }
