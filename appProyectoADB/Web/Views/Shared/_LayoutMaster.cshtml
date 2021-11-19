@@ -91,11 +91,12 @@
             </div>
         </div>
     </main>
-    <footer class="page-footer shadow bg-primary text-white text-center">
+    <footer class="page-footer shadow bg-primary text-white text-center mt-auto py-1">
         @Html.Partial("_Footer")
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/bootstrap_almacen.min.css")
     @Scripts.Render("~/bundles/sweetalert")
     @RenderSection("scripts", required: false)
