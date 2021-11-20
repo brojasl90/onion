@@ -38,7 +38,7 @@ namespace Infrastructure.Repository
             return lista;
         }
 
-        public Usuario GetUsuario(string email, string password)
+        public Usuario GetUsuario(string pNumId, string password)
         {
             Usuario oUsuario = null;
             try
@@ -47,7 +47,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     oUsuario = ctx.Usuario.
-                    Where(p => p.Correo.Equals(email) && p.Clave == password).
+                    Where(p => p.NumeroIdentificacion.Equals(pNumId) && p.Clave == password).
                     FirstOrDefault<Usuario>();
                 }
                 if (oUsuario != null)

@@ -18,6 +18,7 @@ namespace Web.Controllers
         {
             return View();
         }
+
         public ActionResult Login(Usuario pUsuario)
         {
             IServiceUsuario _ServiceUsuario = new ServiceUsuario();
@@ -26,7 +27,7 @@ namespace Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    oUsuario = _ServiceUsuario.GetUsuario(pUsuario.Correo, pUsuario.Clave);
+                    oUsuario = _ServiceUsuario.GetUsuario(pUsuario.NumeroIdentificacion, pUsuario.Clave);
 
                     if (oUsuario != null)
                     {
@@ -37,9 +38,8 @@ namespace Web.Controllers
                     }
                     else
                     {
-                        Log.Warn($"{pUsuario.Correo} se intentó conectar  y falló");
+                        Log.Warn($"{pUsuario.NumeroIdentificacion} se intentó conectar  y falló");
                         ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("Login", "Error al autenticarse", SweetAlertMessageType.warning);
-
                     }
                 }
 

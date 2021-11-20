@@ -26,3 +26,17 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debu
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\Infrastructure.dll.config
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\Infrastructure.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\Infrastructure.pdb
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\EntityFramework.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\log4net.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\EntityFramework.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\bin\Debug\log4net.xml
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.dll
+D:\Archivos\F\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.pdb

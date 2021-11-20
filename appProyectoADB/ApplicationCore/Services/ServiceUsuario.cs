@@ -38,10 +38,10 @@ namespace ApplicationCore.Services
             return oRepUss.GetUsuarioByNombre(pNombre);
         }
 
-        public Usuario GetUsuario(string pEmail, string pPassword)
+        public Usuario GetUsuario(string pNumId, string pPassword)
         {
             IRepositoryUsuario repository = new RepositoryUsuario();
-            return repository.GetUsuario(pEmail, Cryptography.EncrypthAES(pPassword));
+            return repository.GetUsuario(pNumId, Cryptography.EncrypthAES(pPassword));
         }
     }
 }

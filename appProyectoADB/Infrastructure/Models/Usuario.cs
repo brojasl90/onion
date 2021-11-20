@@ -36,7 +36,7 @@ namespace Infrastructure.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un tipo de rol")]
         public int IdRol { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un correo")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "{0} no tiene formato válido")]
         public string Correo { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar una palabra secreta")]
         public string Clave { get; set; }
