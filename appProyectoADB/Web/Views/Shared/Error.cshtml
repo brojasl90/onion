@@ -3,14 +3,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Error</title>
+
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+
 </head>
 <body>
     <hgroup>
         <h1 class="text-danger">Error no controlado</h1>
         <h5>Ocurri&oacute; un error mientras procesabamos su solicitud, por favor consulte a su administrador del sistema. @ViewBag.Description</h5>
 
-        @Html.ActionLink("Salir", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
-
+        @*@Html.ActionLink("Salir", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })*@
+        <input type="button" value="Regresar" class="btn btn-primary btn-lg" onclick="goBack()" />
     </hgroup>
 </body>
 </html>

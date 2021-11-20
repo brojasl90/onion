@@ -33,11 +33,11 @@ namespace Web
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap_almacen.min.css"));
+                      "~/Content/bootstrap_almacen.min.css", "~/Content/jquery-ui.css", "~/Content/sweetalert.css"));
             // "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css2").Include("~/Content/bootstrap.css", //"~/Content/bootstrap-materia.min.css",
-                "~/Content/jquery-ui.css","~/Content/sweetalert.css"));
+            //bundles.Add(new StyleBundle("~/Content/css").Include(//"~/Content/bootstrap.css", //"~/Content/bootstrap-materia.min.css",
+            //    "~/Content/jquery-ui.css","~/Content/sweetalert.css"));
         }
     }
 }

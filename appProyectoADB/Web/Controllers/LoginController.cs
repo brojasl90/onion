@@ -42,6 +42,9 @@ namespace Web.Controllers
                         ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("Login", "Error al autenticarse", SweetAlertMessageType.warning);
                     }
                 }
+                else {
+                    ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("Login", "Algo salió mal...", SweetAlertMessageType.warning);
+                }
 
                 return View("Index");
             }
@@ -54,7 +57,7 @@ namespace Web.Controllers
                 TempData.Keep();
                 return RedirectToAction("Default", "Error");
             }
-        }
+         }
         public ActionResult UnAuthorized()
         {
             try
