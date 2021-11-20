@@ -30,7 +30,7 @@
 
 </head>
 <body class="bg-primary">
-    <nav class="navbar shadow-sm navbar-expand-lg navbar-dark bg-primary p-0">
+    <nav class="navbar shadow-sm navbar-expand-lg navbar-dark bg-primary bg-gradient p-0">
         <div class="container-fluid">
             <a class="navbar-brand" href='@Url.Action("Index", "Home")'><img src="~/img/tiendaBG.png" class="mx-auto d-block" /><span>Almacen Del Barrio</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
                         oUsuario = (Infrastructure.Models.Usuario)Session["User"];
                         if (oUsuario != null)
                         {
-                            nomUser = string.Format("{0} {1}", oUsuario.Nombre, oUsuario.PrimerApellido);
+                            nomUser = string.Format("{0} {1} {2}.", oUsuario.Nombre, oUsuario.PrimerApellido, oUsuario.SegundoApellido.Substring(0,1));
                             dcsRol = oUsuario.Rol.Descripcion;
                         }
                     }
@@ -98,11 +98,11 @@
                         </div>
                         @if (Session["User"] == null)
                         {
-                            <a class="btn btn-outline-primary p-2 rounded" href='@Url.Action("Index", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Entrar..."><i class='bx bx-log-in'></i></a>
+                            <a class="btn btn-outline-primary p-2 mx-2 rounded" href='@Url.Action("Index", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Entrar..."><i class='bx bx-log-in'></i></a>
                         }
                         else
                         {
-                            <a class="btn btn-outline-primary p-2 rounded" href='@Url.Action("Logout", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Salir..."><i class='bx bx-log-out'></i></a>
+                            <a class="btn btn-outline-primary p-2 mx-2 rounded" href='@Url.Action("Logout", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Salir..."><i class='bx bx-log-out'></i></a>
                         }
                     </div>
                 </div>
@@ -116,13 +116,13 @@
             </div>
         </div>
     </main>
-    <footer class="page-footer shadow bg-primary text-white text-center mt-auto py-1">
+    <footer class="page-footer shadow bg-primary bg-gradient text-white text-center mt-auto py-1">
         @Html.Partial("_Footer")
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/popper")
+    @*@Scripts.Render("~/bundles/popper")*@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/sweetalert")
     @RenderSection("scripts", required: false)

@@ -41,7 +41,7 @@
                     |
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Login", "Index", "Login", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Acceso al sistema", "Index", "Login", null, new { @class = "nav-link" })
                 </li>
             </ul>
         </div>
@@ -49,11 +49,13 @@
     <main>
         <div class="marco">
             <div class="general container-fluid">
-                @RenderBody()
+                <div class="p-3 rounded" style="background-image: url('../img/mesa.jpg'); background-position:bottom; background-repeat :no-repeat;  background-size: cover;">
+                    @RenderBody()
+                </div>                
             </div>
         </div>
     </main>
-    <footer class="page-footer shadow bg-primary text-white text-center mt-auto py-1">
+    <footer class="page-footer shadow bg-primary bg-gradient text-white text-center mt-auto py-1">
         @Html.Partial("_Footer")
     </footer>
 

@@ -67,6 +67,7 @@
     <Compile Include="Models\GestionInventario.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\MyModel.Context.cs">

@@ -125,4 +125,17 @@ namespace Infrastructure.Models
         [Display(Name = "Rol")]
         public virtual Rol Rol { get; set; }
     }
+
+    public partial class LoginUserMetadata
+    {
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un número de identificación")]
+        [StringLength(9, MinimumLength = 4, ErrorMessage = "El formato no es válido")]
+        [Display(Name = "Identificación")]
+        public string Identificacion { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar una palabra secreta")]
+        [StringLength(9, MinimumLength = 4, ErrorMessage = "De ser entre 4 a 9 carácteres")]
+        [Display(Name = "Contraseña")]
+        public string Contrasenia { get; set; }
+    }
 }
