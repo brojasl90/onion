@@ -19,13 +19,13 @@ namespace Web.Controllers
             return View();
         }
 
-        public ActionResult Login(Usuario pUsuario)
+        public ActionResult Login (Usuario pUsuario)
         {
             IServiceUsuario _ServiceUsuario = new ServiceUsuario();
             Usuario oUsuario = null;
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     oUsuario = _ServiceUsuario.GetUsuario(pUsuario.NumeroIdentificacion, pUsuario.Clave);
 

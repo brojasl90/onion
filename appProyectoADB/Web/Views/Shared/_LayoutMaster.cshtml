@@ -62,23 +62,48 @@
                         <img src="~/img/info.png" class="mx-auto d-block" />
                         @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        <img src="~/img/lock.png" class="mx-auto d-block" />
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Login", null, new { @class = "nav-link" })
-                    </li>
+                    @*<li class="nav-item">
+                            <img src="~/img/lock.png" class="mx-auto d-block" />
+                            @Html.ActionLink("Cerrar sesión", "Logout", "Login", null, new { @class = "nav-link" })
+                        </li>*@
                 </ul>
+
+                @{
+                    string nomUser = "Nombre Usuario";
+                    string dcsRol = "Perfil Usuario";
+                    Infrastructure.Models.Usuario oUsuario;
+                    //Validar si existe en la sesión
+                    if (Session["User"] != null)
+                    {
+                        oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+                        if (oUsuario != null)
+                        {
+                            nomUser = string.Format("{0} {1}", oUsuario.Nombre, oUsuario.PrimerApellido);
+                            dcsRol = oUsuario.Rol.Descripcion;
+                        }
+                    }
+                }
+
                 <div class="profile w-auto bg-secondary p-1 rounded-1 shadow-lg">
                     <div class="profile-details d-flex align-items-center">
-                        <div class="text-white p-2 fs-4">
-                            <i class='bx bxs-user'></i>
+                        <div class="text-white p-2 fs-1">
+                            <i class='bx bxs-user-circle'></i>
                         </div>
-                        <div class="w-75 text-sm-center text-white px-2 m-1">
-                            <div class="name">Nombre Usuario</div>
-                            <div class="rol">Perfil Usuario</div>
+                        <div class="text-sm-center text-white px-2 m-1">
+                            @if (Session["User"] != null)
+                            {
+                                <div class="name">@nomUser</div>
+                                <div class="rol">@dcsRol</div>
+                            }
                         </div>
-                        <div class="bg-primary text-light p-2 rounded">
-                            <i class='bx bx-log-out'></i>
-                        </div>
+                        @if (Session["User"] == null)
+                        {
+                            <a class="btn btn-outline-primary p-2 rounded" href='@Url.Action("Index", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Entrar..."><i class='bx bx-log-in'></i></a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-primary p-2 rounded" href='@Url.Action("Logout", "Login")' data-bs-toggle="tooltip" data-bs-placement="left" title="Salir..."><i class='bx bx-log-out'></i></a>
+                        }
                     </div>
                 </div>
             </div>
@@ -97,8 +122,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/bootstrap_almacen.min.css")
     @Scripts.Render("~/bundles/sweetalert")
     @RenderSection("scripts", required: false)
 
