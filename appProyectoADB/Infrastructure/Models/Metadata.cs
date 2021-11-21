@@ -48,6 +48,15 @@ namespace Infrastructure.Models
         public Nullable<int> CantidadStockMax { get; set; }
     }
 
+    internal partial class BodegaMetadata
+    {
+        [Display(Name = "Bodega")]
+        public int IdBodega { get; set; }
+        [Display(Name = "Ubicación")]
+        public int IdUbicacion { get; set; }
+
+    }
+
     internal partial class InventarioMetadada
     {
         [Display(Name ="Código")]

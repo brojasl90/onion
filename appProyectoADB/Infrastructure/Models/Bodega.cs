@@ -11,20 +11,66 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ProductoMetadata))]
+
     public partial class Bodega
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bodega()
         {
             this.Producto = new HashSet<Producto>();
+            cargarDescripcion();
         }
-    
+
         public int IdBodega { get; set; }
         public int IdUbicacion { get; set; }
-    
+
+        public string Descripcion { get; set; }
+
         public virtual Ubicacion Ubicacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto> Producto { get; set; }
+
+        public void cargarDescripcion(){
+            if (this.IdUbicacion == 1)
+            {
+                this.Descripcion = "San José";
+            }
+            if (this.IdUbicacion == 2)
+            {
+                this.Descripcion = "Alajuela";
+            }
+            if (this.IdUbicacion == 3)
+            {
+                this.Descripcion = "Heredia";
+            }
+            if (this.IdUbicacion == 4)
+            {
+                this.Descripcion = "Cartago";
+            }
+        }
+        
+        public override string ToString() {
+            String descripcion = "";
+            if (this.IdUbicacion == 1) {
+                descripcion = "San José";
+            }
+            if (this.IdUbicacion == 2)
+            {
+                descripcion = "Alajuela";
+            }
+            if (this.IdUbicacion == 3)
+            {
+                descripcion = "Heredia";
+            }
+            if (this.IdUbicacion == 4)
+            {
+                descripcion = "Cartago";
+            }
+            return descripcion;
+        }
+        
     }
 }
