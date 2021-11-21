@@ -23,7 +23,6 @@ namespace Web.Security
         {
             if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult)
             {
-                // Redirija al Controller Login
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Enum;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +16,7 @@ namespace Web.Controllers
     public class ProveedorController : Controller
     {
         // GET: Proveedor
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult Index()
         {
             IEnumerable<Proveedor> lista = null;
@@ -32,7 +35,7 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
-
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult Details (int? pId)
         {
             IServiceProveedor _ServProv = new ServiceProveedor();
@@ -89,6 +92,7 @@ namespace Web.Controllers
             return new SelectList(listaPais, "nombre");
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create ()
         {
             ViewBag.ListPaises = listaPais();
@@ -96,6 +100,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit( int? pId)
         {
             IServiceProveedor _ServProv = new ServiceProveedor();
@@ -131,6 +136,7 @@ namespace Web.Controllers
             }
         }
 
+        [CustomAuthorize((int)Roles.Administrador)]
         [HttpPost]
         public ActionResult Save(Proveedor pProv)
         {

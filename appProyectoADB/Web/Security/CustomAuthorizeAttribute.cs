@@ -4,34 +4,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Filters;
 using System.Web.Routing;
 
 namespace Web.Security
 {
-    public class CustomAuthorizeAttribute : ActionFilterAttribute, IAuthenticationFilter
+    //Especifica que el acceso a un controlador o método de acción está restringido
+    //a los usuarios que cumplen con el requisito de autorización.
+    public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
-        public void OnAuthentication(AuthenticationContext filterContext)
+        //Roles permitidos
+        private readonly int[] allowedroles;
+        public CustomAuthorizeAttribute(params int[] roles)
         {
-            if ((Usuario)filterContext.HttpContext.Session["User"] == null)
-            {
-                filterContext.Result = new HttpUnauthorizedResult();
-            }
+            //roles Obtiene los roles de usuario autorizados
+            //para acceder al controlador o al método de acción.
+            this.allowedroles = roles;
         }
-        //Método que se llama cuandofalla la autenticación o autorización y
-        //se llama después del método de ejecución de acción, pero antes de renderizar la vista.
-        public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
+
+        //Verificaciones de autorización personalizadas
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult)
+            bool authorize = false;
+            var oUsuario = (Usuario)httpContext.Session["User"];
+
+            if (oUsuario != null)
             {
-                // Redirija al Controller Login
-                filterContext.Result = new RedirectToRouteResult(
-                new RouteValueDictionary
+                foreach (var rol in allowedroles)
                 {
-                    { "controller", "Login" },
-                    { "action", "Index" }
-                });
+                    if (rol == oUsuario.IdRol)
+                        return true;
+                }
             }
+            return authorize;
+        }
+
+        //Procesa solicitudes HTTP que fallan en la autorización.
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            // Si hubo un error redireccione a el siguiente Controller y View
+            filterContext.Result = new RedirectToRouteResult(
+               new RouteValueDictionary
+               {
+                    { "controller", "Login" },
+                    { "action", "UnAuthorized" }
+               });
         }
     }
 }

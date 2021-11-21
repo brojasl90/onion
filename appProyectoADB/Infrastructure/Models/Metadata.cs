@@ -128,12 +128,12 @@ namespace Infrastructure.Models
 
     public partial class LoginUserMetadata
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un número de identificación")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo vacío, proporcione su identificación.")]
         [StringLength(9, MinimumLength = 4, ErrorMessage = "El formato no es válido")]
         [Display(Name = "Identificación")]
         public string Identificacion { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar una palabra secreta")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo vacío, proporcione su contraseña.")]
         [StringLength(9, MinimumLength = 4, ErrorMessage = "De ser entre 4 a 9 carácteres")]
         [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }

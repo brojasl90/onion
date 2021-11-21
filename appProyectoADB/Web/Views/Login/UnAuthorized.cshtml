@@ -4,11 +4,18 @@
     Layout = "~/Views/Shared/_LoginUser.cshtml";
 }
 
-<h2>No Autorizado!</h2>
-<br>
-
-<input type="button" value="Regresar" class="btn btn-warning" onclick="goBack()" />
-
+<div class="bg-light bg-opacity-75 p-3 rounded border border-1 border-warning mx-lg-5">
+    <div class="mt-2 mb-5 text-center">
+        <h2>¡No Autorizado!</h2>
+        <hr class="border border-warning" />
+    </div>
+    <div>
+        <p class="text-md-center">No dispone con los sufucientes permisos para esta sección. Si requiere acceder solicite el permiso con su encargado o administrador.</p>
+    </div>
+    <div class="mb-2 mt-5 text-md-center">
+        <input type="button" value="Regresar" class="btn btn-warning bg-gradient btn-lg rounded" onclick="goBack()" />
+    </div>
+</div>
 
 <script>
     function goBack() {

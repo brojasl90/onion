@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Enum;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +16,7 @@ namespace Web.Controllers
     public class InventarioController : Controller
     {
         // GET: Inventario
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
         public ActionResult Index()
         {
             IEnumerable<GestionInventario> lista = null;
@@ -40,6 +43,7 @@ namespace Web.Controllers
         }
 
         // GET: Inventario/Details/5
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
         public ActionResult Details(int? pId)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
@@ -99,6 +103,7 @@ namespace Web.Controllers
 
 
         // GET: Inventario/Create
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
         public ActionResult Create()
         {
             ViewBag.IdTipMov = listaTipoMovimiento();
@@ -139,6 +144,7 @@ namespace Web.Controllers
         }
 
         // GET: Inventario/Edit/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? pId)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
@@ -181,6 +187,7 @@ namespace Web.Controllers
         }
 
         // POST: Inventario/Edit/5
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
         [HttpPost]
         public ActionResult Save(GestionInventario pInventario, string[] selectProducto)
         {

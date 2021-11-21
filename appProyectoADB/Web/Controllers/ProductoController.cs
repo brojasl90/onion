@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Enum;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +16,7 @@ namespace Web.Controllers
     public class ProductoController : Controller
     {
         // GET: Producto
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult Index()
         {
             IEnumerable<Producto> lista = null;
@@ -38,6 +41,8 @@ namespace Web.Controllers
             }
             return View(lista);
         }
+
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult Details(int? id)
         {
             ServiceProducto _ServiceProducto = new ServiceProducto();
@@ -83,6 +88,7 @@ namespace Web.Controllers
         }
 
         // GET: Libro/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             //Lista de Categorias           
@@ -97,6 +103,7 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? id)
         {
             IServiceProducto _ServProv = new ServiceProducto();
@@ -242,6 +249,7 @@ namespace Web.Controllers
         }
         // POST: Libro/Edit/5
         [HttpPost]
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Save(Producto producto, string[] selectedCategorias, string[] selectedProveedores, string[] selectedBodega)
         {
             IServiceProducto _ServiceProducto = new ServiceProducto();

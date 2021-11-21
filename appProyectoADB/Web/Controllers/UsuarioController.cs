@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Enum;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -13,6 +15,7 @@ namespace Web.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
             IEnumerable<Usuario> lista = null;
@@ -34,6 +37,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuario/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Details(int? pId)
         {
             IServiceUsuario _ServUsuario = new ServiceUsuario();
@@ -105,6 +109,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuario/Edit/5
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Edit(int? pId)
         {
             IServiceUsuario _ServUsuario = new ServiceUsuario();

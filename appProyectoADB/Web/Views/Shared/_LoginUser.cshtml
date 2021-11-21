@@ -31,7 +31,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-<body>
+<body class="bg-primary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient">
         <a class="navbar-brand" href='@Url.Action("Index", "Login")'><img src="~/img/tiendaBG.png" class="mx-auto" /><span class="align-middle mx-1">Almacen Del Barrio</span></a>
 
@@ -48,10 +48,8 @@
     </nav>
     <main>
         <div class="marco">
-            <div class="general container-fluid">
-                <div class="p-3 rounded" style="background-image: url('../img/mesa.jpg'); background-position:bottom; background-repeat :no-repeat;  background-size: cover;">
-                    @RenderBody()
-                </div>                
+            <div class="general container-fluid">                
+                @RenderBody()
             </div>
         </div>
     </main>

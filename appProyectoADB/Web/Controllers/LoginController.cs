@@ -34,6 +34,13 @@ namespace Web.Controllers
                         Session["User"] = oUsuario;
                         Log.Info($"Accede {oUsuario.Nombre} {oUsuario.PrimerApellido} {oUsuario.SegundoApellido} con el rol {oUsuario.Rol.IdRol}-{oUsuario.Rol.Descripcion}");
                         TempData["mensaje"] = SweetAlertHelper.Mensaje(string.Format("¡Bienvenido {0} {1}!", oUsuario.Nombre, oUsuario.PrimerApellido), string.Format("Accediendo como: {0}.", oUsuario.Rol.Descripcion), SweetAlertMessageType.success);
+                        
+                        if (oUsuario.Estado == 0)
+                        {
+                            ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("¡Inicio fallido!", "Su cuenta está inactiva, consulte al administrador.", SweetAlertMessageType.warning);
+                            return View("Index");
+                        }
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -43,7 +50,7 @@ namespace Web.Controllers
                     }
                 }
                 else {
-                    ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("¡Upps!", "Algo salió mal...", SweetAlertMessageType.warning);
+                    ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("¡Upps!", "Algo salió mal...", SweetAlertMessageType.error);
                 }
 
                 return View("Index");
