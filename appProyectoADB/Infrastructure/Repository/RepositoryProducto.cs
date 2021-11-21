@@ -190,7 +190,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                     //Registradas: 1,2,3
                     //Actualizar: 1,3,4
 
-                    //Actualizar Libro
+                    //Actualizar Producto
                     ctx.Producto.Add(producto);
                     ctx.Entry(producto).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
