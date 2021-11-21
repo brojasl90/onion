@@ -152,3 +152,9 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.cspro
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.pdb
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.Helpers.resources.dll
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.Mvc.resources.dll
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.Razor.resources.dll
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.WebPages.resources.dll
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\bin\es\System.Web.WebPages.Razor.resources.dll
