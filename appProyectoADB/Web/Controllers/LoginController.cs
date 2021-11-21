@@ -76,6 +76,10 @@ namespace Web.Controllers
                     Usuario oUsuario = Session["User"] as Usuario;
                     Log.Warn($"El usuario {oUsuario.Nombre} {oUsuario.PrimerApellido} {oUsuario.SegundoApellido}  con el rol {oUsuario.Rol.IdRol}-{oUsuario.Rol.Descripcion}, intentó acceder una página sin permisos  ");
                 }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
 
                 return View();
             }

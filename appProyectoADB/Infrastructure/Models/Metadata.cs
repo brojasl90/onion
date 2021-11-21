@@ -29,7 +29,7 @@ namespace Infrastructure.Models
         //[Required(ErrorMessage = "{0} es un dato requerido")]
         public Nullable<System.DateTime> FechaCreacion { get; set; }
 
-        [Display(Name = "Fecha de vencimiento")]
+        [Display(Name = "Vencimiento de garantía")]
         //[Required(ErrorMessage = "{0} es un dato requerido")]
         public Nullable<System.DateTime> FechaVence { get; set; }
 
