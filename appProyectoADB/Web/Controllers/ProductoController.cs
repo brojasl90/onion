@@ -94,8 +94,8 @@ namespace Web.Controllers
             //Lista de Categorias           
             ViewBag.IdCategoria = listaCategorias();
             ViewBag.IdProveedor = listaProveedores(null);
-            ViewBag.IdBodega = listaBodega(null);
-
+            //ViewBag.IdBodega = listaBodega(null);
+            ViewBag.IdBodega = listaBodegaEnum(null);
             return View();
         }
         /// <summary>
@@ -245,7 +245,21 @@ namespace Web.Controllers
                 listaBodegasSelect = bodegas.Select(c => c.IdBodega).ToArray();
             }
 
-            return new MultiSelectList(listaBodegas, "IdBodega", "IdUbicacion", listaBodegasSelect);
+            return new MultiSelectList(listaBodegas, "IdBodega", "IdUbicacion", "Descripcion", listaBodegasSelect);
+        }
+        //Lista de bodegas Enum
+        private MultiSelectList listaBodegaEnum(ICollection<Bodega> bodegas)
+        {
+            IServiceBodega _ServiceBodega = new ServiceBodega();
+            IEnumerable<Bodega> listaBodegas = _ServiceBodega.GetBodega();
+
+            var enumData = from EUbicacion e in System.Enum.GetValues(typeof(EUbicacion))
+                           select new
+                           {
+                               ID = (int)e,
+                               Name = e.ToString()
+                           };
+            return new MultiSelectList(listaBodegas, "IdBodega", "IdUbicacion", "Descripcion", enumData);
         }
         // POST: Libro/Edit/5
         [HttpPost]
@@ -265,7 +279,8 @@ namespace Web.Controllers
                     Utils.Util.ValidateErrors(this);
                     ViewBag.IdCategoria = listaCategorias(producto.IdCategoria);
                     ViewBag.IdProveedor = listaProveedores(producto.Proveedor);
-                    ViewBag.IdBodega = listaBodega(producto.Bodega);
+                    //ViewBag.IdBodega = listaBodega(producto.Bodega);
+                    ViewBag.IdBodega = listaBodegaEnum(producto.Bodega);
                     return View("Create", producto);
                 }
 

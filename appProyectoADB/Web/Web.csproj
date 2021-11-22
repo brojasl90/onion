@@ -154,6 +154,7 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Enum\ETipoEstado.cs" />
     <Compile Include="Enum\ETipoGestion.cs" />
+    <Compile Include="Enum\EUbicacion.cs" />
     <Compile Include="Enum\Roles.cs" />
     <Compile Include="Enum\SweetAlertMessageType.cs" />
     <Compile Include="Global.asax.cs">
