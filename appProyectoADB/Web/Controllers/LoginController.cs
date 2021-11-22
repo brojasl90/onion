@@ -113,5 +113,19 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+
+        // GET: Usuario/Create
+        public ActionResult Signup()
+        {
+            ViewBag.TipoRoles = listaTipoRol();
+            return View();
+        }
+
+        private SelectList listaTipoRol(int pIdRol = 0)
+        {
+            IServiceRol _ServRol = new ServiceRol();
+            IEnumerable<Rol> lTipoRoles = _ServRol.GetRol();
+            return new SelectList(lTipoRoles, "IdRol", "Descripcion", pIdRol);
+        }
     }
 }
