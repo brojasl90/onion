@@ -14,7 +14,6 @@ namespace Infrastructure.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(InventarioMetadada))]
-
     public partial class GestionInventario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,26 +21,19 @@ namespace Infrastructure.Models
         {
             this.Producto = new HashSet<Producto>();
         }
-        
-        public int IdGestionInventario { get; set; }
-
-        public int IdUsuario { get; set; }
-
-        public string TipoGestion { get; set; }
-
-        public int IdTipMovimiento { get; set; }
-
-        public Nullable<int> CantidadProductoGestionado { get; set; }
-
-        public int UsuarioGestion { get; set; }
-
-        public System.DateTime FechaGestion { get; set; }
     
-        public virtual Usuario Usuario { get; set; }        
-        public virtual TipoMovimiento TipoMovimiento { get; set; }        
-
+        public int IdGestionInventario { get; set; }
+        public int IdUsuario { get; set; }
+        public string TipoGestion { get; set; }
+        public int IdTipMovimiento { get; set; }
+        public Nullable<int> CantidadProductoGestionado { get; set; }
+        public int UsuarioGestion { get; set; }
+        public System.DateTime FechaGestion { get; set; }
+        public string Observaciones { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
+        public virtual TipoMovimiento TipoMovimiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        
         public virtual ICollection<Producto> Producto { get; set; }
     }
 }

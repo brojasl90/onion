@@ -14,7 +14,6 @@ namespace Infrastructure.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(ProductoMetadata))]
-
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -42,8 +41,6 @@ namespace Infrastructure.Models
         public virtual ICollection<Bodega> Bodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GestionInventario> GestionInventario { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar al menos un proveedor.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedor> Proveedor { get; set; }
     }

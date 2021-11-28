@@ -14,7 +14,6 @@ namespace Infrastructure.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(UsuarioMetadata))]
-
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

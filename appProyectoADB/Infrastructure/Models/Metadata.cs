@@ -112,6 +112,9 @@ namespace Infrastructure.Models
         [Display(Name = "Tipo Movimiento")]
         public virtual TipoMovimiento TipoMovimiento { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        public string Observaciones { get; set; }
+
         [Display(Name = "Producto Relacionado")]
         [Required(ErrorMessage = "Debe seleccionar un producto.")]
         public virtual ICollection<Producto> Producto { get; set; }

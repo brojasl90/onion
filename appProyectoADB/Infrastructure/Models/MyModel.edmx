@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AlmacenDelBarrioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AlmacenDelBarrioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bodega">
           <Key>
             <PropertyRef Name="IdBodega" />
@@ -31,6 +31,7 @@
           <Property Name="CantidadProductoGestionado" Type="int" />
           <Property Name="UsuarioGestion" Type="int" Nullable="false" />
           <Property Name="FechaGestion" Type="datetime" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -314,8 +315,7 @@
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlmacenDelBarrioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -351,6 +351,7 @@
           <NavigationProperty Name="Usuario" Relationship="Self.FK_IdGestionInventarioUsuario" FromRole="GestionInventario" ToRole="Usuario" />
           <NavigationProperty Name="TipoMovimiento" Relationship="Self.FK_IdTipoMovimiento" FromRole="GestionInventario" ToRole="TipoMovimiento" />
           <NavigationProperty Name="Producto" Relationship="Self.ProductoGestionInventario" FromRole="GestionInventario" ToRole="Producto" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -571,6 +572,7 @@
           <EntitySetMapping Name="GestionInventario">
             <EntityTypeMapping TypeName="AlmacenDelBarrioModel.GestionInventario">
               <MappingFragment StoreEntitySet="GestionInventario">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="IdGestionInventario" ColumnName="IdGestionInventario" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="TipoGestion" ColumnName="TipoGestion" />
