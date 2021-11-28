@@ -129,6 +129,7 @@ namespace Web.Controllers
                 }
                 ViewBag.IdCategoria = listaCategorias(oProd.IdCategoria);
                 ViewBag.IdProveedor = listaProveedores(oProd.Proveedor);
+                ViewBag.ValorPrecio = (int)oProd.Precio;
                 return View(oProd);
             }
             catch (Exception ex)

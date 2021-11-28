@@ -24,6 +24,7 @@ namespace Web.Controllers
             {
                 IServiceUsuario _ServUsuario = new ServiceUsuario();
                 lista = _ServUsuario.GetUsuario();
+
             }
             catch (Exception ex)
             {
@@ -41,8 +42,7 @@ namespace Web.Controllers
         public ActionResult Details(int? pId)
         {
             IServiceUsuario _ServUsuario = new ServiceUsuario();
-            Usuario oUsuario
-                = null;
+            Usuario oUsuario = null;
 
             try
             {
@@ -94,6 +94,19 @@ namespace Web.Controllers
             return PartialView("_PartialViewUserIndex", listaUsuarios);
         }
 
+        public ActionResult BusquedaXEstado(byte? pId)
+        {
+            IEnumerable<Usuario> listaUsuarios = null;
+            IServiceUsuario _ServUsuario = new ServiceUsuario();
+
+            if (pId != null)
+            {
+                listaUsuarios = _ServUsuario.GetUsuarioByEstado((byte)pId);
+            }
+
+            return PartialView("_PartialViewUserIndex", listaUsuarios);
+        }
+
         private SelectList listaTipoRol(int pIdRol = 0)
         {
             IServiceRol _ServRol = new ServiceRol();
@@ -102,6 +115,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuario/Create
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Create()
         {
             ViewBag.TipoRoles = listaTipoRol();
@@ -149,6 +163,7 @@ namespace Web.Controllers
         }
 
         // POST: Usuario/Edit/5
+        //[CustomAuthorize((int)Roles.Administrador)]
         [HttpPost]
         public ActionResult Save(Usuario pUsuario)
         {

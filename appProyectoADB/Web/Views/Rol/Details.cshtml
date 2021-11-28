@@ -1,0 +1,55 @@
+﻿@model Infrastructure.Models.Rol
+
+@{
+    ViewBag.Title = "Información del Rol";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Detalles:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Estado)*@
+            @ViewBag.EstadoActual
+        </dd>
+
+    </dl>
+</div>
+
+<div class="form-group">
+    <hr />
+    <div class="row">
+        <div class="col-12 d-md-flex justify-content-md-end">
+            <a href="@Url.Action("Index", "Rol")" class="btn btn-outline-secondary rounded m-1">
+                <i class='bx bxs-x-circle'></i>
+                <span>Regresar</span>
+            </a>
+            <a href="@Url.Action("Edit", "Rol",new { pId = Model.IdRol })" class="btn btn-outline-primary rounded m-1">
+                <i class='bx bxs-pencil'></i>
+                <span>Editar</span>
+            </a>
+        </div>
+    </div>
+</div>

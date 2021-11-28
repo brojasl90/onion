@@ -25,10 +25,9 @@ namespace Web.Controllers
             {
                 IServiceInventario _ServInventario = new ServiceInventario();
                 IServiceMovimiento _ServiceMovimiento = new ServiceMovimiento();
-                IServiceUsuario _ServiceUsuario = new ServiceUsuario();
 
                 ViewBag.LtsMovimientos = _ServiceMovimiento.GetTipoMovimiento();
-                ViewBag.LtsUsuarios = _ServiceUsuario.GetUsuario();
+                ViewBag.LtsUsuarios = GetUsuariosTodos();
                 lista = _ServInventario.GetInventario();
             }
             catch (Exception ex)
@@ -47,7 +46,6 @@ namespace Web.Controllers
         public ActionResult Details(int? pId)
         {
             IServiceInventario _ServInventario = new ServiceInventario();
-            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
             GestionInventario oInventario = null;
 
             try
@@ -79,7 +77,7 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
 
-            ViewBag.LtsUsuarios = _ServiceUsuario.GetUsuario();
+            ViewBag.LtsUsuarios = GetUsuariosTodos();
             return View(oInventario);
         }
 
@@ -96,11 +94,15 @@ namespace Web.Controllers
             {
                 listaInventarios = _ServInventario.GetInventarioPorNombreUsuario(pNombre);
             }
-
+            ViewBag.LtsUsuarios = GetUsuariosTodos();
             return PartialView("_PartialViewInventIndex", listaInventarios);
         }
 
-
+        private IEnumerable<Usuario> GetUsuariosTodos()
+        {
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+            return _ServiceUsuario.GetUsuario();
+        }
 
         // GET: Inventario/Create
         [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
@@ -252,14 +254,11 @@ namespace Web.Controllers
             try
             {
                 IServiceInventario _SeviceInventario= new ServiceInventario();
-                lista = _SeviceInventario.GetInventario();
+                lista = _SeviceInventario.GetInventarioPorFecha("Salida", DateTime.Now);
 
                 foreach (var item in lista)
                 {
-                    if (item.TipoGestion.Equals("Salida"))
-                    {
-                        numSalidas += 1;
-                    }
+                    numSalidas += 1;
                 }
             }
             catch (Exception ex)
@@ -279,14 +278,11 @@ namespace Web.Controllers
             try
             {
                 IServiceInventario _SeviceInventario = new ServiceInventario();
-                lista = _SeviceInventario.GetInventario();
+                lista = _SeviceInventario.GetInventarioPorFecha("Entrada", DateTime.Now);
 
                 foreach (var item in lista)
                 {
-                    if (item.TipoGestion.Equals("Entrada"))
-                    {
-                        numEntradas += 1;
-                    }
+                    numEntradas += 1;
                 }
             }
             catch (Exception ex)

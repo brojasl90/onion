@@ -43,5 +43,11 @@ namespace ApplicationCore.Services
             IRepositoryUsuario repository = new RepositoryUsuario();
             return repository.GetUsuario(pNumId, Cryptography.EncrypthAES(pPassword));
         }
+
+        public IEnumerable<Usuario> GetUsuarioByEstado(byte pId)
+        {
+            IRepositoryUsuario oRepUss = new RepositoryUsuario();
+            return oRepUss.GetUsuarioByEstado(pId);
+        }
     }
 }

@@ -22,10 +22,10 @@ namespace ApplicationCore.Services
             return oRI.GetInventarioByID(pId);
         }
 
-        public IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha)
+        public IEnumerable<GestionInventario> GetInventarioPorFecha(string pGestion, DateTime pFecha)
         {
             IRepositoryInventario oRI = new RepositoryInventario();
-            return oRI.GetInventarioPorFecha(pFecha);
+            return oRI.GetInventarioPorFecha(pGestion, pFecha);
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre)

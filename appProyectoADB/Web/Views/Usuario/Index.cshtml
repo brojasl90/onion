@@ -10,25 +10,14 @@
             <h2>@ViewBag.Title</h2>
         </div>
         <div class="col-4">
-            <div class="btn btn-outline-secondary btn-sm">
-                <i class='bx bxs-pencil'></i>
-                @Html.ActionLink("Nuevo", "Create", null, htmlAttributes: new { @class = "text-decoration-none" })
-            </div>
+            <a href="@Url.Action("Create", "Usuario")" class="btn  btn-outline-secondary rounded">
+                <i class='bx bx-plus'></i>
+                <span>Nuevo</span>
+            </a>
         </div>
-        <div class="col-4 px-0 justify-content-md-end">
-            @using (Ajax.BeginForm("BusquedaXNombre", "Usuario", new AjaxOptions
-            {
-                UpdateTargetId = "resultList",
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-                LoadingElementId = "ajaxLoader"
-            }))
-            {
-                <div class="input-group">
-                    @Html.TextBox("pNombre", "", new { @class = "form-control p-0 ps-2", @placeholder = "Sandra..." })
-                    <button class="btn btn-outline-primary mx-3 my-sm-0 p-1 col-3" type="submit"><i class='bx bx-search-alt-2'></i>Buscar</button>
-                </div>
-            }
+
+        <div class="col-4 mb-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-outline-secondary rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class='bx bx-dots-vertical-rounded'></i></button>
         </div>
     </div>
 </div>
@@ -41,6 +30,9 @@
         <table class="table table-light table-hover table-striped">
             <thead>
                 <tr class="table-primary">
+                    <th>
+                        @Html.DisplayName("Editar")
+                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.NumeroIdentificacion)
                     </th>
@@ -59,41 +51,113 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Correo)
                     </th>
-                    <th></th>
+                    <th>
+                        @Html.DisplayName("Detalles")
+                    </th>
                 </tr>
             </thead>
             <tbody id="resultList">
                 @foreach (var item in Model)
                 {
-                    <tr class="align-middle">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NumeroIdentificacion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PrimerApellido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SegundoApellido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Rol.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Correo)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "Edit", new { pId = item.IdUsuario }) |
-                            @Html.ActionLink("Detalles", "Details", new { pId = item.IdUsuario }) @*|
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                        </td>
-                    </tr>
+                <tr class="align-middle">
+                    <td>
+                        @*@Html.ActionLink("Editar", "Edit", new { pId = item.IdUsuario })*@
+                        <a href="@Url.Action("Edit", "Usuario", new { pId = item.IdUsuario })" class="btn btn-outline-secondary rounded px-3 py-1">
+                            <i class='bx bxs-pencil'></i>
+                            @*<span>Editar</span>*@
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeroIdentificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrimerApellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SegundoApellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rol.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Detalles", "Details", new { pId = item.IdUsuario })*@
+                        <a href="@Url.Action("Details", "Usuario",  new { pId = item.IdUsuario })" class="btn btn-outline-secondary rounded px-3 py-1">
+                            <i class='bx bxs-detail'></i>
+                            <span>Detalles</span>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header bg-primary bg-gradient text-white">
+        <h5 id="offcanvasRightLabel">M&aacute;s Opciones</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body bg-transparent bg-opacity-50">
+        <div>
+            <div class="my-2">
+                <i class='bx bxs-search-alt-2'></i><strong class="mx-1">@Html.DisplayName("Busqueda de usuarios: ")</strong>
+            </div>
+            @using (Ajax.BeginForm("BusquedaXNombre", "Usuario", new AjaxOptions
+            {
+                UpdateTargetId = "resultList",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                LoadingElementId = "ajaxLoader"
+            }))
+            {
+                <div class="input-group">
+                    @Html.TextBox("pNombre", "", new { @class = "form-control p-0 ps-2 rounded", @placeholder = "Sandra..." })
+                    <button class="btn btn-outline-primary rounded mx-2 my-sm-0 p-1 col-3" type="submit" data-bs-dismiss="offcanvas"><i class='bx bx-search-alt-2'></i><span>Buscar</span></button>
+                </div>
+            }
+        </div>
+        <hr class="dropdown-divider" />
+        <div>
+            <div class="my-2">
+                <i class='bx bxs-wrench'></i><strong class="mx-1">@Html.DisplayName("Mantenimiento de Roles: ")</strong>
+            </div>
+                <a href="@Url.Action("Index", "Rol")" class="dropdown-item">
+                    
+                    <span>Consultar Roles</span>
+                </a>
+            </div>
+            <hr class="dropdown-divider" />
+            <div>
+                <div class="my-2">
+                    <i class='bx bxs-filter-alt'></i><strong class="mx-1">@Html.DisplayName("Filtrar usuarios por estado: ")</strong>
+                </div>
+                @Ajax.ActionLink("Usuarios Activos", "BusquedaXEstado", new { pId = 1 },
+                new AjaxOptions
+                {
+                UpdateTargetId = "resultList",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                LoadingElementId = "ajaxLoader"
+                }, new { @class = "dropdown-item" }
+                )
+                <hr class="dropdown-divider" />
+                @Ajax.ActionLink("Usuarios Inactivos", "BusquedaXEstado", new { pId = 0 },
+               new AjaxOptions
+               {
+                   UpdateTargetId = "resultList",
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   LoadingElementId = "ajaxLoader"
+                    }, new { @class = "dropdown-item" })
+            </div>
+        </div>
 </div>
 
 @section Scripts {

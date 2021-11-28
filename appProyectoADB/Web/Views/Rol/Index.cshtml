@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Infrastructure.Models.Rol>
+
+@{
+    ViewBag.Title = "Lista de Roles";
+}
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-3">
+            <h2>@ViewBag.Title</h2>
+        </div>
+        <div class="col-4">
+            <a href="@Url.Action("Create", "Rol")" class="btn  btn-outline-secondary rounded">
+                <i class='bx bx-plus'></i>
+                <span>Nuevo</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-light table-hover table-striped">
+        <thead>
+            <tr class="table-primary">
+                <th>
+                    @Html.DisplayNameFor(model => model.IdRol)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayName("Editar")
+                </th>
+                <th>
+                    @Html.DisplayName("Detalles")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="align-middle">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdRol)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Estado)*@
+                        @{
+                            string vEstado = item.Estado == 1 ? "Activo" : "Inactivo";
+                            @vEstado;
+                        }
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Editar", "Edit", new { pId = item.IdRol })*@
+                        <a href="@Url.Action("Edit", "Rol", new { pId = item.IdRol })" class="btn btn-outline-secondary rounded px-3 py-1">
+                            <i class='bx bxs-pencil'></i>
+                            @*<span>Nuevo</span>*@
+                        </a>
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Detalles", "Details", new { pId = item.IdRol })*@
+                        <a href="@Url.Action("Details", "Rol",  new { pId = item.IdRol })" class="btn btn-outline-secondary rounded px-3 py-1">
+                            <i class='bx bxs-detail'></i>
+                            @*<span>Nuevo</span>*@
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -12,5 +12,7 @@ namespace Infrastructure.Repository
         Rol GetRolByID(int pId);
 
         IEnumerable<Rol> GetRol();
+
+        Rol GuardarRol(Rol pRol);
     }
 }

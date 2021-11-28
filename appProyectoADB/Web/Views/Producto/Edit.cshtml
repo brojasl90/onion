@@ -24,7 +24,7 @@
             </div>
         *@
         <div class="col-md-10">
-            @Html.DropDownList("IdCategoria", null, new { htmlAttributes = new { @class = "form-select" } })
+            @Html.DropDownList("IdCategoria", null, htmlAttributes: new { @class = "form-select" })
             @*@Html.DropDownListFor(model => model.IdCategoria, (SelectList)ViewBag.IdCategoria, "Seleccione un categoria", htmlAttributes: new { @class = "form-select" })*@
             @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
         </div>
@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.ValorPrecio } })
             @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -113,11 +113,11 @@
         <hr />
         <div class="row">
             <div class="col-12 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary m-1" type="submit"><i class='bx bx-save'></i><span class="px-1">Guardar</span></button>
-                <div class="btn btn-outline-secondary m-1">
+                <button class="btn btn-primary rounded m-1" type="submit"><i class='bx bx-save'></i><span class="px-1">Guardar</span></button>
+                <a href="@Url.Action("Index", "Producto")" class="btn btn-outline-secondary rounded m-1">
                     <i class='bx bxs-x-circle'></i>
-                    @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "text-decoration-none" })
-                </div>
+                    <span>Cancelar</span>
+                </a>
             </div>
         </div>
     </div>

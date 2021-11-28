@@ -50,5 +50,36 @@ namespace Infrastructure.Repository
             }
             return oRol;
         }
+
+        public Rol GuardarRol(Rol pRol)
+        {
+            Rol oRol = null;
+            int retorno = 0;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oRol = GetRolByID((int)pRol.IdRol);
+
+                if (oRol == null)
+                {
+                    ctx.Rol.Add(pRol);
+                    retorno = ctx.SaveChanges();
+                }
+                else
+                {
+                    ctx.Rol.Add(pRol);
+                    ctx.Entry(pRol).State = System.Data.Entity.EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                }
+            }
+
+            if (retorno >= 0)
+            {
+                oRol = GetRolByID((int)pRol.IdRol);
+            }
+
+            return oRol;
+        }
     }
 }

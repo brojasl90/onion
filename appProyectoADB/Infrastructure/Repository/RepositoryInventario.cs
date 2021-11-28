@@ -37,9 +37,18 @@ namespace Infrastructure.Repository
             return oInventario;
         }
 
-        public IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha)
+        public IEnumerable<GestionInventario> GetInventarioPorFecha(string pGestion,  DateTime pFecha)
         {
-            throw new NotImplementedException();
+            IEnumerable<GestionInventario> lista = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.GestionInventario.Where(x => x.TipoGestion.Equals(pGestion) && x.FechaGestion == pFecha.Date ).ToList();
+                //lista = ctx.GestionInventario.Include("Producto").ToList();
+            }
+
+            return lista;
         }
 
         public IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre)
@@ -49,7 +58,14 @@ namespace Infrastructure.Repository
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
                 Usuario idUser = ctx.Usuario.Where(u => u.Nombre.ToLower().Contains(pNombre.ToLower())).FirstOrDefault();
-                lista = ctx.GestionInventario.ToList().FindAll(i => i.IdUsuario == idUser.IdUsuario);
+                if (idUser != null)
+                {
+                    lista = ctx.GestionInventario.Include(m => m.TipoMovimiento).ToList().FindAll(i => i.IdUsuario == idUser.IdUsuario);
+                }
+                else
+                {
+                    lista = ctx.GestionInventario.Include(m => m.TipoMovimiento).ToList().FindAll(i => i.IdUsuario == 0);
+                }             
             }
             return lista;
         }

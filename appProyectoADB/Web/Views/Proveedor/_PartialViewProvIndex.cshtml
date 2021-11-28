@@ -2,25 +2,33 @@
 
 @foreach (var item in Model)
 {
-    <tr class="align-middle">
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_Proveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dsc_Proveedor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_Contacto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { pId = item.IdProveedor }) |
-            @Html.ActionLink("Detalles", "Details", new { pId = item.IdProveedor }) 
-        </td>
-    </tr>
+<tr class="align-middle">
+    <td>
+        <a href="@Url.Action("Edit", "Proveedor", new { pId = item.IdProveedor })" class="btn btn-secondary rounded px-3 py-1">
+            <i class='bx bxs-pencil'></i>
+            @*<span>Editar</span>*@
+        </a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre_Proveedor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Dsc_Proveedor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre_Contacto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Correo)
+    </td>
+    <td>
+        <a href="@Url.Action("Details", "Proveedor",  new { pId = item.IdProveedor })" class="btn btn-secondary rounded px-3 py-1">
+            <i class='bx bxs-detail'></i>
+            <span>Detalles</span>
+        </a>
+    </td>
+</tr>
 }

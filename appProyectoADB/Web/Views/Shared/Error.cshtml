@@ -12,12 +12,18 @@
 
 </head>
 <body>
-    <hgroup>
-        <h1 class="text-danger">Error no controlado</h1>
-        <h5>Ocurri&oacute; un error mientras procesabamos su solicitud, por favor consulte a su administrador del sistema. @ViewBag.Description</h5>
-
-        @*@Html.ActionLink("Salir", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })*@
-        <input type="button" value="Regresar" class="btn btn-primary btn-lg" onclick="goBack()" />
-    </hgroup>
+    <div class="bg-light bg-opacity-75 p-3 rounded border border-1 border-danger mx-lg-5 shadow-lg">
+        <div class="mt-2 mb-5 text-center">
+            <h1 class="text-danger">Error no controlado</h1>
+            <hr class="border border-danger" />
+        </div>
+        <div>
+            <p class="text-md-center">Ocurri&oacute; un error mientras proces&aacute;bamos su solicitud, por favor consulte a su administrador del sistema. @ViewBag.Description</p>
+        </div>
+        <div class="mb-2 mt-5 text-md-center">
+            @*@Html.ActionLink("Salir", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })*@
+            <input type="button" value="Regresar" class="btn btn-danger btn-lg rounded" onclick="goBack()" />
+        </div>
+    </div>
 </body>
 </html>

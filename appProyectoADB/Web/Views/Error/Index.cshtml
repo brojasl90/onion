@@ -1,23 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Error";
+//ViewBag.Title = "Error";
 }
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div style="padding: 40px 15px; text-align: center;">
-
-                <h2 class="text-danger">
-                    @ViewBag.Title
-                </h2>
-                <div>
-                    @ViewBag.Description
+            <div class="bg-light bg-opacity-75 p-3 rounded border border-1 border-danger mx-lg-5 shadow-lg">
+                <div class="mt-2 mb-5 text-center">
+                    <h2 class="text-danger">@ViewBag.Title</h2>
+                    <hr class="border border-danger" />
                 </div>
-                <div style="margin-top: 15px; margin-bottom: 15px;">
-                    @Html.ActionLink("Regresar", (String)ViewBag.redirectAction, (String)ViewBag.redirect, null, new { @class = "btn btn-primary btn-lg", @style = "margin-right:10px;" })
 
+                <div>
+                    <p class="text-md-center">@ViewBag.Description</p>
+                </div>
+                <div class="mb-2 mt-5 text-md-center">
+                    @Html.ActionLink("Regresar", (String)ViewBag.redirectAction, (String)ViewBag.redirect, null, new { @class = "btn btn-danger btn-lg rounded" })
                 </div>
             </div>
         </div>

@@ -125,6 +125,7 @@ namespace Web.Controllers
         {
             IServiceRol _ServRol = new ServiceRol();
             IEnumerable<Rol> lTipoRoles = _ServRol.GetRol();
+            lTipoRoles = lTipoRoles.Where(r => r.IdRol != 1);
             return new SelectList(lTipoRoles, "IdRol", "Descripcion", pIdRol);
         }
     }

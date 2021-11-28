@@ -79,14 +79,14 @@
     <hr />
     <div class="row">
         <div class="col-12 d-md-flex justify-content-md-end">
-            <div class="btn btn-outline-secondary m-1">
+            <a href="@Url.Action("Index", "Proveedor")" class="btn btn-outline-secondary rounded m-1">
                 <i class='bx bxs-x-circle'></i>
-                @Html.ActionLink("Regresar", "Index", new { pId = Model.IdProveedor }, htmlAttributes: new { @class = "text-decoration-none" })
-            </div>
-            <div class="btn btn-outline-secondary m-1">
-                <i class='bx bx-check'></i>
-                @Html.ActionLink("Editar", "Edit", new { pId = Model.IdProveedor }, htmlAttributes: new { @class = "text-decoration-none" })
-            </div>
+                <span>Regresar</span>
+            </a>
+            <a href="@Url.Action("Edit", "Proveedor",new { pId = Model.IdProveedor })" class="btn btn-outline-primary rounded m-1">
+                <i class='bx bxs-pencil'></i>
+                <span>Editar</span>
+            </a>
         </div>
     </div>
 </div>

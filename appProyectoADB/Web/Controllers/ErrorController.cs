@@ -18,7 +18,7 @@ namespace Web.Controllers
 
             HttpException httpException = exception as HttpException;
             //Obtener el código de estado HTTP
-            int error = httpException != null ? httpException.GetHttpCode() : 0;
+            int error = httpException != null ? httpException.GetHttpCode() : exception.GetHashCode();
             switch (error)
             {
                 case 400:
@@ -35,7 +35,7 @@ namespace Web.Controllers
                     ViewBag.Description = "El usuario no posee los permisos necesarios para el contenido";
                     break;
                 default:
-                    ViewBag.Title = error + " Error";
+                    ViewBag.Title = " Error 0x" + error;
                     ViewBag.Description = exception.Message;
                     break;
             }

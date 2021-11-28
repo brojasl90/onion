@@ -25,31 +25,23 @@ namespace Infrastructure.Models
         
         public int IdGestionInventario { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido un usuario.")]
         public int IdUsuario { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar el tipo de gestión.")]
         public string TipoGestion { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar el tipo de movimiento.")]
         public int IdTipMovimiento { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe indicar una cantidad válida.")]
-        [Range(1, 100)]
         public Nullable<int> CantidadProductoGestionado { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido un usuario.")]
         public int UsuarioGestion { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe ingresar una fecha")]
-        [DataType(DataType.Date)]
         public System.DateTime FechaGestion { get; set; }
     
         public virtual Usuario Usuario { get; set; }        
         public virtual TipoMovimiento TipoMovimiento { get; set; }        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un producto.")]
+        
         public virtual ICollection<Producto> Producto { get; set; }
     }
 }

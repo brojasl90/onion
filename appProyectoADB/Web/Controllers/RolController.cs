@@ -1,5 +1,4 @@
 ﻿using ApplicationCore.Services;
-using Infrastructure.APIs;
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -13,17 +12,19 @@ using Web.Utils;
 
 namespace Web.Controllers
 {
-    public class ProveedorController : Controller
+    public class RolController : Controller
     {
-        // GET: Proveedor
-        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
+        // GET: Rol
+        [CustomAuthorize((int)Roles.Administrador)]
         public ActionResult Index()
         {
-            IEnumerable<Proveedor> lista = null;
+            IEnumerable<Rol> lista = null;
             try
             {
-                IServiceProveedor _SeviceProveedor = new ServiceProveedor();
-                lista = _SeviceProveedor.GetProveedor();
+                IServiceRol _SeviceRol = new ServiceRol();
+                lista = _SeviceRol.GetRol();
+                ViewBag.EstadoRol = new List<string> { "Activo", "Inactivo" };
+
                 return View(lista);
             }
             catch (Exception ex)
@@ -35,11 +36,13 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
-        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
-        public ActionResult Details (int? pId)
+
+        // GET: Rol/Details/5
+        [CustomAuthorize((int)Roles.Administrador)]
+        public ActionResult Details(int? pId)
         {
-            IServiceProveedor _ServProv = new ServiceProveedor();
-            Proveedor oProv = null;
+            IServiceRol _ServRol = new ServiceRol();
+            Rol oRol = null;
 
             try
             {
@@ -48,15 +51,16 @@ namespace Web.Controllers
                     return RedirectToAction("Index");
                 }
 
-                oProv = _ServProv.GetProveedorByID(pId.Value);
+                oRol = _ServRol.GetRolByID(pId.Value);
 
-                if (oProv == null)
+                if (oRol == null)
                 {
                     return RedirectToAction("Default", "Error");
                 }
 
-                ViewBag.EstadoActual = oProv.Estado == 1 ? "Activo" : "Inactivo";
-                return View(oProv);
+                ViewBag.EstadoActual = oRol.Estado == 1 ? "Activo" : "Inactivo";
+
+                return View(oRol);
             }
             catch (Exception ex)
             {
@@ -68,43 +72,19 @@ namespace Web.Controllers
             }
         }
 
-        public ActionResult BusquedaXNombre(string pNombre)
-        {
-            IEnumerable<Proveedor> listaProveedores = null;
-            IServiceProveedor _ServProveedor = new ServiceProveedor();
-
-            if (string.IsNullOrEmpty(pNombre))
-            {
-                listaProveedores = _ServProveedor.GetProveedor();
-            }
-            else
-            {
-                listaProveedores = _ServProveedor.GetProveedorByNombre(pNombre);
-            }
-
-            return PartialView("_PartialViewProvIndex", listaProveedores);
-        }
-
-        private SelectList listaPais()
-        {
-            IServicePais _ServicePais = new ServicePais();
-            IEnumerable<PaisAPI> listaPais = _ServicePais.GetPaisAPIs();
-            return new SelectList(listaPais, "nombre");
-        }
-
+        // GET: Rol/Create
         [CustomAuthorize((int)Roles.Administrador)]
-        public ActionResult Create ()
+        public ActionResult Create()
         {
-            ViewBag.ListPaises = listaPais();
-
             return View();
         }
 
+        // GET: Rol/Edit/5
         [CustomAuthorize((int)Roles.Administrador)]
-        public ActionResult Edit( int? pId)
+        public ActionResult Edit(int? pId)
         {
-            IServiceProveedor _ServProv = new ServiceProveedor();
-            Proveedor oProv = null;
+            IServiceRol _ServRol = new ServiceRol();
+            Rol oRol = null;
 
             try
             {
@@ -113,22 +93,21 @@ namespace Web.Controllers
                     return RedirectToAction("Index");
                 }
 
-                oProv = _ServProv.GetProveedorByID(pId.Value);
+                oRol = _ServRol.GetRolByID(pId.Value);
 
-                if (oProv == null)
+                if (oRol == null)
                 {
                     return RedirectToAction("Default", "Error");
                 }
 
-                ViewBag.ListPaises = listaPais();
 
-                return View(oProv);
+                return View(oRol);
             }
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 TempData["Message"] = "Error al procesar los datos: " + ex.Message;
-                TempData["Redirect"] = "Proveedor";
+                TempData["Redirect"] = "Rol";
                 TempData["Redirect-Action"] = "Index";
 
                 // Redirecciona a la captura del Error
@@ -136,22 +115,23 @@ namespace Web.Controllers
             }
         }
 
-        [CustomAuthorize((int)Roles.Administrador)]
+        // POST: Rol/Edit/5
         [HttpPost]
-        public ActionResult Save(Proveedor pProv)
+        [CustomAuthorize((int)Roles.Administrador)]
+        public ActionResult Save(Rol pRol)
         {
-            IServiceProveedor _ServProv = new ServiceProveedor();
+            IServiceRol _ServRol = new ServiceRol();
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Proveedor oProv = _ServProv.Save(pProv);
+                    Rol oRol= _ServRol.GuardarRol(pRol);
                 }
                 else
                 {
                     Util.ValidateErrors(this);
-                    return View("Create", pProv);
+                    return View("Create", pRol);
                 }
 
                 return RedirectToAction("Index");
@@ -159,7 +139,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-               TempData["Message"] = "Error al procesar los datos: " + ex.Message;
+                TempData["Message"] = "Error al procesar los datos: " + ex.Message;
                 TempData["Redirect"] = "Proveedor";
                 TempData["Redirect-Action"] = "Index";
 

@@ -16,7 +16,7 @@ namespace Infrastructure.Repository
         IEnumerable<GestionInventario> GetInventarioPorUsuario(int pId);
         IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre);
 
-        IEnumerable<GestionInventario> GetInventarioPorFecha(DateTime pFecha);
+        IEnumerable<GestionInventario> GetInventarioPorFecha(string pGestion, DateTime pFecha);
 
         GestionInventario GetInventarioByID(int pId);
 

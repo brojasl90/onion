@@ -16,6 +16,8 @@ namespace ApplicationCore.Services
         Usuario GuardarUsuario(Usuario pUsuario);
         IEnumerable<Usuario> GetUsuarioByNombre(string pNombre);
 
+        IEnumerable<Usuario> GetUsuarioByEstado(byte pId);
+
         Usuario GetUsuario(string pNumId, string pPassword);
     }
 }

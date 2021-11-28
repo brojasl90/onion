@@ -12,5 +12,7 @@ namespace ApplicationCore.Services
         Rol GetRolByID(int pId);
 
         IEnumerable<Rol> GetRol();
+
+        Rol GuardarRol(Rol pRol);
     }
 }

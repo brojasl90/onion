@@ -21,5 +21,11 @@ namespace ApplicationCore.Services
             IRepositoryRol oRepRol = new RepositoryRol();
             return oRepRol.GetRolByID(pId);
         }
+
+        public Rol GuardarRol(Rol pRol)
+        {
+            IRepositoryRol oRepRol = new RepositoryRol();
+            return oRepRol.GuardarRol(pRol);
+        }
     }
 }

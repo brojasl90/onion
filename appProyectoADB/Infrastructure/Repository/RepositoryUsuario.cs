@@ -68,6 +68,17 @@ namespace Infrastructure.Repository
             }
         }
 
+        public IEnumerable<Usuario> GetUsuarioByEstado(byte pId)
+        {
+            IEnumerable<Usuario> lista = null;
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.Usuario.Where(u => u.Estado == pId).Include(r => r.Rol).ToList();
+            }
+            return lista;
+        }
+
         public IEnumerable<Usuario> GetUsuarioByNombre(string pNombre)
         {
             IEnumerable<Usuario> lista = null;
