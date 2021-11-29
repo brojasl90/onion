@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlmacenDelBarrioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bodega">
+    <Key>
+      <PropertyRef Name="IdBodega" />
+    </Key>
+    <Property Name="IdBodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUbicacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dsc_Categoria" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="GestionInventario">
+    <Key>
+      <PropertyRef Name="IdGestionInventario" />
+    </Key>
+    <Property Name="IdGestionInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="TipoGestion" Type="nvarchar" MaxLength="255" />
+    <Property Name="IdTipMovimiento" Type="int" Nullable="false" />
+    <Property Name="CantidadProductoGestionado" Type="int" />
+    <Property Name="UsuarioGestion" Type="int" Nullable="false" />
+    <Property Name="FechaGestion" Type="datetime" Nullable="false" />
+    <Property Name="Observaciones" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCategoria" Type="int" Nullable="false" />
+    <Property Name="Nombre_Producto" Type="nvarchar" MaxLength="255" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Precio" Type="money" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="FechaVence" Type="datetime" />
+    <Property Name="Estado" Type="tinyint" />
+    <Property Name="CantidadDisponible" Type="int" />
+    <Property Name="CantidadStockMin" Type="int" />
+    <Property Name="CantidadStockMax" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductoBodega">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+      <PropertyRef Name="IdBodega" />
+    </Key>
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="IdBodega" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductoGestionInventario">
+    <Key>
+      <PropertyRef Name="IdGestionInventario" />
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdGestionInventario" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+    </Key>
+    <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Proveedor" Type="nvarchar" MaxLength="255" />
+    <Property Name="Dsc_Proveedor" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nombre_Contacto" Type="nvarchar" MaxLength="255" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="255" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="ProveedorProducto">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProveedor" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="TipoMovimiento">
+    <Key>
+      <PropertyRef Name="IdTipMovimiento" />
+    </Key>
+    <Property Name="IdTipMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Ubicacion">
+    <Key>
+      <PropertyRef Name="IdUbicacion" />
+    </Key>
+    <Property Name="IdUbicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroIdentificacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrimerApellido" Type="nvarchar" MaxLength="255" />
+    <Property Name="SegundoApellido" Type="nvarchar" MaxLength="255" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Clave" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Estado" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK_IdBodegaProducto">
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="1" />
+    <End Role="ProductoBodega" Type="Self.ProductoBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bodega">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="ProductoBodega">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdGestionInventario">
+    <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="1" />
+    <End Role="ProductoGestionInventario" Type="Self.ProductoGestionInventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GestionInventario">
+        <PropertyRef Name="IdGestionInventario" />
+      </Principal>
+      <Dependent Role="ProductoGestionInventario">
+        <PropertyRef Name="IdGestionInventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdGestionInventarioUsuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="GestionInventario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdProducto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ProductoGestionInventario" Type="Self.ProductoGestionInventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="ProductoGestionInventario">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdProductoBodega">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ProductoBodega" Type="Self.ProductoBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="ProductoBodega">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdProveedor">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="ProveedorProducto" Type="Self.ProveedorProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="ProveedorProducto">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdProveedorProducto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="ProveedorProducto" Type="Self.ProveedorProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="ProveedorProducto">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdRol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdTipoMovimiento">
+    <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
+    <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMovimiento">
+        <PropertyRef Name="IdTipMovimiento" />
+      </Principal>
+      <Dependent Role="GestionInventario">
+        <PropertyRef Name="IdTipMovimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdUbicacion">
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="1" />
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ubicacion">
+        <PropertyRef Name="IdUbicacion" />
+      </Principal>
+      <Dependent Role="Bodega">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Producto_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlmacenDelBarrioModelStoreContainer">
+    <EntitySet Name="Bodega" EntityType="Self.Bodega" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GestionInventario" EntityType="Self.GestionInventario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductoBodega" EntityType="Self.ProductoBodega" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductoGestionInventario" EntityType="Self.ProductoGestionInventario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProveedorProducto" EntityType="Self.ProveedorProducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoMovimiento" EntityType="Self.TipoMovimiento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_IdBodegaProducto" Association="Self.FK_IdBodegaProducto">
+      <End Role="Bodega" EntitySet="Bodega" />
+      <End Role="ProductoBodega" EntitySet="ProductoBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdGestionInventario" Association="Self.FK_IdGestionInventario">
+      <End Role="GestionInventario" EntitySet="GestionInventario" />
+      <End Role="ProductoGestionInventario" EntitySet="ProductoGestionInventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdGestionInventarioUsuario" Association="Self.FK_IdGestionInventarioUsuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="GestionInventario" EntitySet="GestionInventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdProducto" Association="Self.FK_IdProducto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoGestionInventario" EntitySet="ProductoGestionInventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdProductoBodega" Association="Self.FK_IdProductoBodega">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoBodega" EntitySet="ProductoBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdProveedor" Association="Self.FK_IdProveedor">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="ProveedorProducto" EntitySet="ProveedorProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdProveedorProducto" Association="Self.FK_IdProveedorProducto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProveedorProducto" EntitySet="ProveedorProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdRol" Association="Self.FK_IdRol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdTipoMovimiento" Association="Self.FK_IdTipoMovimiento">
+      <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
+      <End Role="GestionInventario" EntitySet="GestionInventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdUbicacion" Association="Self.FK_IdUbicacion">
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+      <End Role="Bodega" EntitySet="Bodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_Categoria" Association="Self.FK_Producto_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
