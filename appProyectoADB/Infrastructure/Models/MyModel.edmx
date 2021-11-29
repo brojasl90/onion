@@ -11,6 +11,8 @@
           </Key>
           <Property Name="IdBodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUbicacion" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Estante" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -327,6 +329,8 @@
           <Property Name="IdUbicacion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ubicacion" Relationship="Self.FK_IdUbicacion" FromRole="Bodega" ToRole="Ubicacion" />
           <NavigationProperty Name="Producto" Relationship="Self.ProductoBodega" FromRole="Bodega" ToRole="Producto" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Estante" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -555,6 +559,8 @@
           <EntitySetMapping Name="Bodega">
             <EntityTypeMapping TypeName="AlmacenDelBarrioModel.Bodega">
               <MappingFragment StoreEntitySet="Bodega">
+                <ScalarProperty Name="Estante" ColumnName="Estante" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdBodega" ColumnName="IdBodega" />
                 <ScalarProperty Name="IdUbicacion" ColumnName="IdUbicacion" />
               </MappingFragment>

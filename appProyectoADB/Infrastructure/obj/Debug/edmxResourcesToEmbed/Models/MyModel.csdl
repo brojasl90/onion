@@ -8,6 +8,8 @@
     <Property Name="IdUbicacion" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Ubicacion" Relationship="Self.FK_IdUbicacion" FromRole="Bodega" ToRole="Ubicacion" />
     <NavigationProperty Name="Producto" Relationship="Self.ProductoBodega" FromRole="Bodega" ToRole="Producto" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Estante" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>

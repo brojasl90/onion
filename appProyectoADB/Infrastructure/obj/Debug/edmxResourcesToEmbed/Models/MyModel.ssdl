@@ -6,6 +6,8 @@
     </Key>
     <Property Name="IdBodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUbicacion" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Estante" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
