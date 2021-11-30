@@ -247,7 +247,7 @@ namespace Web.Controllers
                 listaBodegasSelect = bodegas.Select(c => c.IdBodega).ToArray();
             }
 
-            return new MultiSelectList(listaBodegas, "IdBodega", "Descripcion", listaBodegasSelect);
+            return new MultiSelectList(listaBodegas, "IdBodega", "Descripcion", "Estante", listaBodegasSelect);
         }
         //Lista de bodegas Enum
         private MultiSelectList listaBodegaEnum(ICollection<Bodega> bodegas)
@@ -282,7 +282,7 @@ namespace Web.Controllers
                     ViewBag.IdCategoria = listaCategorias(producto.IdCategoria);
                     ViewBag.IdProveedor = listaProveedores(producto.Proveedor);
                     //ViewBag.IdBodega = listaBodega(producto.Bodega);
-                    ViewBag.IdBodega = listaBodegaEnum(producto.Bodega);
+                    ViewBag.IdBodega = listaBodega(producto.Bodega);
                     return View("Create", producto);
                 }
 
