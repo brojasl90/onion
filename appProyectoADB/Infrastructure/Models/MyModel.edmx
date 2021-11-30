@@ -27,6 +27,7 @@
             <PropertyRef Name="IdGestionInventario" />
           </Key>
           <Property Name="IdGestionInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRegistro" Type="int" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="TipoGestion" Type="nvarchar" MaxLength="255" />
           <Property Name="IdTipMovimiento" Type="int" Nullable="false" />
@@ -89,6 +90,15 @@
           <Property Name="IdProveedor" Type="int" Nullable="false" />
           <Property Name="IdProducto" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="RegistroInventario">
+          <Key>
+            <PropertyRef Name="IdRegistroInventario" />
+          </Key>
+          <Property Name="IdRegistroInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="TipoGestion" Type="nvarchar" MaxLength="255" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="IdRol" />
@@ -127,6 +137,30 @@
           <Property Name="Clave" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Estado" Type="tinyint" />
         </EntityType>
+        <Association Name="FK_GestionInventario_RegistroInventario">
+          <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="1" />
+          <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistroInventario">
+              <PropertyRef Name="IdRegistroInventario" />
+            </Principal>
+            <Dependent Role="GestionInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestionInventario_TipoMovimiento">
+          <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
+          <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMovimiento">
+              <PropertyRef Name="IdTipMovimiento" />
+            </Principal>
+            <Dependent Role="GestionInventario">
+              <PropertyRef Name="IdTipMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_IdBodegaProducto">
           <End Role="Bodega" Type="Self.Bodega" Multiplicity="1" />
           <End Role="ProductoBodega" Type="Self.ProductoBodega" Multiplicity="*" />
@@ -151,7 +185,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IdGestionInventarioUsuario">
+        <Association Name="FK_IdGestionInventario_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,18 +257,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IdTipoMovimiento">
-          <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
-          <End Role="GestionInventario" Type="Self.GestionInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoMovimiento">
-              <PropertyRef Name="IdTipMovimiento" />
-            </Principal>
-            <Dependent Role="GestionInventario">
-              <PropertyRef Name="IdTipMovimiento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_IdUbicacion">
           <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="1" />
           <End Role="Bodega" Type="Self.Bodega" Multiplicity="*" />
@@ -268,10 +290,19 @@
           <EntitySet Name="ProductoGestionInventario" EntityType="Self.ProductoGestionInventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProveedorProducto" EntityType="Self.ProveedorProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroInventario" EntityType="Self.RegistroInventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoMovimiento" EntityType="Self.TipoMovimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GestionInventario_RegistroInventario" Association="Self.FK_GestionInventario_RegistroInventario">
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+            <End Role="GestionInventario" EntitySet="GestionInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestionInventario_TipoMovimiento" Association="Self.FK_GestionInventario_TipoMovimiento">
+            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
+            <End Role="GestionInventario" EntitySet="GestionInventario" />
+          </AssociationSet>
           <AssociationSet Name="FK_IdBodegaProducto" Association="Self.FK_IdBodegaProducto">
             <End Role="Bodega" EntitySet="Bodega" />
             <End Role="ProductoBodega" EntitySet="ProductoBodega" />
@@ -280,7 +311,7 @@
             <End Role="GestionInventario" EntitySet="GestionInventario" />
             <End Role="ProductoGestionInventario" EntitySet="ProductoGestionInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK_IdGestionInventarioUsuario" Association="Self.FK_IdGestionInventarioUsuario">
+          <AssociationSet Name="FK_IdGestionInventario_Usuario" Association="Self.FK_IdGestionInventario_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="GestionInventario" EntitySet="GestionInventario" />
           </AssociationSet>
@@ -303,10 +334,6 @@
           <AssociationSet Name="FK_IdRol" Association="Self.FK_IdRol">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_IdTipoMovimiento" Association="Self.FK_IdTipoMovimiento">
-            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
-            <End Role="GestionInventario" EntitySet="GestionInventario" />
           </AssociationSet>
           <AssociationSet Name="FK_IdUbicacion" Association="Self.FK_IdUbicacion">
             <End Role="Ubicacion" EntitySet="Ubicacion" />
@@ -356,6 +383,8 @@
           <NavigationProperty Name="TipoMovimiento" Relationship="Self.FK_IdTipoMovimiento" FromRole="GestionInventario" ToRole="TipoMovimiento" />
           <NavigationProperty Name="Producto" Relationship="Self.ProductoGestionInventario" FromRole="GestionInventario" ToRole="Producto" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdRegistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegistroInventario" Relationship="AlmacenDelBarrioModel.FK_GestionInventario_RegistroInventario" FromRole="GestionInventario" ToRole="RegistroInventario" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -549,7 +578,34 @@
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <EntitySet Name="RegistroInventario" EntityType="AlmacenDelBarrioModel.RegistroInventario" />
+          <AssociationSet Name="FK_GestionInventario_RegistroInventario" Association="AlmacenDelBarrioModel.FK_GestionInventario_RegistroInventario">
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+            <End Role="GestionInventario" EntitySet="GestionInventario" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="RegistroInventario">
+          <Key>
+            <PropertyRef Name="IdRegistroInventario" />
+          </Key>
+          <Property Name="IdRegistroInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="TipoGestion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GestionInventario" Relationship="AlmacenDelBarrioModel.FK_GestionInventario_RegistroInventario" FromRole="RegistroInventario" ToRole="GestionInventario" />
+        </EntityType>
+        <Association Name="FK_GestionInventario_RegistroInventario">
+          <End Type="AlmacenDelBarrioModel.RegistroInventario" Role="RegistroInventario" Multiplicity="1" />
+          <End Type="AlmacenDelBarrioModel.GestionInventario" Role="GestionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistroInventario">
+              <PropertyRef Name="IdRegistroInventario" />
+            </Principal>
+            <Dependent Role="GestionInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -578,6 +634,7 @@
           <EntitySetMapping Name="GestionInventario">
             <EntityTypeMapping TypeName="AlmacenDelBarrioModel.GestionInventario">
               <MappingFragment StoreEntitySet="GestionInventario">
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="IdGestionInventario" ColumnName="IdGestionInventario" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
@@ -687,6 +744,16 @@
               <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="RegistroInventario">
+            <EntityTypeMapping TypeName="AlmacenDelBarrioModel.RegistroInventario">
+              <MappingFragment StoreEntitySet="RegistroInventario">
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="TipoGestion" ColumnName="TipoGestion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdRegistroInventario" ColumnName="IdRegistroInventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

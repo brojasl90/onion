@@ -91,6 +91,9 @@
     <Compile Include="Models\Proveedor.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistroInventario.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Rol.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -111,6 +114,7 @@
     <Compile Include="Repository\IRepositoryPais.cs" />
     <Compile Include="Repository\IRepositoryProveedor.cs" />
     <Compile Include="Repository\IRepositoryProducto.cs" />
+    <Compile Include="Repository\IRepositoryRegistro.cs" />
     <Compile Include="Repository\IRepositoryRol.cs" />
     <Compile Include="Repository\IRepositoryUbicacion.cs" />
     <Compile Include="Repository\IRepositoryUsuario.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Repository\RepositoryPais.cs" />
     <Compile Include="Repository\RepositoryProducto.cs" />
     <Compile Include="Repository\RepositoryProveedor.cs" />
+    <Compile Include="Repository\RepositoryRegistro.cs" />
     <Compile Include="Repository\RepositoryRol.cs" />
     <Compile Include="Repository\RepositoryUbicacion.cs" />
     <Compile Include="Repository\RepositoryUsuario.cs" />
