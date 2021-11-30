@@ -22,6 +22,8 @@
         <AssociationConnector Association="AlmacenDelBarrioModel.ProductoBodega" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDelBarrioModel.ProductoGestionInventario" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDelBarrioModel.ProveedorProducto" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AlmacenDelBarrioModel.RegistroInventario" Width="1.5" PointX="7.375" PointY="5.875" />
+        <AssociationConnector Association="AlmacenDelBarrioModel.FK_GestionInventario_RegistroInventario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

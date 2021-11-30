@@ -76,10 +76,28 @@ namespace Infrastructure.Models
 
     }
 
-    internal partial class InventarioMetadada
+    internal partial class RegistroMetadata
+    {
+        [Display(Name = "Código")]
+        public int IdRegistroInventario { get; set; }
+
+        [Display(Name = "Cod. Usuario")]
+        public int IdUsuario { get; set; }
+
+        [Display(Name = "Tipo de Gestión")]
+        public string TipoGestion { get; set; }
+
+        [Display(Name = "Fecha Registro")]
+        [DataType(DataType.Date)]
+        public System.DateTime FechaIngreso { get; set; }
+    }
+    internal partial class InventarioMetadata
     {
         [Display(Name ="Código")]
         public int IdGestionInventario { get; set; }
+
+        [Display(Name = "Número Registro")]
+        public int IdRegistro { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "No se ha denifido un usuario.")]
         [Display(Name = "Cod. Usuario")]
