@@ -13,7 +13,7 @@ namespace Infrastructure.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(InventarioMetadada))]
+    [MetadataType(typeof(ProductoMetadata))]
 
 
     public partial class Producto

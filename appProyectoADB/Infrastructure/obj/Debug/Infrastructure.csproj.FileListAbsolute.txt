@@ -25,3 +25,4 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debu
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
