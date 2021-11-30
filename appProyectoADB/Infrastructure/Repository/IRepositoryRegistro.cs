@@ -11,12 +11,12 @@ namespace Infrastructure.Repository
     {
         IEnumerable<RegistroInventario> GetRegistro();
 
-        IEnumerable<RegistroInventario> GetRegistroPorUsuario(int pId);
+        IEnumerable<RegistroInventario> GetRegistroPorUsuario(string pNombre);
 
         IEnumerable<RegistroInventario> GetRegistroPorFecha(string pGestion, DateTime pFecha);
 
         RegistroInventario GetRegistroByID(int pId);
 
-        RegistroInventario GuardarRegistro(RegistroInventario pInventario, string[] selectInventario);
+        RegistroInventario GuardarRegistro(RegistroInventario pRegistro, string[] selectInventario);
     }
 }
