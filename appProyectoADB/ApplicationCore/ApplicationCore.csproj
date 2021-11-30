@@ -49,6 +49,7 @@
     <Compile Include="Services\IServicePais.cs" />
     <Compile Include="Services\IServiceProducto.cs" />
     <Compile Include="Services\IServiceProveedor.cs" />
+    <Compile Include="Services\IServiceRegistro.cs" />
     <Compile Include="Services\IServiceRol.cs" />
     <Compile Include="Services\IServiceUbicacion.cs" />
     <Compile Include="Services\IServiceUsuario.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Services\ServicePais.cs" />
     <Compile Include="Services\ServiceProducto.cs" />
     <Compile Include="Services\ServiceProveedor.cs" />
+    <Compile Include="Services\ServiceRegistro.cs" />
     <Compile Include="Services\ServiceRol.cs" />
     <Compile Include="Services\ServiceUbicacion.cs" />
     <Compile Include="Services\ServiceUsuario.cs" />
