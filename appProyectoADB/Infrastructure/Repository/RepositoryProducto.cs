@@ -111,7 +111,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oProducto = ctx.Producto.
                     Where(p => p.IdProducto == id).
-                     Include(c => c.Categoria).
+                     Include(x => x.Categoria).
                      Include(x => x.Proveedor).FirstOrDefault();
             }
             return oProducto;
