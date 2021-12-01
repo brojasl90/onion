@@ -158,5 +158,3 @@ C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.cspro
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.dll
 C:\Users\hydden-pc\Documents\GitHub\onion\appProyectoADB\Web\obj\Debug\Web.pdb
-D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-D:\Archivos\F\GitHub\onion\appProyectoADB\Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
