@@ -8,7 +8,7 @@
 <h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm("Save", "Proveedor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Save", "Proveedor", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     

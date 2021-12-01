@@ -181,5 +181,22 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+
+        public ActionResult BusquedaXNombre(string pNombre)
+        {
+            IEnumerable<RegistroInventario> listaRegistros = null;
+            IServiceRegistro _ServRegistro = new ServiceRegistro();
+
+            if (string.IsNullOrEmpty(pNombre))
+            {
+                listaRegistros = _ServRegistro.GetRegistro();
+            }
+            else
+            {
+                listaRegistros = _ServRegistro.GetRegistroPorUsuario(pNombre);
+            }
+            ViewBag.LtsUsuarios = listaUsuario();
+            return PartialView("_PartialViewRegIndex", listaRegistros);
+        }
     }
 }

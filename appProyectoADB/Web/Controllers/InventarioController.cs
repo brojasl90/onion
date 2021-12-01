@@ -80,7 +80,6 @@ namespace Web.Controllers
             ViewBag.LtsUsuarios = GetUsuariosTodos();
             return View(oInventario);
         }
-
         public ActionResult BusquedaXNombre(string pNombre)
         {
             IEnumerable<GestionInventario> listaInventarios = null;

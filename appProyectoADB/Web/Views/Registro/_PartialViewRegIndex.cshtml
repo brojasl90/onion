@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Infrastructure.Models.RegistroInventario>
+
+@foreach (var item in Model)
+{
+    <tr class="align-middle">
+        <td>
+            @*@Html.ActionLink("Editar", "Edit", new { pId = item.IdRegistroInventario })*@
+            <a href="@Url.Action("Edit", "Registro", new { pId = item.IdRegistroInventario })" class="btn btn-outline-secondary rounded px-3 py-1">
+                <i class='bx bxs-pencil'></i>
+                @*<span>Editar</span>*@
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdRegistroInventario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoGestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
+        </td>
+        <td>
+            @*@Html.ActionLink("Detalles", "Details", new { pId = item.IdRegistroInventario })*@
+            <a href="@Url.Action("Details", "Registro",  new { pId = item.IdRegistroInventario })" class="btn btn-outline-secondary rounded px-3 py-1">
+                <i class='bx bxs-detail'></i>
+                <span>Detalles</span>
+            </a>
+        </td>
+    </tr>
+}

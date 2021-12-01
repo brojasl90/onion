@@ -1,0 +1,61 @@
+﻿@model Infrastructure.Models.RegistroInventario
+
+@{
+    ViewBag.Title = "Detalles del Registro";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>RegistroInventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRegistroInventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRegistroInventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIngreso)
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <hr />
+    <div class="row">
+        <div class="col-12 d-md-flex justify-content-md-end">
+            <a href="@Url.Action("Index", "Registro")" class="btn btn-outline-secondary rounded m-1">
+                <i class='bx bxs-x-circle'></i>
+                <span>Regresar</span>
+            </a>
+            <a href="@Url.Action("Edit", "Registro",new { pId = Model.IdRegistroInventario })" class="btn btn-outline-primary rounded m-1">
+                <i class='bx bxs-pencil'></i>
+                <span>Editar</span>
+            </a>
+        </div>
+    </div>
+</div>
