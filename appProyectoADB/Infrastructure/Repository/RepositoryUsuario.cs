@@ -85,7 +85,7 @@ namespace Infrastructure.Repository
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                lista = ctx.Usuario.ToList().FindAll(u => u.Nombre.ToLower().Contains(pNombre.ToLower()));
+                lista = ctx.Usuario.Include(r => r.Rol).ToList().FindAll(u => u.Nombre.ToLower().Contains(pNombre.ToLower()));
             }
             return lista;
         }

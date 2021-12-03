@@ -211,7 +211,7 @@ namespace Infrastructure.Models
         [Display(Name = "Estado")]
         public Nullable<byte> Estado { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un tipo de rol")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar un tipo de rol")]
         [Display(Name = "Rol")]
         public virtual Rol Rol { get; set; }
     }
