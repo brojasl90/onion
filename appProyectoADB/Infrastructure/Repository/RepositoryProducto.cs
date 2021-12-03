@@ -112,6 +112,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                 oProducto = ctx.Producto.
                     Where(p => p.IdProducto == id).
                      Include(x => x.Categoria).
+                     Include(x => x.Bodega).
                      Include(x => x.Proveedor).FirstOrDefault();
             }
             return oProducto;
@@ -195,7 +196,7 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
                     ctx.Entry(producto).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
                     //Actualizar Categorias
-                    var selectedCategoriasID = new HashSet<string>(selectedCategorias);              
+                    //var selectedCategoriasID = new HashSet<string>(selectedCategorias);              
 
                     /*
                     if (selectedCategorias != null)
