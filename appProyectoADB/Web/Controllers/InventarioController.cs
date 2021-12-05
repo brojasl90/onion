@@ -115,6 +115,18 @@ namespace Web.Controllers
             return View();
         }
 
+        public ActionResult _LineaInventario( string pTipo)
+        {
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.IdUserReg = listaUsuario();
+            ViewBag.IdUserGes = listaUsuario();
+            ViewBag.IdProd = listaProductos(null);
+            ViewBag.TipoGestion = pTipo;
+
+            return PartialView();
+        }
+
+
         private SelectList listaTipoMovimiento(int pIdMovimiento = 0)
         {
             IServiceMovimiento _ServMovi = new ServiceMovimiento();

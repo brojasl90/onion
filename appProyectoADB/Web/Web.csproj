@@ -393,6 +393,7 @@
     <Content Include="Views\Registro\Create.cshtml" />
     <Content Include="Views\Registro\Edit.cshtml" />
     <Content Include="Views\Registro\_PartialViewRegIndex.cshtml" />
+    <Content Include="Views\Inventario\_LineaInventario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
