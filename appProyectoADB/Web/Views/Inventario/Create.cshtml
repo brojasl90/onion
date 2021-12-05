@@ -49,7 +49,7 @@
                 <div class="col-md-11">
                     @*@Html.EditorFor(model => model.UsuarioGestion, new { htmlAttributes = new { @class = "form-control" } })*@
                     @*@Html.DropDownListFor(model => model.UsuarioGestion, (SelectList)ViewBag.IdUserGes, "Seleccione un usuario...", htmlAttributes: new { @class = "form-select" })*@
-                    @Html.Editor("UsuarioM", new { htmlAttributes = new { @class = "form-control", Value = @nomUser, @readonly = "readonly" } })
+                    @Html.Editor("UsuarioG", new { htmlAttributes = new { @class = "form-control", Value = @nomUser, @readonly = "readonly" } })
                     @Html.EditorFor(model => model.UsuarioGestion, new { htmlAttributes = new { @class = "form-control invisible", Value = @idUsuario, @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.UsuarioGestion, "", new { @class = "text-danger" })
                 </div>

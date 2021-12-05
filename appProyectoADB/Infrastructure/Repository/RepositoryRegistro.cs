@@ -1,7 +1,9 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,61 +72,48 @@ namespace Infrastructure.Repository
             return lista;
         }
 
-        public RegistroInventario GuardarRegistro(RegistroInventario pRegistro, string[] selectInventario)
+        public RegistroInventario GuardarRegistro(RegistroInventario pRegistro)
         {
             int vRetorno = 0;
             RegistroInventario oRegistro = null;
 
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oRegistro = GetRegistroByID((int)pRegistro.IdRegistroInventario);
-                IRepositoryInventario _RepoInvent = new RepositoryInventario();
-
-                if (oRegistro == null)
+                using (MyContext ctx = new MyContext())
                 {
-                    if (selectInventario != null)
+
+                    using (var transaccion = ctx.Database.BeginTransaction())
                     {
-                        pRegistro.GestionInventario = new List<GestionInventario>();
-
-                        foreach (var iProducto in selectInventario)
-                        {
-                            var oInventarioToAdd = _RepoInvent.GetInventarioByID(int.Parse(iProducto));
-                            ctx.GestionInventario.Attach(oInventarioToAdd);
-                            pRegistro.GestionInventario.Add(oInventarioToAdd);
-                        }
-                    }
-
-                    ctx.RegistroInventario.Add(pRegistro);
-                    vRetorno = ctx.SaveChanges();
-                }
-                else
-                {
-                    ctx.RegistroInventario.Add(pRegistro);
-                    ctx.Entry(pRegistro).State = EntityState.Modified;
-                    vRetorno = ctx.SaveChanges();
-
-                    var selectedInventarioID = new HashSet<string>(selectInventario);
-
-                    if (selectInventario != null)
-                    {
-                        ctx.Entry(pRegistro).Collection(i => i.GestionInventario).Load();
-                        var newProductoByInventario = ctx.GestionInventario.Where(x => selectedInventarioID.Contains(x.IdGestionInventario.ToString())).ToList();
-
-                        pRegistro.GestionInventario = newProductoByInventario;
-
-                        ctx.Entry(pRegistro).State = EntityState.Modified;
+                        ctx.RegistroInventario.Add(pRegistro);
                         vRetorno = ctx.SaveChanges();
+                        foreach (var detalle in pRegistro.GestionInventario)
+                        {
+                            detalle.IdRegistro = pRegistro.IdRegistroInventario;
+                        }
+
+                        transaccion.Commit();
                     }
                 }
-            }
 
-            if (vRetorno >= 0)
+                if (vRetorno >= 0)
+                {
+                    oRegistro = GetRegistroByID((int)pRegistro.IdRegistroInventario);
+                }
+
+                return oRegistro;
+            }
+            catch (DbUpdateException dbEx)
             {
-                oRegistro = GetRegistroByID((int)pRegistro.IdRegistroInventario);
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
-
-            return oRegistro;
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
         }
     }
 }

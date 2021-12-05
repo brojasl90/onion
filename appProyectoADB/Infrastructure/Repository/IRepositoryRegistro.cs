@@ -17,6 +17,6 @@ namespace Infrastructure.Repository
 
         RegistroInventario GetRegistroByID(int pId);
 
-        RegistroInventario GuardarRegistro(RegistroInventario pRegistro, string[] selectInventario);
+        RegistroInventario GuardarRegistro(RegistroInventario pRegistro);
     }
 }

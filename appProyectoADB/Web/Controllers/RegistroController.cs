@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Web.Enum;
 using Web.Security;
 using Web.Utils;
+using Web.ViewModel;
 
 namespace Web.Controllers
 {
@@ -82,7 +83,12 @@ namespace Web.Controllers
         [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
         public ActionResult Create()
         {
+            if (TempData.ContainsKey("NotificationMessage"))
+            {
+                ViewBag.NotificationMessage = TempData["NotificationMessage"];
+            }
             ViewBag.ListGestion = listaGestiones(null);
+            ViewBag.DetalleOrden = Movimiento.Instancia.Items;
             return View();
         }
 
@@ -151,24 +157,40 @@ namespace Web.Controllers
         // POST: Registro/Edit/5
         [HttpPost]
         [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado)]
-        public ActionResult Save(RegistroInventario pRegistro, string[] selectGestion)
+        public ActionResult Save(RegistroInventario pRegistro)
         {
             IServiceRegistro _ServRegistro = new ServiceRegistro();
 
             try
             {
-                if (ModelState.IsValid)
+                // Si no existe la sesión no hay nada
+                if (Movimiento.Instancia.Items.Count() <= 0)
                 {
-                    RegistroInventario oRegristro = _ServRegistro.GuardarRegistro(pRegistro, selectGestion);
+                    // Validaciones de datos requeridos.
+                    TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Orden", "Seleccione los libros a ordenar", SweetAlertMessageType.warning);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    Util.ValidateErrors(this);
-                    ViewBag.IdUserReg = listaUsuario(pRegistro.IdUsuario);
-                    ViewBag.ListGestion = listaGestiones(pRegistro.GestionInventario);
-                    return View("Create", pRegistro);
+
+                    var listaDetalle = Movimiento.Instancia.Items;
+
+                    foreach (var item in listaDetalle)
+                    {
+                        GestionInventario lineaInventario = new GestionInventario();
+                        lineaInventario.IdUsuario = item.IdUsuario;
+                        lineaInventario.TipoGestion = item.TipoGestion;
+                        lineaInventario.Observaciones = item.Observaciones;
+                        pRegistro.GestionInventario.Add(lineaInventario);
+                    }
                 }
 
+                RegistroInventario ordenSave = _ServRegistro.GuardarRegistro(pRegistro);
+
+                // Limpia el Carrito de compras
+                Movimiento.Instancia.eliminarCarrito();
+                TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Orden", "Orden guardada satisfactoriamente!", SweetAlertMessageType.success);
+                // Reporte orden
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -197,6 +219,72 @@ namespace Web.Controllers
             }
             ViewBag.LtsUsuarios = listaUsuario();
             return PartialView("_PartialViewRegIndex", listaRegistros);
+        }
+
+        public ActionResult _VistaProducto()
+        {
+            IEnumerable<Producto> lista = null;
+            try
+            {
+                IServiceProducto _SeviceProducto = new ServiceProducto();
+                lista = _SeviceProducto.GetProducto();
+                ViewBag.title = "Mantenimiento de productos";
+                //Lista Categorias
+                IServiceCategoriaProducto _ServiceCategoriaProducto = new ServiceCategoriaProducto();
+                ViewBag.listaCategorias = _ServiceCategoriaProducto.GetCategoria();
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+
+                // Redirecciona a la captura del Error
+                return RedirectToAction("Default", "Error");
+
+            }
+            return PartialView(lista);
+        }
+
+        //Actualizar Vista parcial detalle carrito
+        private ActionResult DetalleCarrito()
+        {
+
+            return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
+        }
+        //Actualizar cantidad de libros en el carrito
+        public ActionResult actualizarCantidad(int idLibro, int cantidad)
+        {
+            ViewBag.DetalleOrden = Movimiento.Instancia.Items;
+            TempData["NotiCarrito"] = Movimiento.Instancia.SetItemCantidad(idLibro, cantidad);
+            TempData.Keep();
+            return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
+
+        }
+        //Ordenar un libro y agregarlo al carrito
+        public ActionResult ordenarProducto(int? pIdPro)
+        {
+            int cantidadLibros = Movimiento.Instancia.Items.Count();
+            ViewBag.NotiCarrito = Movimiento.Instancia.AgregarItem((int)pIdPro);
+            return PartialView("_OrdenCantidad");
+
+        }
+
+        //Actualizar solo la cantidad de libros que se muestra en el menú
+        public ActionResult actualizarOrdenCantidad()
+        {
+            if (TempData.ContainsKey("NotiCarrito"))
+            {
+                ViewBag.NotiCarrito = TempData["NotiCarrito"];
+            }
+            int cantidadLibros = Movimiento.Instancia.Items.Count();
+            return PartialView("_OrdenCantidad");
+
+        }
+        public ActionResult eliminarProducto(int? idLibro)
+        {
+            ViewBag.NotificationMessage = Movimiento.Instancia.EliminarItem((int)idLibro);
+            return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
         }
     }
 }

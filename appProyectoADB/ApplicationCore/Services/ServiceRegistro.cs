@@ -34,10 +34,10 @@ namespace ApplicationCore.Services
             return oRepoReg.GetRegistroPorUsuario(pNombre);
         }
 
-        public RegistroInventario GuardarRegistro(RegistroInventario pRegistro, string[] selectInventario)
+        public RegistroInventario GuardarRegistro(RegistroInventario pRegistro)
         {
             IRepositoryRegistro oRepoReg = new RepositoryRegistro();
-            return oRepoReg.GuardarRegistro(pRegistro, selectInventario);
+            return oRepoReg.GuardarRegistro(pRegistro);
         }
     }
 }
