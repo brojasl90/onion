@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "graficoBarraSalidasProducto";
+    //Layout = "~/Views"
+}
+
+<h2>Reporte salida productos</h2>
+<div class="row">
+    <div class="panel panel-danger">
+        <div class="panel-body">
+            <canvas id="barraSalidas" height="200">
+            </canvas>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/chartjs")
+    <script>
+        $(document).ready(function () {
+            inicializarBarra();
+        });
+        function inicializarBarra() {
+            var barOptions = {
+                maintainaspectration: false
+            };
+            var barData =
+            {
+                labels: ["M1", "M2", "M3"], //Etiquetas X
+                datasets: [
+                    {
+                        label: 'Product1',
+                        backgroundColor: "#0000FF",
+                        borderWidth: .5,
+                        data: [10, 11, 15]
+                    },
+                    {
+                        label: 'Product2',
+                        backgroundColor: "#b6fd6b",
+                        borderWidth: .5,
+                        data: [12, 13, 16]
+                    },
+                    {
+                        label: 'Product3',
+                        backgroundColor: "#00FFFF",
+                        borderWidth: .5,
+                        data: [15, 16, 20]
+                    },
+                ]
+            };
+            var ctx = document.getElementById("barraSalidas").getContext("2d");
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: barData,
+                options: barOptions
+            });
+        }
+    </script>
+}
+
+

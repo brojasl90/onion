@@ -38,6 +38,9 @@ namespace Web
 
             //bundles.Add(new StyleBundle("~/Content/css").Include(//"~/Content/bootstrap.css", //"~/Content/bootstrap-materia.min.css",
             //    "~/Content/jquery-ui.css","~/Content/sweetalert.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/chartjs").Include(
+                "~/Scripts/chartjs/chartjs.min.js"));
         }
     }
 }

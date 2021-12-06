@@ -304,5 +304,9 @@ namespace Web.Controllers
             }
             return Content(numEntradas.ToString());
         }
+        public ActionResult reporteSalidasProducto()
+        {
+            return View();
+        }
     }
 }
