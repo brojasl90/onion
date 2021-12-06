@@ -64,7 +64,9 @@ namespace Web.Controllers
                     return RedirectToAction("Default", "Error");
                 }
 
-                ViewBag.IdUserReg = listaUsuario(oRegistro.IdUsuario);
+                ViewBag.IdUserReg = GetUsuariosTodos();
+                ViewBag.IdUserMod = GetUsuariosTodos();
+                ViewBag.IdTipoMov = TipoMovimientoTodos();
             }
             catch (Exception ex)
             {
@@ -92,6 +94,12 @@ namespace Web.Controllers
             ViewBag.IdTipMov = listaTipoMovimiento();
             ViewBag.listaBodega = listaBodega(null);
             return View();
+        }
+
+        private IEnumerable<TipoMovimiento> TipoMovimientoTodos(int pIdMovimiento = 0)
+        {
+            IServiceMovimiento _ServMovi = new ServiceMovimiento();
+            return _ServMovi.GetTipoMovimiento();
         }
 
         private SelectList listaTipoMovimiento(int pIdMovimiento = 0)
