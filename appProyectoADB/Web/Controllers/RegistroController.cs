@@ -191,6 +191,8 @@ namespace Web.Controllers
         public ActionResult Save(RegistroInventario pRegistro)
         {
             IServiceRegistro _ServRegistro = new ServiceRegistro();
+            IServiceProducto _ServProd = new ServiceProducto();
+            List<Producto> ProductosListas = new List<Producto>();
 
             try
             {
@@ -204,7 +206,7 @@ namespace Web.Controllers
                 else
                 {
 
-                    var listaDetalle = Movimiento.Instancia.Items;
+                    var listaDetalle = Movimiento.Instancia.Items;                    
 
                     foreach (var item in listaDetalle)
                     {
@@ -216,6 +218,7 @@ namespace Web.Controllers
                         lineaInventario.IdTipMovimiento = item.IdTipMovimiento;
                         lineaInventario.CantidadProductoGestionado = item.Cantidad;
                         lineaInventario.Observaciones = item.Observaciones;
+
                         pRegistro.GestionInventario.Add(lineaInventario);
                     }
                 }

@@ -36,7 +36,7 @@
         {
     <tr>
         <td>
-            @Html.HiddenFor(modelItem => item.Producto.IdProducto)
+            @Html.HiddenFor(modelItem => item.Producto)
             @Html.DisplayFor(modelItem => item.Producto.Nombre_Producto)
             @Html.EditorFor(modelItem => item.IdUsuario, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = 0 } })
             @Html.EditorFor(modelItem => item.UsuarioGestion, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = 0 } })
