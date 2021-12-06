@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Entradas de productos";
+}
+
+<h2>reporteEntradasProducto</h2>
+
+<html>
+
+<head>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        #chart_container {
+            width:400px;
+            height:400px;
+            border:1px solid #ddd;
+            padding:1px;
+            border-radius:4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart_container">
+        <canvas id="bar_chart"></canvas>
+        <input onchange="filterData()" type="date" id="startdate">
+        <input onchange="filterData()" type="date" id="enddate">
+    </div>
+
+    <script>
+        var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
+        var FechaGestion = @Html.Raw(Json.Encode(ViewBag.FECHAGESTION));
+
+        var ctx = $("#bar_chart");
+        var bacChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: FechaGestion,
+                datasets: [{
+                    label: "Entrada de productos",
+                    data: repArray,
+                    backgroundColor: ["rgba(242,166,54,.5)", "rgba(145,65,72,.5)","(74,25,92,.5)"],
+                    borderColor: ["rgb(242,166,54)","rgb(145,65,72)","rgb(74,25,92)"],
+                    borderWidth:1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales:
+                {
+                    yAxez: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>

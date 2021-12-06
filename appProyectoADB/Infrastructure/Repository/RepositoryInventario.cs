@@ -50,6 +50,18 @@ namespace Infrastructure.Repository
 
             return lista;
         }
+        public IEnumerable<GestionInventario> GetInventarioReportePorFecha(string pGestion)
+        {
+            IEnumerable<GestionInventario> lista = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                lista = ctx.GestionInventario.Where(x => x.TipoGestion.Equals(pGestion)).ToList();
+            }
+
+            return lista;
+        }
 
         public IEnumerable<GestionInventario> GetInventarioPorNombreUsuario(string pNombre)
         {

@@ -308,5 +308,33 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult reporteEntradasProducto()
+        {
+                //Worked area
+            IEnumerable<GestionInventario> lista = null;
+            int numEntradas = 0;
+            try
+            {
+                ServiceInventario _SeviceInventario = new ServiceInventario();
+                lista = _SeviceInventario.GetInventarioReportePorFecha("Entrada");
+                List<int> repartions = new List<int>();
+                var FechaGestion = lista.Select(x=>x.IdGestionInventario).Distinct();
+
+                foreach (var item in FechaGestion) {
+                    repartions.Add(lista.Count(x => x.IdGestionInventario == item));
+                }
+                var rep = repartions;
+                ViewBag.FECHAGESTION = FechaGestion;
+                ViewBag.REP = repartions.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Default", "Error");
+
+            }
+            //Finish
+            return View();
+        }
     }
 }

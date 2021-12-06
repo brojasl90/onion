@@ -191,6 +191,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\bootstrap_almacen.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -235,6 +237,8 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\_bootswatch.scss" />
     <Content Include="Content\_variables.scss" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\chartjs\chartjs.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -404,6 +408,7 @@
     <Content Include="Views\Shared\_OrdenCantidad.cshtml" />
     <Content Include="Views\Producto\graficoProducto.cshtml" />
     <Content Include="Views\Inventario\reporteSalidasProducto.cshtml" />
+    <Content Include="Views\Inventario\reporteEntradasProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -449,7 +454,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1050</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1060/</IISUrl>
+          <IISUrl>http://localhost:1061/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
