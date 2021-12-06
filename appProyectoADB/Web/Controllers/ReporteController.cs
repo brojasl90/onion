@@ -37,5 +37,9 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+        public ActionResult graficoBarraSalidasProducto()
+        {
+            return View();
+        }
     }
 }
