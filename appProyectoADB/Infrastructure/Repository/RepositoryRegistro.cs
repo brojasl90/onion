@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace Infrastructure.Repository
         {
             int vRetorno = 0;
             RegistroInventario oRegistro = null;
-
+            IRepositoryProducto _RepoProd = new RepositoryProducto();
             try
             {
                 using (MyContext ctx = new MyContext())
@@ -86,6 +87,7 @@ namespace Infrastructure.Repository
                     {
                         ctx.RegistroInventario.Add(pRegistro);
                         vRetorno = ctx.SaveChanges();
+
                         foreach (var detalle in pRegistro.GestionInventario)
                         {
                             detalle.IdRegistro = pRegistro.IdRegistroInventario;
@@ -106,6 +108,23 @@ namespace Infrastructure.Repository
             {
                 string mensaje = "";
                 Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (DbEntityValidationException eve)
+            {
+                string mensaje = "";
+                Log.Error(eve, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+
+                foreach (var even in eve.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        even.Entry.Entity.GetType().Name, even.Entry.State);
+                    foreach (var ve in even.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
                 throw new Exception(mensaje);
             }
             catch (Exception ex)

@@ -107,7 +107,7 @@ namespace Web.ViewModel
                 {
                     ViewModelLineaInventario item = Items.Find(x => x.IdProducto == pIdProd);
                     item.IdTipMovimiento = pTipM;
-                    mensaje = SweetAlertHelper.Mensaje("Cantidad actualizada", "Producto: " + item.Producto.Nombre_Producto, SweetAlertMessageType.success);
+                    mensaje = SweetAlertHelper.Mensaje("Tipo de Movimiento actualizado", "Producto: " + item.Producto.Nombre_Producto, SweetAlertMessageType.success);
 
                 }
 
