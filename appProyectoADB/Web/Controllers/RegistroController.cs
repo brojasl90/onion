@@ -225,7 +225,7 @@ namespace Web.Controllers
                         lineaInventario.UsuarioGestion = pRegistro.IdUsuario;
                         lineaInventario.IdTipMovimiento = item.IdTipMovimiento;
                         lineaInventario.CantidadProductoGestionado = item.Cantidad;
-                        lineaInventario.Observaciones = item.Observaciones;
+                        lineaInventario.Observaciones = pRegistro.Observaciones;
 
                         pRegistro.GestionInventario.Add(lineaInventario);
                     }

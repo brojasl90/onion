@@ -91,6 +91,12 @@ namespace Infrastructure.Models
         [Display(Name = "Fecha Registro")]
         [DataType(DataType.Date)]
         public System.DateTime FechaIngreso { get; set; }
+
+        [Display(Name = "Observaciones / Comentarios")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe brindar un comentario u observación")]
+        [StringLength(250, MinimumLength = 12, ErrorMessage = "El contenido es muy breve, brinde más detalles")]
+        [DataType(DataType.MultilineText)]
+        public string Observaciones { get; set; }
     }
     internal partial class InventarioMetadata
     {
@@ -131,6 +137,7 @@ namespace Infrastructure.Models
         [Display(Name = "Tipo Movimiento")]
         public virtual TipoMovimiento TipoMovimiento { get; set; }
 
+        [Display(Name = "Observaciones / Comentarios")]
         [DataType(DataType.MultilineText)]
         public string Observaciones { get; set; }
 

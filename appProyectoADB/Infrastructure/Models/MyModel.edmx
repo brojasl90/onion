@@ -98,6 +98,7 @@
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="TipoGestion" Type="nvarchar" MaxLength="255" />
           <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -593,6 +594,7 @@
           <Property Name="TipoGestion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="GestionInventario" Relationship="AlmacenDelBarrioModel.FK_GestionInventario_RegistroInventario" FromRole="RegistroInventario" ToRole="GestionInventario" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_GestionInventario_RegistroInventario">
           <End Type="AlmacenDelBarrioModel.RegistroInventario" Role="RegistroInventario" Multiplicity="1" />
@@ -747,6 +749,7 @@
           <EntitySetMapping Name="RegistroInventario">
             <EntityTypeMapping TypeName="AlmacenDelBarrioModel.RegistroInventario">
               <MappingFragment StoreEntitySet="RegistroInventario">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="TipoGestion" ColumnName="TipoGestion" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />

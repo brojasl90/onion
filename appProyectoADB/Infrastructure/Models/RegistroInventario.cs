@@ -27,6 +27,7 @@ namespace Infrastructure.Models
         public int IdUsuario { get; set; }
         public string TipoGestion { get; set; }
         public System.DateTime FechaIngreso { get; set; }
+        public string Observaciones { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GestionInventario> GestionInventario { get; set; }

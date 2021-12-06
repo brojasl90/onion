@@ -103,6 +103,14 @@
 
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <!-- Submit -->
 
     <div class="form-group">
