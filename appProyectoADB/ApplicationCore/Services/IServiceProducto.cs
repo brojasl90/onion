@@ -16,5 +16,6 @@ namespace ApplicationCore.Services
         void DeleteProducto(int id);
         Producto Save(Producto producto, string[] selectedCategorias, string[] selectedProveedor, string[] selectedBodega);
         IEnumerable<Producto> GetProductoByAgotar();
+        void GetProductoCountDate(out string etiquetas, out string valores);
     }
 }

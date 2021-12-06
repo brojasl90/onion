@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Web.Enum;
 using Web.Security;
 using Web.Utils;
+using Web.ViewModel;
 
 namespace Web.Controllers
 {
@@ -298,6 +299,25 @@ namespace Web.Controllers
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
+        }
+        public ActionResult graficoProducto()
+        {
+            //Documentación chartjs https://www.chartjs.org/docs/latest/
+            IServiceProducto _ServiceProducto = new ServiceProducto();
+            ViewModelGrafico grafico = new ViewModelGrafico();
+            string etiquetas = "";
+            string valores = "";
+            _ServiceProducto.GetProductoCountDate(out etiquetas, out valores);
+            grafico.Etiquetas = etiquetas;
+            grafico.Valores = valores;
+            int cantidadValores = valores.Split(',').Length;
+            grafico.Colores = string.Join(",", grafico.GenerateColors(cantidadValores));
+            grafico.titulo = "Ordenes por fecha";
+            grafico.tituloEtiquetas = "Cantidad de Salidas";
+
+            grafico.tipo = "polarArea";
+            ViewBag.grafico = grafico;
+            return View();
         }
     }
 }
