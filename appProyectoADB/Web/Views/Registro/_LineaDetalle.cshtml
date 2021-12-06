@@ -1,66 +1,93 @@
 ﻿@model IEnumerable<Web.ViewModel.ViewModelLineaInventario>
 
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 <div class="table-responsive-sm">
-    
+
     <table class="table table-striped">
         <tr>
             <th>
-                Libro
+                Producto
             </th>
-            <th class="center">
+            <th>
+                Bodega
+            </th>
+            <th>
+                Tipo de Gestion
+            </th>
+            <th>
                 Cantidad
             </th>
-            <th class="right">
+            <th>
                 Precio
             </th>
-
-            <th class="right">
+            @*<th>
+                Observaciones
+            </th>*@
+            <th>
                 SubTotal
             </th>
-            <th></th>
+            <th>
+                Eliminar
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.HiddenFor(modelItem => item.Producto.IdProducto)
-                    @Html.DisplayFor(modelItem => item.Producto.Nombre_Producto)
-                </td>
-                <td class="center" style="width:1.5em">
-                    @Html.EditorFor(modelItem => item.Cantidad, new { htmlAttributes = new { @class = "form-control changeCantidad", data_libroid = item.Producto.IdProducto, onchange = "updateCantidad(this)" } })
-                </td>
-                <td class="right">
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.Producto.IdProducto)
+            @Html.DisplayFor(modelItem => item.Producto.Nombre_Producto)
+            @Html.EditorFor(modelItem => item.IdUsuario, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = 0 } })
+            @Html.EditorFor(modelItem => item.UsuarioGestion, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = 0 } })
+            @Html.EditorFor(modelItem => item.FechaGestion, new { htmlAttributes = new { @class = "form-control visually-hidden", @Value = DateTime.Now.ToString("yyyy-MM-dd") } })
+            @Html.EditorFor(modelItem => item.TipoGestion, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = "Nulo" } })
+            @Html.EditorFor(modelItem => item.Observaciones, new { htmlAttributes = new { @class = "form-control visually-hidden", Value = "Nulo" } })
+        </td>
+        <td class="col-lg-2">
+            @Html.DropDownList("selectedBodega", (MultiSelectList)ViewBag.listaBodega, htmlAttributes: new { @class = "form-select", multiple = "" })
+        </td>
+        <td class="col-sm-2">
+            @Html.DropDownListFor(modelItem => item.IdTipMovimiento, (SelectList)ViewBag.IdTipMov, "Seleccione un Tipo...", htmlAttributes: new { @class = "form-select", data_movimientoid = item.Producto.IdProducto, onchange = "updateMovimiento(this)" })
+            @Html.ValidationMessageFor(modelItem => item.IdTipMovimiento, "", new { @class = "text-danger" })
+        </td>
+        <td class="col-sm-1">
+            @Html.EditorFor(modelItem => item.Cantidad, new { htmlAttributes = new { @class = "form-control changeCantidad", data_productoid = item.Producto.IdProducto, onchange = "updateCantidad(this)" } })
+        </td>
+        <td class="right">
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        @*<td class="col-sm-3">
+            @Html.EditorFor(modelItem => item.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(modelItem => item.Observaciones, "", new { @class = "text-danger" })
+        </td>*@
+        <td class="right">
+            @Html.DisplayFor(modelItem => item.SubTotal)
+        </td>
+        <td>
+            @Ajax.ActionLink("Eliminar",//Texto para el usuario
+                "eliminarProducto",//Acción a llamar
+                "Registro",
+                new
+                {
+                    pIdPro = item.IdProducto
+                },//Parámetros a enviar
+                new AjaxOptions
+                {
+                    UpdateTargetId = "resultadoDetalle",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnComplete = "updateCantLibros()"
+                }, new { @class = "btn btn-primary rounded m-1" }
+                )
 
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-
-                <td class="right">
-                    @Html.DisplayFor(modelItem => item.SubTotal)
-                </td>
-                <td>
-                    @Ajax.ActionLink("Eliminar",//Texto para el usuario
-                        "eliminarLibro",//Acción a llamar
-                        "Orden",
-                        new
-                        {
-                            idLibro = item.IdProducto
-                        },//Parámetros a enviar
-                        new AjaxOptions
-                        {
-                            UpdateTargetId = "resultadoDetalle",
-                            InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "GET",
-                            OnComplete = "updateCantLibros()"
-                        }, new { @class = "btn btn-primary" }
-                        )
-
-                </td>
-            </tr>
+        </td>
+    </tr>
         }
 
     </table>
 </div>
+
 <div class="row">
     <div class="col-lg-5 col-sm-5"></div>
     <div class="col-lg-7 col-sm-5 ml-auto">
@@ -80,3 +107,9 @@
     </div>
 </div>
 
+@if (@ViewBag.NotiCarrito != null)
+{
+    <script>
+            @Html.Raw(@ViewBag.NotiCarrito);
+    </script>
+}

@@ -85,6 +85,7 @@ namespace Infrastructure.Models
         public int IdUsuario { get; set; }
 
         [Display(Name = "Tipo de Gestión")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Debe seleccionar el tipo de movimiento.")]
         public string TipoGestion { get; set; }
 
         [Display(Name = "Fecha Registro")]

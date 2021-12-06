@@ -58,12 +58,12 @@ namespace Web.ViewModel
                     nuevoItem.Cantidad = 1;
                     Items.Add(nuevoItem);
                 }
-                mensaje = SweetAlertHelper.Mensaje("Orden Libro", "Libro agregado a la orden", SweetAlertMessageType.success);
+                mensaje = SweetAlertHelper.Mensaje("Producto agregado", "Producto: " + nuevoItem.Producto.Nombre_Producto , SweetAlertMessageType.success);
 
             }
             else
             {
-                mensaje = SweetAlertHelper.Mensaje("Orden Libro", "El libro solicitado no existe", SweetAlertMessageType.warning);
+                mensaje = SweetAlertHelper.Mensaje("El Producto solicitado no existe", "", SweetAlertMessageType.warning);
             }
             return mensaje;
         }
@@ -79,7 +79,7 @@ namespace Web.ViewModel
             if (Cantidad == 0)
             {
                 EliminarItem(pIdProd);
-                mensaje = SweetAlertHelper.Mensaje("Orden Libro", "Libro eliminado", SweetAlertMessageType.success);
+                mensaje = SweetAlertHelper.Mensaje("Producto eliminado", "Producto seleccionado", SweetAlertMessageType.success);
 
             }
             else
@@ -90,7 +90,7 @@ namespace Web.ViewModel
                 {
                     ViewModelLineaInventario item = Items.Find(x => x.IdProducto == pIdProd);
                     item.Cantidad = Cantidad;
-                    mensaje = SweetAlertHelper.Mensaje("Orden Libro", "Cantidad actualizada", SweetAlertMessageType.success);
+                    mensaje = SweetAlertHelper.Mensaje("Cantidad actualizada", "Producto: " + item.Producto.Nombre_Producto, SweetAlertMessageType.success);
 
                 }
             }
@@ -98,17 +98,33 @@ namespace Web.ViewModel
 
         }
 
+        public String SetItemTipoMovi(int pIdProd, int pTipM)
+        {
+            String mensaje = "";
+
+                ViewModelLineaInventario actualizarItem = new ViewModelLineaInventario(pIdProd);
+                if (Items.Exists(x => x.IdProducto == pIdProd))
+                {
+                    ViewModelLineaInventario item = Items.Find(x => x.IdProducto == pIdProd);
+                    item.IdTipMovimiento = pTipM;
+                    mensaje = SweetAlertHelper.Mensaje("Cantidad actualizada", "Producto: " + item.Producto.Nombre_Producto, SweetAlertMessageType.success);
+
+                }
+
+            return mensaje;
+        }
+
         /**
          * EliminarItem (): elimina un artículo del carrito de compras
          */
         public String EliminarItem(int pIdProd)
         {
-            String mensaje = "El libro no existe";
+            String mensaje = "El Producto no existe";
             if (Items.Exists(x => x.IdProducto == pIdProd))
             {
                 var itemEliminar = Items.Single(x => x.IdProducto == pIdProd);
                 Items.Remove(itemEliminar);
-                mensaje = SweetAlertHelper.Mensaje("Orden Libro", "Libro eliminado", SweetAlertMessageType.success);
+                mensaje = SweetAlertHelper.Mensaje("Elemento eliminado", "Producto: " + itemEliminar.Producto.Nombre_Producto, SweetAlertMessageType.success);
             }
             return mensaje;
 

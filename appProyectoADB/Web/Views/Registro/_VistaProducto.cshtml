@@ -26,7 +26,7 @@
                     @Html.DisplayNameFor(model => model.CantidadStockMax)
                 </th>
                 <th>
-                    @Html.DisplayName("Selecccionar")
+                    @Html.DisplayName("Seleccionar")
                 </th>
             </tr>
         </thead>
@@ -55,7 +55,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CantidadStockMax)
                     </td>
-                    <td class="text-truncate">
+                    <td>
                         @*Texto para el usuario, Acción a llamar*@
                         @Ajax.ActionLink("Seleccionar", "ordenarProducto", "Registro",
                                new { pIdPro = item.IdProducto },

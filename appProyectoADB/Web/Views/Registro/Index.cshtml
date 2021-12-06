@@ -76,7 +76,15 @@
                             @Html.DisplayFor(modelItem => item.IdRegistroInventario)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IdUsuario)
+                            @*@Html.DisplayFor(modelItem => item.IdUsuario)*@
+                            @foreach (var iUs in ViewBag.LtsUsuarios)
+                            {
+                                if (@iUs.IdUsuario == item.IdUsuario)
+                                {
+                                    string nombreUsuario = string.Format("{0} {1}", @iUs.Nombre, @iUs.PrimerApellido);
+                                    @nombreUsuario
+                                }
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TipoGestion)

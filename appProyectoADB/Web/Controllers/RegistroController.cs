@@ -25,7 +25,7 @@ namespace Web.Controllers
             {
                 IServiceRegistro _ServReg= new ServiceRegistro();
 
-                ViewBag.IdUserReg = listaUsuario();
+                ViewBag.LtsUsuarios = GetUsuariosTodos();
                 lista = _ServReg.GetRegistro();
             }
             catch (Exception ex)
@@ -89,7 +89,38 @@ namespace Web.Controllers
             }
             ViewBag.ListGestion = listaGestiones(null);
             ViewBag.DetalleOrden = Movimiento.Instancia.Items;
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
             return View();
+        }
+
+        private SelectList listaTipoMovimiento(int pIdMovimiento = 0)
+        {
+            IServiceMovimiento _ServMovi = new ServiceMovimiento();
+            IEnumerable<TipoMovimiento> lTipoMovimientos = _ServMovi.GetTipoMovimiento();
+            return new SelectList(lTipoMovimientos, "IdTipMovimiento", "Descripcion", pIdMovimiento);
+        }
+
+        private MultiSelectList listaBodega(ICollection<Bodega> bodegas)
+        {
+            //Lista de Proveedores
+            IServiceBodega _ServiceBodega = new ServiceBodega();
+            IEnumerable<Bodega> listaBodegas = _ServiceBodega.GetBodega();
+            int[] listaBodegasSelect = null;
+
+            if (bodegas != null)
+            {
+
+                listaBodegasSelect = bodegas.Select(c => c.IdBodega).ToArray();
+            }
+
+            return new MultiSelectList(listaBodegas, "IdBodega", "Estante", "Descripcion", listaBodegasSelect);
+        }
+
+        private IEnumerable<Usuario> GetUsuariosTodos()
+        {
+            IServiceUsuario _ServiceUsuario = new ServiceUsuario();
+            return _ServiceUsuario.GetUsuario();
         }
 
         private SelectList listaUsuario(int pIdUsuario = 0)
@@ -167,8 +198,8 @@ namespace Web.Controllers
                 if (Movimiento.Instancia.Items.Count() <= 0)
                 {
                     // Validaciones de datos requeridos.
-                    TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Orden", "Seleccione los libros a ordenar", SweetAlertMessageType.warning);
-                    return RedirectToAction("Index");
+                    TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Nuevo registro", "Seleccione los productos a registrar", SweetAlertMessageType.warning);
+                    return RedirectToAction("Create");
                 }
                 else
                 {
@@ -178,8 +209,12 @@ namespace Web.Controllers
                     foreach (var item in listaDetalle)
                     {
                         GestionInventario lineaInventario = new GestionInventario();
-                        lineaInventario.IdUsuario = item.IdUsuario;
-                        lineaInventario.TipoGestion = item.TipoGestion;
+                        lineaInventario.IdUsuario = pRegistro.IdUsuario;
+                        lineaInventario.TipoGestion = pRegistro.TipoGestion;
+                        lineaInventario.FechaGestion = pRegistro.FechaIngreso;
+                        lineaInventario.UsuarioGestion = pRegistro.IdUsuario;
+                        lineaInventario.IdTipMovimiento = item.IdTipMovimiento;
+                        lineaInventario.CantidadProductoGestionado = item.Cantidad;
                         lineaInventario.Observaciones = item.Observaciones;
                         pRegistro.GestionInventario.Add(lineaInventario);
                     }
@@ -189,7 +224,8 @@ namespace Web.Controllers
 
                 // Limpia el Carrito de compras
                 Movimiento.Instancia.eliminarCarrito();
-                TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Orden", "Orden guardada satisfactoriamente!", SweetAlertMessageType.success);
+                //TempData["NotificationMessage"] = SweetAlertHelper.Mensaje("Orden", "Orden guardada satisfactoriamente!", SweetAlertMessageType.success);
+                ViewBag.NotificationMessage = SweetAlertHelper.Mensaje("Nuevo Registro", "Registro guardado satisfactoriamente!", SweetAlertMessageType.success);
                 // Reporte orden
                 return RedirectToAction("Index");
             }
@@ -253,12 +289,23 @@ namespace Web.Controllers
             return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
         }
         //Actualizar cantidad de libros en el carrito
-        public ActionResult actualizarCantidad(int idLibro, int cantidad)
+        public ActionResult actualizarCantidad(int idProd, int cantidad)
         {
             ViewBag.DetalleOrden = Movimiento.Instancia.Items;
-            TempData["NotiCarrito"] = Movimiento.Instancia.SetItemCantidad(idLibro, cantidad);
-            TempData.Keep();
-            return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
+            ViewBag.NotiCarrito = Movimiento.Instancia.SetItemCantidad(idProd, cantidad);
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
+            return PartialView("_LineaDetalle", Movimiento.Instancia.Items);
+
+        }
+
+        public ActionResult actualizarTipoMovimiento(int idProd, int pTipM)
+        {
+            ViewBag.DetalleOrden = Movimiento.Instancia.Items;
+            ViewBag.NotiCarrito = Movimiento.Instancia.SetItemTipoMovi(idProd, pTipM);
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
+            return PartialView("_LineaDetalle", Movimiento.Instancia.Items);
 
         }
         //Ordenar un libro y agregarlo al carrito
@@ -266,7 +313,9 @@ namespace Web.Controllers
         {
             int cantidadLibros = Movimiento.Instancia.Items.Count();
             ViewBag.NotiCarrito = Movimiento.Instancia.AgregarItem((int)pIdPro);
-            return PartialView("_OrdenCantidad");
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
+            return PartialView("_LineaDetalle", Movimiento.Instancia.Items);
 
         }
 
@@ -278,13 +327,17 @@ namespace Web.Controllers
                 ViewBag.NotiCarrito = TempData["NotiCarrito"];
             }
             int cantidadLibros = Movimiento.Instancia.Items.Count();
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
             return PartialView("_OrdenCantidad");
 
         }
-        public ActionResult eliminarProducto(int? idLibro)
+        public ActionResult eliminarProducto(int? pIdPro)
         {
-            ViewBag.NotificationMessage = Movimiento.Instancia.EliminarItem((int)idLibro);
-            return PartialView("_DetalleOrden", Movimiento.Instancia.Items);
+            ViewBag.NotiCarrito = Movimiento.Instancia.EliminarItem((int)pIdPro);
+            ViewBag.IdTipMov = listaTipoMovimiento();
+            ViewBag.listaBodega = listaBodega(null);
+            return PartialView("_LineaDetalle", Movimiento.Instancia.Items);
         }
     }
 }
