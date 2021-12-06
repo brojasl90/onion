@@ -152,6 +152,7 @@
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Enum\ETipoEstado.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Utils\SweetAlertHelper.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="ViewModel\Movimiento.cs" />
+    <Compile Include="ViewModel\ViewModelGrafico.cs" />
     <Compile Include="ViewModel\ViewModelLineaInventario.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +239,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\graficoChartJS.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -398,11 +401,13 @@
     <Content Include="Views\Inventario\_LineaInventario.cshtml" />
     <Content Include="Views\Registro\_LineaDetalle.cshtml" />
     <Content Include="Views\Registro\_VistaProducto.cshtml" />
+    <Content Include="Views\Producto\graficoProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Bodega\" />
+    <Folder Include="Views\Reporte\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
