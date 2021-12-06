@@ -50,5 +50,13 @@ namespace ApplicationCore.Services
             IRepositoryProducto repository = new RepositoryProducto();
             return repository.Save(producto, selectedCategorias, selectedProveedor, selectedBodega);
         }
+        public void GetProductoCountDate(out string etiquetas1, out string valores1)
+        {
+            IRepositoryProducto repository = new RepositoryProducto();
+
+            repository.GetProductoCountDate(out string etiquetas, out string valores);
+            etiquetas1 = etiquetas;
+            valores1 = valores;
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace Infrastructure.Repository
         void DeleteProducto(int id);
         Producto Save(Producto libro, string[] selectedCategorias, string[] selectedProveedor, string[] selectedBodega);
         IEnumerable<Producto> GetProductoByAgotar();
+        void GetProductoCountDate(out string etiquetas, out string valores);
     }
 }

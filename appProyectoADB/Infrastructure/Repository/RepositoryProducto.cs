@@ -242,5 +242,45 @@ public IEnumerable<Producto> GetProductoByCategoria(int idAutor)
 
             return oProducto;
         }
+        public void GetProductoCountDate(out string etiquetas, out string valores)
+        {
+            String varEtiquetas = "";
+            String varValores = "";
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    var resultado = ctx.Producto.GroupBy(x => x.FechaCreacion).
+                               Select(o => new {
+                                   Count = o.Count(),
+                                   FechaCreacion = o.Key
+                               });
+                    foreach (var item in resultado)
+                    {
+                        varEtiquetas += String.Format("{0:dd/MM/yyyy}", item.FechaCreacion) + ",";
+                        varValores += item.Count + ",";
+                    }
+                }
+                //Ultima coma
+                varEtiquetas = varEtiquetas.Substring(0, varEtiquetas.Length - 1); // ultima coma
+                varValores = varValores.Substring(0, varValores.Length - 1);
+                //Asignar valores de salida
+                etiquetas = varEtiquetas;
+                valores = varValores;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+        }
     }
 }

@@ -39,9 +39,9 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     @*<li class="nav-item">
-                            <img src="~/img/casa.png" class="mx-auto d-block" />
-                            @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
-                        </li>*@
+            <img src="~/img/casa.png" class="mx-auto d-block" />
+            @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
+        </li>*@
                     <li class="nav-item">
                         <img src="~/img/bolsa.png" class="mx-auto d-block" />
                         @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "nav-link" })
@@ -54,6 +54,28 @@
                         <img src="~/img/dinero.png" class="mx-auto d-block" />
                         @Html.ActionLink("Movimientos", "Index", "Registro", null, new { @class = "nav-link" })
                     </li>
+                    @*
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
+            <div class="dropdown-menu">
+                @*
+                @Html.ActionLink("Informe Entradas", "LibroCatalogo", "Reporte", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("Informe Salidas", "graficoProducto", "Producto", null, new { @class = "dropdown-item" })
+
+                    @Html.ActionLink("Informe Productos", "graficoProducto", "Producto", null, new { @class = "dropdown-item" })
+                    </div>
+            </li>
+                    *@
+                    <li class="nav-item dropdown">
+                        <img src="~/img/rep.png" class="mx-auto d-block" />
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Informe Entradas", "graficoProducto", "Producto", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Informe Salidas", "graficoProducto", "Producto", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Informe Productos", "graficoProducto", "Producto", null, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+
                     <li class="nav-item">
                         <img src="~/img/usuarios.png" class="mx-auto d-block" />
                         @Html.ActionLink("Usuarios", "Index", "Usuario", null, new { @class = "nav-link" })
@@ -63,9 +85,9 @@
                         @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
                     </li>
                     @*<li class="nav-item">
-                            <img src="~/img/lock.png" class="mx-auto d-block" />
-                            @Html.ActionLink("Cerrar sesión", "Logout", "Login", null, new { @class = "nav-link" })
-                        </li>*@
+            <img src="~/img/lock.png" class="mx-auto d-block" />
+            @Html.ActionLink("Cerrar sesión", "Logout", "Login", null, new { @class = "nav-link" })
+        </li>*@
                 </ul>
 
                 @{
@@ -78,7 +100,7 @@
                         oUsuario = (Infrastructure.Models.Usuario)Session["User"];
                         if (oUsuario != null)
                         {
-                            nomUser = string.Format("{0} {1} {2}.", oUsuario.Nombre, oUsuario.PrimerApellido, oUsuario.SegundoApellido.Substring(0,1));
+                            nomUser = string.Format("{0} {1} {2}.", oUsuario.Nombre, oUsuario.PrimerApellido, oUsuario.SegundoApellido.Substring(0, 1));
                             dcsRol = oUsuario.Rol.Descripcion;
                         }
                     }
@@ -123,7 +145,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
-    @*@Scripts.Render("~/bundles/popper")*@
+    @*Scripts.Render("~/bundles/popper")*@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/sweetalert")
     @RenderSection("scripts", required: false)

@@ -169,6 +169,7 @@
     <Compile Include="Utils\SweetAlertHelper.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="ViewModel\Movimiento.cs" />
+    <Compile Include="ViewModel\ViewModelGrafico.cs" />
     <Compile Include="ViewModel\ViewModelLineaInventario.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -399,6 +400,7 @@
     <Content Include="Views\Registro\_LineaDetalle.cshtml" />
     <Content Include="Views\Registro\_VistaProducto.cshtml" />
     <Content Include="Views\Shared\_OrdenCantidad.cshtml" />
+    <Content Include="Views\Producto\graficoProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
