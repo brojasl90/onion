@@ -304,6 +304,7 @@ namespace Web.Controllers
             }
             return Content(numEntradas.ToString());
         }
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult reporteSalidasProducto()
         {
             //Worked area
@@ -332,6 +333,7 @@ namespace Web.Controllers
             //Finish
             return View();
         }
+        [CustomAuthorize((int)Roles.Administrador, (int)Roles.Encargado, (int)Roles.Vendedor)]
         public ActionResult reporteEntradasProducto()
         {
                 //Worked area

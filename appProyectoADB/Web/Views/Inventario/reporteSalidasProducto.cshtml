@@ -6,13 +6,22 @@
 <h2>Reporte salidas de productos</h2>
 
 
+<div id="chart_container">
+    <canvas id="bar_chart"></canvas>
+    <input onchange="filterData()" type="date" id="startdate" value="2021-12-05">
+    <input onchange="filterData()" type="date" id="enddate" value="2021-12-05">
+</div>
 
-<head>
+@section Scripts {
     <script src="~/Scripts/Chart.min.js"></script>
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    *@
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
     <style>
         #chart_container {
             width: 400px;
@@ -22,15 +31,9 @@
             border-radius: 4px;
         }
     </style>
-</head>
-<div class="form-horizontal">
-    <div id="chart_container">
-        <canvas id="bar_chart"></canvas>
-        <input onchange="filterData()" type="date" id="startdate" value="2021-12-05">
-        <input onchange="filterData()" type="date" id="enddate" value="2021-12-05">
-    </div>
 
-    <script>
+
+    <script type="text/javascript">
         var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
         var FechaGestion = @Html.Raw(Json.Encode(ViewBag.FECHAGESTION));
         const labels = ['2021-05-12', '2021-06-12'];
@@ -83,8 +86,4 @@
         */
 
     </script>
-</div>
-</html>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
