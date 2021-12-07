@@ -312,16 +312,15 @@ namespace Web.Controllers
         {
                 //Worked area
             IEnumerable<GestionInventario> lista = null;
-            int numEntradas = 0;
             try
             {
                 ServiceInventario _SeviceInventario = new ServiceInventario();
-                lista = _SeviceInventario.GetInventarioReportePorFecha("Entrada");
+                lista = _SeviceInventario.GetInventarioReporte("Entrada");
                 List<int> repartions = new List<int>();
-                var FechaGestion = lista.Select(x=>x.IdGestionInventario).Distinct();
+                var FechaGestion = lista.Select(x=>x.TipoGestion).Distinct();
 
                 foreach (var item in FechaGestion) {
-                    repartions.Add(lista.Count(x => x.IdGestionInventario == item));
+                    repartions.Add(lista.Count(x => x.TipoGestion == item));
                 }
                 var rep = repartions;
                 ViewBag.FECHAGESTION = FechaGestion;
