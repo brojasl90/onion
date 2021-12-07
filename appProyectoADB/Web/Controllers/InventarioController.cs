@@ -306,6 +306,30 @@ namespace Web.Controllers
         }
         public ActionResult reporteSalidasProducto()
         {
+            //Worked area
+            IEnumerable<GestionInventario> lista = null;
+            try
+            {
+                ServiceInventario _SeviceInventario = new ServiceInventario();
+                lista = _SeviceInventario.GetInventarioReporte("Salida");
+                List<int> repartions = new List<int>();
+                var FechaGestion = lista.Select(x => x.TipoGestion).Distinct();
+
+                foreach (var item in FechaGestion)
+                {
+                    repartions.Add(lista.Count(x => x.TipoGestion == item));
+                }
+                var rep = repartions;
+                ViewBag.FECHAGESTION = FechaGestion;
+                ViewBag.REP = repartions.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                return RedirectToAction("Default", "Error");
+
+            }
+            //Finish
             return View();
         }
         public ActionResult reporteEntradasProducto()

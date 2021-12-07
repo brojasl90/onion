@@ -1,60 +1,90 @@
 ﻿
 @{
-    ViewBag.Title = "graficoBarraSalidasProducto";
-    //Layout = "~/Views"
+    ViewBag.Title = "Salidas de productos";
 }
 
-<h2>Reporte salida productos</h2>
-<div class="row">
-    <div class="panel panel-danger">
-        <div class="panel-body">
-            <canvas id="barraSalidas" height="200">
-            </canvas>
-        </div>
-    </div>
-</div>
-@section scripts{
-    @Scripts.Render("~/bundles/chartjs")
-    <script>
-        $(document).ready(function () {
-            inicializarBarra();
-        });
-        function inicializarBarra() {
-            var barOptions = {
-                maintainaspectration: false
-            };
-            var barData =
-            {
-                labels: ["M1", "M2", "M3"], //Etiquetas X
-                datasets: [
-                    {
-                        label: 'Product1',
-                        backgroundColor: "#0000FF",
-                        borderWidth: .5,
-                        data: [10, 11, 15]
-                    },
-                    {
-                        label: 'Product2',
-                        backgroundColor: "#b6fd6b",
-                        borderWidth: .5,
-                        data: [12, 13, 16]
-                    },
-                    {
-                        label: 'Product3',
-                        backgroundColor: "#00FFFF",
-                        borderWidth: .5,
-                        data: [15, 16, 20]
-                    },
-                ]
-            };
-            var ctx = document.getElementById("barraSalidas").getContext("2d");
-            var chart = new Chart(ctx, {
-                type: 'bar',
-                data: barData,
-                options: barOptions
-            });
+<h2>Reporte salidas de productos</h2>
+
+
+
+<head>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <style>
+        #chart_container {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 4px;
         }
+    </style>
+</head>
+<div class="form-horizontal">
+    <div id="chart_container">
+        <canvas id="bar_chart"></canvas>
+        <input onchange="filterData()" type="date" id="startdate" value="2021-12-05">
+        <input onchange="filterData()" type="date" id="enddate" value="2021-12-05">
+    </div>
+
+    <script>
+        var repArray = @Html.Raw(Json.Encode(ViewBag.REP));
+        var FechaGestion = @Html.Raw(Json.Encode(ViewBag.FECHAGESTION));
+        const labels = ['2021-05-12', '2021-06-12'];
+
+
+        var ctx = $("#bar_chart");
+        var bacChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: FechaGestion,
+                datasets: [{
+                    label: "Salida de productos",
+                    data: repArray,
+                    backgroundColor: ["rgba(242,166,54,.5)", "rgba(145,65,72,.5)","(74,25,92,.5)"],
+                    borderColor: ["rgb(242,166,54)","rgb(145,65,72)","rgb(74,25,92)"],
+                    borderWidth:1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales:
+                {
+                    yAxez: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        /*
+        function filterData() {
+            const dates2 = [...dates];
+            console.log(dates2);
+            const startdate = document.getElementById('stardate');
+            const enddate = document.getElementById('enddate');
+
+            //Index number
+            const indexstartdate = date2.indexOf(startdate.value);
+            const indexenddate = date2.indexOf(enddate.value);
+            //console.log();
+
+            //array pie
+            const filterDate = date2.slice(indexstartdate, indexenddate + 1);
+
+            //replace the labels
+            bar_chart.config.data.labels = filterDate;
+            bar_chart.update();
+        }
+        */
+
     </script>
+</div>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-
