@@ -179,7 +179,9 @@ namespace Web.Controllers
                 }
 
                 ViewBag.ListGestion = listaGestiones(oRegistro.GestionInventario);
-
+                ViewBag.IdUserReg = GetUsuariosTodos();
+                ViewBag.IdUserMod = GetUsuariosTodos();
+                ViewBag.IdTipoMov = TipoMovimientoTodos();
                 return View(oRegistro);
             }
             catch (Exception ex)
@@ -350,5 +352,30 @@ namespace Web.Controllers
             ViewBag.listaBodega = listaBodega(null);
             return PartialView("_LineaDetalle", Movimiento.Instancia.Items);
         }
+
+        public ActionResult AjaxDetails(int id)
+        {
+            IServiceInventario _ServInv = new ServiceInventario();
+            GestionInventario oGestion = _ServInv.GetInventarioByID(id);
+
+            ViewBag.IdUserReg = GetUsuariosTodos();
+            ViewBag.IdUserMod = GetUsuariosTodos();
+            ViewBag.IdTipoMov = TipoMovimientoTodos();
+
+            return PartialView("_PartialViewInventDetails", oGestion);
+        }
+
+        public ActionResult AjaxEdition(int id)
+        {
+            IServiceInventario _ServInv = new ServiceInventario();
+            GestionInventario oGestion = _ServInv.GetInventarioByID(id);
+
+            ViewBag.IdUserReg = GetUsuariosTodos();
+            ViewBag.IdUserMod = GetUsuariosTodos();
+            ViewBag.IdTipoMov = TipoMovimientoTodos();
+
+            return PartialView("_PartialViewInventDetails", oGestion);
+        }
+
     }
 }

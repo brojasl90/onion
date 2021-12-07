@@ -1,0 +1,119 @@
+﻿@model Infrastructure.Models.GestionInventario
+
+
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdGestionInventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdGestionInventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+            @Html.DisplayFor(model => model.Usuario.PrimerApellido)
+            @Html.DisplayFor(model => model.Usuario.SegundoApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTipMovimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoMovimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMovimiento.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadProductoGestionado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadProductoGestionado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioGestion)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.UsuarioGestion)*@
+            @foreach (var iUs in ViewBag.IdUserMod)
+            {
+                if (@iUs.IdUsuario == Model.UsuarioGestion)
+                {
+                    var nomCompleto = string.Format("{0} {1} {2}", @iUs.Nombre, @iUs.PrimerApellido, iUs.SegundoApellido);
+                    @nomCompleto
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaGestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaGestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var item in Model.Producto)
+                {
+                    <li>@item.Nombre_Producto</li>
+                }
+            </ul>
+        </dd>
+
+    </dl>
+</div>

@@ -1,0 +1,124 @@
+﻿@using Web.Enum
+@model Infrastructure.Models.GestionInventario
+
+@{
+    ViewBag.Title = "Vista de Edición";
+    ViewBag.SubTitle = "Editando un registro:";
+}
+
+@{
+    int idUsuario = 0;
+    Infrastructure.Models.Usuario oUsuario;
+    //Validar si existe en la sesión
+    if (Session["User"] != null)
+    {
+        oUsuario = (Infrastructure.Models.Usuario)Session["User"];
+        if (oUsuario != null)
+        {
+            idUsuario = oUsuario.IdUsuario;
+        }
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Save", "Inventario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.SubTitle</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.IdGestionInventario)
+        @Html.HiddenFor(model => model.IdRegistro)
+
+        <div class="form-group d-flex m-1">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-11">
+                        @Html.DropDownListFor(model => model.IdUsuario, (SelectList)ViewBag.IdUserReg, "Seleccione un usuario...", htmlAttributes: new { @class = "form-select", disabled = "disabled" })
+                        @Html.HiddenFor(model => model.IdUsuario)
+                        @Html.ValidationMessageFor(model => model.IdUsuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsuarioGestion, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-11">
+                        @Html.DropDownListFor(model => model.UsuarioGestion, (SelectList)ViewBag.IdUserGes, "Seleccione un usuario...", htmlAttributes: new { @class = "form-select", disabled = "disabled" })
+                        @Html.EditorFor(model => model.UsuarioGestion, new { htmlAttributes = new { @class = "form-control invisible", Value = @idUsuario, @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.UsuarioGestion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaGestion, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.FechaGestion, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.FechaGestion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoGestion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.TipoGestion, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.TipoGestion, new SelectList(Enum.GetValues(typeof(ETipoGestion))), "Seleccione un Tipo...", htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.TipoGestion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTipMovimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdTipMovimiento, (SelectList)ViewBag.IdTipMov, "Seleccione un Tipo...", htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.IdTipMovimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("selectProducto", (MultiSelectList)ViewBag.IdProd, "Seleccione un producto...", htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.Producto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CantidadProductoGestionado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CantidadProductoGestionado, new { htmlAttributes = new { @class = "form-control", @min = "1", @max = "30" } })
+                @Html.ValidationMessageFor(model => model.CantidadProductoGestionado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <hr />
+            <div class="row">
+                <div class="col-12 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary rounded m-1" type="submit"><i class='bx bx-save'></i><span class="px-1">Guardar</span></button>
+                    <a href="@Url.Action("Index", "Inventario")" class="btn btn-outline-secondary rounded m-1">
+                        <i class='bx bxs-x-circle'></i>
+                        <span>Cancelar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
