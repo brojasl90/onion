@@ -409,6 +409,8 @@
     <Content Include="Views\Producto\graficoProducto.cshtml" />
     <Content Include="Views\Inventario\reporteSalidasProducto.cshtml" />
     <Content Include="Views\Inventario\reporteEntradasProducto.cshtml" />
+    <Content Include="Views\Registro\_PartialViewInventDetails.cshtml" />
+    <Content Include="Views\Registro\_PartialViewInventEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
